@@ -1,7 +1,7 @@
 # pop-api
 
-[![Build Status](https://travis-ci.org/popcorn-official/pop-api.svg?branch=development)](https://travis-ci.org/popcorn-official/pop-api)
-[![Coverage Status](https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=development)](https://coveralls.io/github/popcorn-official/pop-api?branch=development)
+[![Build Status](https://travis-ci.org/popcorn-official/pop-api.svg?branch=master)](https://travis-ci.org/popcorn-official/pop-api)
+[![Coverage Status](https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=master)](https://coveralls.io/github/popcorn-official/pop-api?branch=master)
 [![Dependency Status](https://david-dm.org/popcorn-official/pop-api.svg)](https://david-dm.org/popcorn-official/pop-api)
 [![devDependencies Status](https://david-dm.org/popcorn-official/pop-api/dev-status.svg)](https://david-dm.org/popcorn-official/pop-api?type=dev)
 
