@@ -197,6 +197,16 @@ export default class Logger {
   }
 
   /**
+   * Get the log message for Express Winston.
+   * @param {!Object} req - The request object to log.
+   * @param {!Object} res - The response object to log.
+   * @returns {string} - The HTTP log message to print.
+   */
+  _getExpressWinstonMessage(req: $Response, res: $Response): string {
+    return `HTTP ${req.method} ${req.url} ${res.statusCode} ${res.responseTime}ms`
+  }
+
+  /**
    * Create an Express Winston instance.
    * @param {?boolean} [pretty] - Pretty mode for output with colors.
    * @returns {ExpressWinston} - A configured Express Winston object.
@@ -208,7 +218,9 @@ export default class Logger {
       const { Console } = transports
       winstonInstance.add(new Console({
         name: this._name,
-        format: format.json({ space: 2 })
+        format: format.json({
+          space: 2
+        })
       }))
 
       expressWinston.requestWhitelist.push('body')
@@ -217,8 +229,7 @@ export default class Logger {
 
     return expressWinston.logger({
       winstonInstance,
-      meta: true,
-      msg: 'HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
+      msg: this._getExpressWinstonMessage,
       statusLevels: true
     })
   }
