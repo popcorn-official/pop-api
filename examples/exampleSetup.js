@@ -25,7 +25,6 @@ import {
 // Create a new service object for the `ExampleController`.
 const service = new ContentService({
   Model: ExampleModel,
-  basePath: 'example',
   projection: { name: 1 },
   query: {}
 })
@@ -33,7 +32,10 @@ const service = new ContentService({
 // Create a controllers array with the controllers to register.
 const controllers = [{
   Controller: ExampleController,
-  args: { service }
+  args: {
+    service,
+    basePath: 'example'
+  }
 }]
 
 /**
@@ -42,7 +44,7 @@ const controllers = [{
  * middleware with more options.
  * @returns {undefined}
  */
-async function setup() {
+;(async () => {
   await PopApi.init({
     controllers,
     name,
@@ -59,6 +61,4 @@ async function setup() {
   if (isMaster) {
     logger.error(PopApi.exampleMiddleware)
   }
-}
-
-setup()
+})()

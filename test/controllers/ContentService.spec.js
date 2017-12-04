@@ -35,7 +35,6 @@ describe('ContentService', () => {
   before(done => {
     contentService = new ContentService({
       Model: ExampleModel,
-      basePath: 'example',
       projection: {
         name: 1
       },
@@ -62,8 +61,6 @@ describe('ContentService', () => {
     expect(contentService.query).to.deep.equal({})
     expect(contentService.pageSize).to.a('number')
     expect(contentService.pageSize).to.equal(25)
-    expect(contentService.basePath).to.a('string')
-    expect(contentService.basePath).to.equal('example')
   })
 
   /** @test {ContentService#getPage} */

@@ -18,6 +18,12 @@ import type ContentService from './ContentService'
 export default class BaseContentController extends IContentController {
 
   /**
+   * The base path for the routes.
+   * @type {string}
+   */
+  _basePath: string
+
+  /**
    * The service of the content controller.
    * @type {ContentService}
    */
@@ -26,12 +32,18 @@ export default class BaseContentController extends IContentController {
   /**
    * Create a new base content controller.
    * @param {!Object} options - The options for the base content controller.
+   * @param {!string} options.basePath - The base path for the routes.
    * @param {!ContentService} options.service - The service for the content
    * controller.
    */
-  constructor({service}: Object): void {
+  constructor({basePath, service}: Object): void {
     super()
 
+    /**
+     * The base path for the routes.
+     * @type {string}
+     */
+    this._basePath = basePath
     /**
      * The service of the content controller.
      * @type {ContentService}
@@ -46,7 +58,7 @@ export default class BaseContentController extends IContentController {
    * @returns {undefined}
    */
   registerRoutes(router: any, PopApi?: any): void {
-    const t = this._service.basePath
+    const t = this._basePath
 
     router.get(`/${t}s`, this.getContents.bind(this))
     router.get(`/${t}s/:page`, this.getPage.bind(this))
@@ -85,7 +97,7 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<Array<string> | mixed> {
-    return this._service.getContents()
+    return this._service.getContents(`/${this._basePath}`)
       .then(content => this._checkEmptyContent(res, content))
       .catch(err => next(err))
   }
