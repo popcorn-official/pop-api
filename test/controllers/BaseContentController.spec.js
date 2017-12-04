@@ -34,6 +34,12 @@ describe('BaseContentController', () => {
   let baseContentController: BaseContentController
 
   /**
+   * The service for the base content controller.
+   * @type {ContentService}
+   */
+  let service: ContentService
+
+  /**
    * The express instance to test with.
    * @type {Express}
    */
@@ -68,14 +74,15 @@ describe('BaseContentController', () => {
     }))
     app.use(bodyParser.json())
 
+    service = new ContentService({
+      Model: ExampleModel,
+      projection: {
+        name: 1
+      }
+    })
     baseContentController = new BaseContentController({
-      service: new ContentService({
-        Model: ExampleModel,
-        basePath: content,
-        projection: {
-          name: 1
-        }
-      })
+      service,
+      basePath: content
     })
     baseContentController.registerRoutes(app)
     request = supertest(app)
@@ -91,6 +98,9 @@ describe('BaseContentController', () => {
   /** @test {BaseContentController#constructor} */
   it('should check the attributes of the BaseContentController', () => {
     expect(baseContentController._service).to.be.an('object')
+    expect(baseContentController._service).to.equal(service)
+    expect(baseContentController._basePath).to.a('string')
+    expect(baseContentController._basePath).to.equal(content)
   })
 
   /** @test {BaseContentController} */

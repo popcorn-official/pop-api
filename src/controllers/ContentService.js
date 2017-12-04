@@ -38,23 +38,15 @@ export default class ContentService {
   query: Object
 
   /**
-   * The base path of the service.
-   * @type {string}
-   */
-  basePath: string
-
-  /**
    * Create a new ContentService.
    * @param {!Object} options - The options for the content service.
    * @param {!MongooseModel} options.Model - The model of the service.
-   * @param {!string} options.basePath - The base path of the service.
    * @param {!Object} options.projection - The projection of the service.
    * @param {!Object} options.query={} - The query of the service.
    * @param {!number} [options.pageSize=25] - The page size of the service.
    */
   constructor({
     Model,
-    basePath,
     projection,
     query = {},
     pageSize = 25
@@ -79,11 +71,6 @@ export default class ContentService {
      * @type {Object}
      */
     this.query = query
-    /**
-     * The base path of the service.
-     * @type {string}
-     */
-    this.basePath = basePath
   }
 
   /**
@@ -98,7 +85,7 @@ export default class ContentService {
       const docs = []
 
       for (let i = 1; i < pages + 1; i++) {
-        docs.push(`${base}${this.basePath}/${i}`)
+        docs.push(`${base}/${i}`)
       }
 
       return docs
