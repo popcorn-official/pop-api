@@ -1,10 +1,9 @@
 // Import the necessary modules.
 // @flow
 /* eslint-disable no-unused-expressions */
-// import bodyParser from 'body-parser'
+import bodyParser from 'body-parser'
 import { expect } from 'chai'
-import /* express , */ { type $Application } from 'express'
-import restify from 'restify'
+import express, { type $Application } from 'express'
 import sinon from 'sinon'
 import supertest from 'supertest'
 
@@ -69,16 +68,11 @@ describe('BaseContentController', () => {
    * @type {Function}
    */
   before(done => {
-    app = restify.createServer()
-    app.use(restify.plugins.bodyParser())
-    app.use(restify.plugins.queryParser())
-
-    // TODO: Support tests for both Express and Restify.
-    // app = express()
-    // app.use(bodyParser.urlencoded({
-    //   extended: true
-    // }))
-    // app.use(bodyParser.json())
+    app = express()
+    app.use(bodyParser.urlencoded({
+      extended: true
+    }))
+    app.use(bodyParser.json())
 
     service = new ContentService({
       Model: ExampleModel,
@@ -107,6 +101,21 @@ describe('BaseContentController', () => {
     expect(baseContentController._service).to.equal(service)
     expect(baseContentController._basePath).to.a('string')
     expect(baseContentController._basePath).to.equal(content)
+  })
+
+  /** @test {BaseContentController#registerRoutes} */
+  it('should register the routes with of the controller', () => {
+    const app = express()
+
+    let res = baseContentController.registerRoutes(app)
+    expect(res).to.be.undefined
+
+    // @flow-ignore reference del to delete to mock Restify.
+    app.del = app.delete
+    delete app.delete
+
+    res = baseContentController.registerRoutes(app)
+    expect(res).to.be.undefined
   })
 
   /** @test {BaseContentController} */

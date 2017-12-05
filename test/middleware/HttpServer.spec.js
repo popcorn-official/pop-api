@@ -6,7 +6,6 @@ import del from 'del'
 import express, { type $Application } from 'express'
 import http from 'http'
 import mkdirp from 'mkdirp'
-import restify from 'restify'
 import sinon from 'sinon'
 import { expect } from 'chai'
 import { join } from 'path'
@@ -85,8 +84,8 @@ describe('HttpServer', () => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    const server = new HttpServer({}, { // eslint-disable-line no-new
-      app: restify.createServer()
+    const server = new HttpServer({}, {
+      app: http.createServer(() => {})
     })
     server.closeApi({
       disconnect() {}

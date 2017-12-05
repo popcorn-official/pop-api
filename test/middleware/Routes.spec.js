@@ -53,9 +53,9 @@ describe('Routes', () => {
     controllers = [{
       Controller: ExampleController,
       args: {
+        basePath: 'example',
         service: new ContentService({
           Model: ExampleModel,
-          itemType: 'example',
           projection: {
             name: 1
           },
