@@ -91,7 +91,8 @@ describe('PopApi', () => {
    * Hook for tearing down the PopApi tests.
    * @type {Function}
    */
-  after(() => {
+  after(done => {
     process.env.NODE_ENV = 'test'
+    PopApi.server.closeApi(PopApi.database, done)
   })
 })
