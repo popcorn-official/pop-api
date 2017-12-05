@@ -14,9 +14,9 @@ can also be used for other purposes by using middleware.
  - Database middleware for connection to MongoDB through [`mongoose`](https://github.com/Automattic/mongoose).
  - Logging of routes and other information using [`winston`](https://github.com/winstonjs/winston).
  - Uses [`express`](https://github.com/expressjs/express) under the hood with:
-   - Body middleware
+   - Body middleware with [`body-parser`](https://github.com/expressjs/body-parser)
    - Error handling
-   - Security middleware
+   - Security middleware with [`helmet`](https://github.com/helmetjs/helmet)
  - Interface for registering routes for [`express`](https://github.com/expressjs/express).
  - Data Access Layer (DAL) class for standard CRUD operations.
  - Route controller to handle routes for your content.
