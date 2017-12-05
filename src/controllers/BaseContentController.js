@@ -65,8 +65,12 @@ export default class BaseContentController extends IContentController {
     router.get(`/${t}/:id`, this.getContent.bind(this))
     router.post(`/${t}s`, this.createContent.bind(this))
     router.put(`/${t}/:id`, this.updateContent.bind(this))
-    router.delete(`/${t}/:id`, this.deleteContent.bind(this))
     router.get(`/random/${t}`, this.getRandomContent.bind(this))
+    if (typeof router.delete === 'function') {
+      router.delete(`/${t}/:id`, this.deleteContent.bind(this))
+    } else {
+      router.del(`/${t}/:id`, this.deleteContent.bind(this))
+    }
   }
 
   /**
@@ -77,11 +81,14 @@ export default class BaseContentController extends IContentController {
    * 200 response with the content if it is not empty.
    */
   _checkEmptyContent(res: $Response, content: any): Object {
+    res.setHeader('Content-Type', 'application/json')
     if (!content || content.length === 0) {
-      return res.status(204).json()
+      res.status(204)
+      return res.send()
     }
 
-    return res.json(content)
+    res.status(200)
+    return res.send(content)
   }
 
   /**
@@ -166,8 +173,9 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
+    res.setHeader('Content-Type', 'application/json')
     return this._service.createContent(req.body)
-      .then(content => res.json(content))
+      .then(content => res.send(content))
       .catch(err => next(err))
   }
 
@@ -183,8 +191,9 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
+    res.setHeader('Content-Type', 'application/json')
     return this._service.updateContent(req.params.id, req.body)
-      .then(content => res.json(content))
+      .then(content => res.send(content))
       .catch(err => next(err))
   }
 
@@ -200,8 +209,9 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
+    res.setHeader('Content-Type', 'application/json')
     return this._service.deleteContent(req.params.id)
-      .then(content => res.json(content))
+      .then(content => res.send(content))
       .catch(err => next(err))
   }
 

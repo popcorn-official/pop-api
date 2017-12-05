@@ -1,4 +1,5 @@
 // Import the necessary modules.
+import express from 'express'
 import { isMaster } from 'cluster'
 
 // Import the content service for the controllers and the `intBase` helper
@@ -45,7 +46,9 @@ const controllers = [{
  * @returns {undefined}
  */
 ;(async () => {
+  const app = express()
   await PopApi.init({
+    app,
     controllers,
     name,
     version
