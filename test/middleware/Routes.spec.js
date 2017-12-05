@@ -154,6 +154,18 @@ describe('Routes', () => {
       .catch(done)
   })
 
+  /** @test {Routes#_preRoutes} */
+  it('should execute the pre routes hook', () => {
+    const res = routes._preRoutes(express())
+    expect(res).to.be.undefined
+  })
+
+  /** @test {Routes#_postRoutes} */
+  it('should execute the post routes hook', () => {
+    const res = routes._postRoutes(express())
+    expect(res).to.be.undefined
+  })
+
   /** @test {Routes#_setupExpress} */
   it('should setup the Express instance', () => {
     const exp = express()
