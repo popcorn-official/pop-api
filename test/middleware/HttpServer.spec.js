@@ -6,6 +6,7 @@ import del from 'del'
 import express, { type $Application } from 'express'
 import http from 'http'
 import mkdirp from 'mkdirp'
+import restify from 'restify'
 import sinon from 'sinon'
 import { expect } from 'chai'
 import { join } from 'path'
@@ -65,17 +66,37 @@ describe('HttpServer', () => {
   })
 
   /** @test {HttpServer#constructor} */
-  it('should check the attributes of the Server', () => {
+  it('should create a HTttpServer with an Expresss instance', () => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    new HttpServer({}, { app }) // eslint-disable-line no-new
+    const server = new HttpServer({}, {
+      app: express()
+    })
+    server.closeApi({
+      disconnect() {}
+    })
 
     stub.restore()
   })
 
   /** @test {HttpServer#constructor} */
-  it('should check the attributes of the Server', () => {
+  it('should create a HttpServer with a Restify instance', () => {
+    const stub = sinon.stub(cluster, 'fork')
+    stub.returns(null)
+
+    const server = new HttpServer({}, { // eslint-disable-line no-new
+      app: restify.createServer()
+    })
+    server.closeApi({
+      disconnect() {}
+    })
+
+    stub.restore()
+  })
+
+  /** @test {HttpServer#constructor} */
+  it('should check the attributes of the HttpServer', () => {
     expect(httpServer._serverPort).to.exist
     expect(httpServer._serverPort).to.be.a('number')
     expect(httpServer._server).to.exist

@@ -2,11 +2,11 @@
 // @flow
 import bodyParser from 'body-parser'
 import compress from 'compression'
-import express, {
-  type $Application,
-  type $Request,
-  type $Response,
-  type NextFunction
+import type {
+  $Application,
+  $Request,
+  $Response,
+  NextFunction
 } from 'express'
 import responseTime from 'response-time'
 import { STATUS_CODES as statusMessages } from 'http'
@@ -51,10 +51,7 @@ export default class Routes {
       const { Controller, args } = c
       const controller = new Controller(args)
 
-      const router = express.Router()
-      controller.registerRoutes(router, PopApi)
-
-      app.use('/', router)
+      controller.registerRoutes(app, PopApi)
     })
   }
 
