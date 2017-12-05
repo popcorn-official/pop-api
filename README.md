@@ -150,7 +150,6 @@ import MyModel from './myModel'
 
 const myService = new ContentService({
   Model: MyModel,           // The model for the service.
-  basePath: 'example',      // The base path to register the routes to.
   projection: { name: 1 },  // Projection used to display multiple items.
   query: {}                 // (Optional) The default query to fetch items.
 })
@@ -171,11 +170,11 @@ export default myService
 ```
 
 Now we create a route controller which extends from `BaseContentController`.
-This route controller can be used on it's own o classes can extend from it to
+This route controller can be used on it's own or classes can extend from it to
 implement new behaviour or override existing behaviour. The
 `BaseContentController` class already implements the `registerRoutes` method
 from `IController` and adds the following routes to your API (note the base
-path will be taken from the `ContentService`):
+path will be taken from the `basePath` value of your route controller):
  - GET    `/examples`        Get a list of a available pages to get.
  - GET    `/examples/:page`  Get a page of models.
  - GET    `/example/:id`     Get a single model.
@@ -198,8 +197,9 @@ export default class MyRouteController extends BaseContentController {
   // The constructor of `BaseContentController` needs an instance of
   // `ContentService` which we will create later. It can also take additional
   // parameters for your own implementation.
-  constructor({service, name}) {
-    super({service})
+  constructor({basePath, service, name}) {
+    // binds: this._baseBath and this._service.
+    super({basePath, service})
 
     this.name = name
   }
@@ -230,6 +230,7 @@ parameters to pass down to the `init` method of the `PopApi` instance.
 
 ```js
 // ./index.js
+import express from 'express'
 import { PopApi, ContentService } from 'pop-api'
 import { join } from 'path'
 import MyRouteController from './MyRouteController'
@@ -243,6 +244,8 @@ import { name, version } from './package.json'
       Controller: MyRouteController,  // The controller to register.
       args: {                         // The arguments passed down to the
                                       // constructor of the controller.
+        basePath: 'example',          // The base path to register the routes
+                                      // to.
         service: myService,           // The content service for the
                                       // BaseContentController.
         name: 'John'                  // The additional arguments to pass to
@@ -252,6 +255,7 @@ import { name, version } from './package.json'
 
     // Initiate your API with optional parameters.
     await PopApi.init({
+      app: express(),          // The express instance  to use.
       controllers,             // The controllers to register.
       name,                    // The name of your API.
       version,                 // The version of your API.
