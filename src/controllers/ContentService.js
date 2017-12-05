@@ -75,11 +75,11 @@ export default class ContentService {
 
   /**
    * Get all the available pages.
-   * @param {!string} [base='/'] - The base of the url to display.
+   * @param {!string} [base=''] - The base of the url to display.
    * @returns {Promise<Array<string>, Error>} - A list of pages which are
    * available.
    */
-  getContents(base: string = '/'): Promise<Array<string>> {
+  getContents(base: string = ''): Promise<Array<string>> {
     return this.Model.count(this.query).then(count => {
       const pages = Math.ceil(count / this.pageSize)
       const docs = []
