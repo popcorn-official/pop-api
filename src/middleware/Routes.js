@@ -2,6 +2,7 @@
 // @flow
 import bodyParser from 'body-parser'
 import compress from 'compression'
+import helmet from 'helmet'
 import type {
   $Application,
   $Request,
@@ -132,22 +133,6 @@ export default class Routes {
   }
 
   /**
-   * Add security sensitive headers.
-   * @see https://github.com/shieldfy/API-Security-Checklist#output
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
-   * @returns {undefined}
-   */
-  _addSecHeaders(req: $Request, res: $Response, next: NextFunction): mixed {
-    res.setHeader('X-Content-Type-Options', 'no-sniff')
-    res.setHeader('X-Frame-Options', 'deny')
-    res.setHeader('Content-Security-Policy', 'default-src: \'none\'')
-
-    return next()
-  }
-
-  /**
    * Remove security sensitive headers.
    * @see https://github.com/shieldfy/API-Security-Checklist#output
    * @param {!Object} req - The ExpressJS request object.
@@ -155,11 +140,12 @@ export default class Routes {
    * @param {!Function} next - The ExpressJS next function.
    * @returns {undefined}
    */
-  _removeSecHeaders(req: $Request, res: $Response, next: NextFunction): mixed {
-    res.removeHeader('X-Powered-By')
-    res.removeHeader('X-AspNet-Version')
+  _removeServerHeader(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): mixed {
     res.removeHeader('Server')
-
     return next()
   }
 
@@ -188,8 +174,13 @@ export default class Routes {
     app.use(responseTime())
 
     // Set and remove the security sensitive headers.
-    app.use(this._addSecHeaders)
-    app.use(this._removeSecHeaders)
+    app.use(helmet())
+    app.use(helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ['\'none\'']
+      }
+    }))
+    app.use(this._removeServerHeader)
   }
 
   /**

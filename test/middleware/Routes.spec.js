@@ -130,25 +130,31 @@ describe('Routes', () => {
   // Execute the tests.
   ['development', 'test'].map(testErrorHandler)
 
-  /** @test {Routes#_addSecHeaders} */
-  it('should add the security headers', done => {
-    request.get('/hello/world')
-      .expect(200)
-      .expect('X-Content-Type-Options', 'no-sniff')
-      .expect('X-Frame-Options', 'deny')
-      .expect('Content-Security-Policy', 'default-src: \'none\'')
-      .then(() => done())
-      .catch(done)
-  })
-
-  /** @test {Routes#_removeSecHeaders} */
+  /** @test {Routes#_removeServerHeader} */
   it('should remove the security headers', done => {
     request.get('/hello/world')
       .expect(200)
       .expect(res => {
+        expect(res.headers['server']).to.be.undefined
+      })
+      .then(() => done())
+      .catch(done)
+  })
+
+  /** @test {Routes#_preRoutes} */
+  it('should add the security headers', done => {
+    request.get('/hello/world')
+      .expect(200)
+      .expect('X-Content-Type-Options', 'nosniff')
+      .expect('Content-Security-Policy', 'default-src \'none\'')
+      .expect('X-Frame-Options', 'SAMEORIGIN')
+      .expect('X-DNS-Prefetch-Control', 'off')
+      .expect('X-Download-Options', 'noopen')
+      .expect('X-XSS-Protection', '1; mode=block')
+      .expect(res => {
+        expect(res.headers['strict-transport-security']).to.be.a('string')
         expect(res.headers['x-powered-by']).to.be.undefined
         expect(res.headers['x-aspnet-version']).to.be.undefined
-        expect(res.headers['server']).to.be.undefined
       })
       .then(() => done())
       .catch(done)
