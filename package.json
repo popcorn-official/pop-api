@@ -1,6 +1,6 @@
 {
   "name": "pop-api",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The base modules for popcorn-api",
   "dependencies": {
     "body-parser": "^1.18.2",
