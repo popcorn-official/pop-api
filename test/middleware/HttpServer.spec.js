@@ -65,14 +65,14 @@ describe('HttpServer', () => {
   })
 
   /** @test {HttpServer#constructor} */
-  it('should create a HTttpServer with an Expresss instance', () => {
+  it('should create a HttpServer with an Express instance', () => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    const server = new HttpServer({}, {
+    const httpServer = new HttpServer({}, {
       app: express()
     })
-    server.closeApi({
+    httpServer.closeApi({
       disconnect() {}
     })
 
@@ -84,10 +84,10 @@ describe('HttpServer', () => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    const server = new HttpServer({}, {
+    const httpServer = new HttpServer({}, {
       app: http.createServer(() => {})
     })
-    server.closeApi({
+    httpServer.closeApi({
       disconnect() {}
     })
 
@@ -133,24 +133,38 @@ describe('HttpServer', () => {
     done()
   })
 
-  /** @test {HttpServer#_setupApi} */
-  it('should start the API in worker mode', () => {
-    const httpStub = sinon.stub(http, 'createServer')
-    const listen = {
-      listen() {
-        return null
+  /**
+   * Helper function to test the '_setupApi' method.
+   * @param {!number} workers - The amount of workers to use.
+   * @returns {undefined}
+   */
+  function testSetupApi(workers): void {
+    /** @test {HttpServer#_setupApi} */
+    it('should start the API in worker mode', () => {
+      const httpStub = sinon.stub(http, 'createServer')
+      const listen = {
+        listen() {
+          return null
+        }
       }
-    }
-    httpStub.returns(listen)
+      httpStub.returns(listen)
 
-    const stubMaster = sinon.stub(cluster, 'isMaster')
-    stubMaster.value(false)
+      const stubMaster = sinon.stub(cluster, 'isMaster')
+      stubMaster.value(false)
 
-    httpServer._setupApi(app)
+      const httpServer = new HttpServer({}, {
+        workers,
+        app: express()
+      })
+      httpServer._setupApi(app)
 
-    httpStub.restore()
-    stubMaster.restore()
-  })
+      httpStub.restore()
+      stubMaster.restore()
+    })
+  }
+
+  // Execute the tests.
+  [0, 1].map(testSetupApi)
 
   /** @test {HttpServer.closeApi} */
   it('should close the API', done => {
