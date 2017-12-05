@@ -4,7 +4,7 @@
  * Fast, unopinionated, minimalist web framework for node.
  * @external {Express} https://github.com/expressjs/express
  */
-import express, { type $Application } from 'express'
+import express from 'express'
 import { isMaster } from 'cluster'
 import { join } from 'path'
 
@@ -37,7 +37,7 @@ export default class PopApi {
    * The Express instance for the PopApi framework.
    * @type {Express}
    */
-  static app: $Application = express()
+  static app: mixed = express()
 
   /**
    * A map of the installed plugins.
@@ -60,6 +60,8 @@ export default class PopApi {
   /**
    * The setup for the base framework.
    * @param {!Object} options - The options for the framework.
+   * @param {!Express} options.app=express()] - The webframework instance you
+   * watn to use. Currently supports Express and Restify.
    * @param {!Array<Object>} options.controllers - The controllers to register.
    * @param {!string} options.name - The name for your API.
    * @param {!string} options.version - The version of your API.
@@ -76,6 +78,7 @@ export default class PopApi {
    * @returns {Promise<PopApi, Error>} - The initialized PopApi instance.
    */
   static async init({
+    app = express(),
     controllers,
     name,
     version,
@@ -87,7 +90,7 @@ export default class PopApi {
     serverPort = process.env.PORT,
     workers = 2
   }: Object): Promise<Object | Error> {
-    const { app } = PopApi
+    PopApi.app = app
     if (isMaster) {
       await utils.createTemp(logDir)
     }

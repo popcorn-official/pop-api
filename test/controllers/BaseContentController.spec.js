@@ -103,6 +103,21 @@ describe('BaseContentController', () => {
     expect(baseContentController._basePath).to.equal(content)
   })
 
+  /** @test {BaseContentController#registerRoutes} */
+  it('should register the routes with of the controller', () => {
+    const app = express()
+
+    let res = baseContentController.registerRoutes(app)
+    expect(res).to.be.undefined
+
+    // @flow-ignore reference del to delete to mock Restify.
+    app.del = app.delete
+    delete app.delete
+
+    res = baseContentController.registerRoutes(app)
+    expect(res).to.be.undefined
+  })
+
   /** @test {BaseContentController} */
   describe('with an empty database', () => {
     /**
@@ -157,20 +172,6 @@ describe('BaseContentController', () => {
 
       done()
     })
-
-    // /**
-    //  * Expectations for a ok result.
-    //  * @param {!Object} res - The result to test.
-    //  * @param {!Function} [done=() => {}] - The done function of Mocha.
-    //  * @returns {undefined}
-    //  */
-    // function expectOk(res: Object, done: Function = () => {}): void {
-    //   expect(res).to.have.status(200)
-    //   expect(res).to.be.json
-    //   expect(res).to.not.redirect
-    //
-    //   done()
-    // }
 
     /**
      * Expect a 200 result from a request.

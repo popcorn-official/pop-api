@@ -53,9 +53,9 @@ describe('Routes', () => {
     controllers = [{
       Controller: ExampleController,
       args: {
+        basePath: 'example',
         service: new ContentService({
           Model: ExampleModel,
-          itemType: 'example',
           projection: {
             name: 1
           },
@@ -154,7 +154,19 @@ describe('Routes', () => {
       .catch(done)
   })
 
-  /** @test {Routes#_setupExpress} */
+  /** @test {Routes#_preRoutes} */
+  it('should execute the pre routes hook', () => {
+    const res = routes._preRoutes(express())
+    expect(res).to.be.undefined
+  })
+
+  /** @test {Routes#_postRoutes} */
+  it('should execute the post routes hook', () => {
+    const res = routes._postRoutes(express())
+    expect(res).to.be.undefined
+  })
+
+  /** @test {Routes#_setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
     const PopApi = {}
@@ -169,14 +181,14 @@ describe('Routes', () => {
       type: 'express'
     })
 
-    routes._setupExpress(exp, PopApi)
+    routes._setupRoutes(exp, PopApi)
     expect(express).to.not.equal(express())
   })
 
-  /** @test {Routes#_setupExpress} */
+  /** @test {Routes#_setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
-    routes._setupExpress(exp)
+    routes._setupRoutes(exp)
     expect(express).to.not.equal(express())
   })
 })

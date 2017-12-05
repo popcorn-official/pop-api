@@ -50,7 +50,7 @@ export default class HttpServer {
      * The amount of workers on the cluster.
      * @type {number}
      */
-    this._server = http.createServer(app)
+    this._server = typeof app === 'function' ? http.createServer(app) : app
     /**
      * The port on which the API will run on. Default is `5000`.
      * @type {number}

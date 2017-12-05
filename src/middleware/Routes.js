@@ -2,11 +2,11 @@
 // @flow
 import bodyParser from 'body-parser'
 import compress from 'compression'
-import express, {
-  type $Application,
-  type $Request,
-  type $Response,
-  type NextFunction
+import type {
+  $Application,
+  $Request,
+  $Response,
+  NextFunction
 } from 'express'
 import responseTime from 'response-time'
 import { STATUS_CODES as statusMessages } from 'http'
@@ -30,7 +30,7 @@ export default class Routes {
    * @param {?Array<Object>} options.controllers - The controllers to register.
    */
   constructor(PopApi: any, {app, controllers}: Object): void {
-    this._setupExpress(app, PopApi, controllers)
+    this._setupRoutes(app, PopApi, controllers)
 
     PopApi.app = app
   }
@@ -51,10 +51,7 @@ export default class Routes {
       const { Controller, args } = c
       const controller = new Controller(args)
 
-      const router = express.Router()
-      controller.registerRoutes(router, PopApi)
-
-      app.use('/', router)
+      controller.registerRoutes(app, PopApi)
     })
   }
 
@@ -129,7 +126,9 @@ export default class Routes {
       body.stack = err.stack
     }
 
-    return res.status(status).json(body)
+    res.setHeader('Content-Type', 'application/json')
+    res.status(status)
+    return res.send(body)
   }
 
   /**
@@ -165,17 +164,11 @@ export default class Routes {
   }
 
   /**
-   * Setup the ExpressJS service.
-   * @param {!Express} app - The ExpressJS instance.
-   * @param {!PopApi} PopApi - The PopApi instance to bind the routes to.
-   * @param {!Array<Object>} controllers - The controllers to register.
+   * Hook method for setting up middleware pre setting up the routes.
+   * @param {!Express} app - The ExpressJS instanace.
    * @returns {undefined}
    */
-  _setupExpress(
-    app: $Application,
-    PopApi?: any,
-    controllers?: Array<Object>
-  ): void {
+  _preRoutes(app: $Application): void {
     // Enable parsing URL encoded bodies.
     app.use(bodyParser.urlencoded({
       extended: true
@@ -194,20 +187,17 @@ export default class Routes {
     // Enable response time tracking for HTTP request.
     app.use(responseTime())
 
-    // Enable HTTP request logging.
-    if (PopApi && PopApi.expressLogger) {
-      app.use(PopApi.expressLogger)
-    }
-
     // Set and remove the security sensitive headers.
     app.use(this._addSecHeaders)
     app.use(this._removeSecHeaders)
+  }
 
-    // Register the controllers.
-    if (controllers) {
-      this._registerControllers(app, PopApi, controllers)
-    }
-
+  /**
+   * Hook method for setting up middleware post setting up the routes.
+   * @param {!Express} app - The ExpressJS instanace.
+   * @returns {undefined}
+   */
+  _postRoutes(app: $Application): void {
     // Convert the caught errors to the ApiError instance.
     app.use(this._convertErrors)
 
@@ -216,6 +206,35 @@ export default class Routes {
 
     // Set the default error handling middleware.
     app.use(this._setErrorHandler)
+  }
+
+  /**
+   * Setup the ExpressJS service.
+   * @param {!Express} app - The ExpressJS instance.
+   * @param {!PopApi} PopApi - The PopApi instance to bind the routes to.
+   * @param {!Array<Object>} controllers - The controllers to register.
+   * @returns {undefined}
+   */
+  _setupRoutes(
+    app: $Application,
+    PopApi?: any,
+    controllers?: Array<Object>
+  ): void {
+    // Pre routes hook.
+    this._preRoutes(app)
+
+    // Enable HTTP request logging.
+    if (PopApi && PopApi.expressLogger) {
+      app.use(PopApi.expressLogger)
+    }
+
+    // Register the controllers.
+    if (controllers) {
+      this._registerControllers(app, PopApi, controllers)
+    }
+
+    // Post routes hook.
+    this._postRoutes(app)
   }
 
 }
