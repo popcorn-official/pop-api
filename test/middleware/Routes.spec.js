@@ -166,7 +166,7 @@ describe('Routes', () => {
     expect(res).to.be.undefined
   })
 
-  /** @test {Routes#_setupExpress} */
+  /** @test {Routes#_setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
     const PopApi = {}
@@ -181,14 +181,14 @@ describe('Routes', () => {
       type: 'express'
     })
 
-    routes._setupExpress(exp, PopApi)
+    routes._setupRoutes(exp, PopApi)
     expect(express).to.not.equal(express())
   })
 
-  /** @test {Routes#_setupExpress} */
+  /** @test {Routes#_setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
-    routes._setupExpress(exp)
+    routes._setupRoutes(exp)
     expect(express).to.not.equal(express())
   })
 })

@@ -30,7 +30,7 @@ export default class Routes {
    * @param {?Array<Object>} options.controllers - The controllers to register.
    */
   constructor(PopApi: any, {app, controllers}: Object): void {
-    this._setupExpress(app, PopApi, controllers)
+    this._setupRoutes(app, PopApi, controllers)
 
     PopApi.app = app
   }
@@ -213,7 +213,7 @@ export default class Routes {
    * @param {!Array<Object>} controllers - The controllers to register.
    * @returns {undefined}
    */
-  _setupExpress(
+  _setupRoutes(
     app: $Application,
     PopApi?: any,
     controllers?: Array<Object>
