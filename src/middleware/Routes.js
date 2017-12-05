@@ -126,7 +126,9 @@ export default class Routes {
       body.stack = err.stack
     }
 
-    return res.status(status).json(body)
+    res.setHeader('Content-Type', 'application/json')
+    res.status(status)
+    return res.send(body)
   }
 
   /**
