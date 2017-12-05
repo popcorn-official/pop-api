@@ -101,7 +101,7 @@ export default class HttpServer {
       this._workersOnExit()
 
       logger.info(`API started on port: ${this._serverPort}`)
-    } else {
+    } else if (cluster.isWorker || this._workers === 0) {
       app.listen(this._serverPort)
     }
   }
