@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "description": "The base modules for popcorn-api",
   "dependencies": {
+    "babel-preset-minify": "^0.2.0",
     "body-parser": "^1.18.2",
     "commander": "^2.12.2",
     "compression": "^1.7.1",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-export-extensions": "^6.22.0",
@@ -42,13 +44,17 @@
     "husky": "^0.14.3",
     "mocha": "^4.0.1",
     "nyc": "^11.4.0",
+    "rollup": "^0.52.1",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-watch": "^4.3.1",
     "sinon": "^4.1.2",
     "standard-version": "^4.2.0",
     "supertest": "^3.0.0"
   },
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-dir build --no-comments",
+    "build": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/rollup -c",
     "coveralls": "cat ./coverage/lcov.info | node ./node_modules/.bin/coveralls",
     "debug": "./node_modules/.bin/cross-env DEBUG=pop-api* NODE_ENV=development node --require babel-register --inspect=http://localhost:9229 ./examples/exampleSetup.js",
     "dev": "./node_modules/.bin/cross-env DEBUG=pop-api* NODE_ENV=development ./node_modules/.bin/babel-node ./examples/exampleSetup.js",
@@ -69,13 +75,14 @@
     "popcorn",
     "middleware"
   ],
-  "main": "./build/index.js",
+  "main": "./build/pop-api.js",
+  "module": "./build/pop-api.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/popcorn-official/pop-api.git"
   },
   "files": [
-    "build/**/*"
+    "build/**"
   ],
   "eslintConfig": {
     "extends": "vixo",
