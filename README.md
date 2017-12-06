@@ -27,6 +27,11 @@ can also be used for other purposes by using middleware.
  $ npm install --save pop-api
 ```
 
+## Documentation
+
+For further documentation you can check the `./manual` or generate it localy
+with `npm run docs`.
+
 ## Usage
 
 For your basic setup you have to create a controller which will handle the
