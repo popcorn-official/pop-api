@@ -1,6 +1,14 @@
-# Advanced Setup
+# Advanced Usage 
 
-TODO: introduction
+The advanced setup has some more options to setup your API in regards with
+the database connection and the port your API will be listening on. But also
+how you can serve content through built-in route controllers aswell as how to
+extend the built-in route controllers.
+
+ - [Mongoose Models](#mongoose-models)
+ - [ContentService](#contentservice)
+ - [Controllers](#controllers)
+ - [Configuration](#configuration)
 
 ## Mongoose Models
 
@@ -125,7 +133,7 @@ export default class MyRouteController extends BaseContentController {
 }
 ```
 
-## The setup
+## Configuration
 
 Now to initial your API we create a list of route controllers we want to
 register with their constructor parameters. This example also shows additional
