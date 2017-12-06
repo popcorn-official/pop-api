@@ -151,7 +151,7 @@ export default class Routes {
 
   /**
    * Hook method for setting up middleware pre setting up the routes.
-   * @param {!Express} app - The ExpressJS instanace.
+   * @param {!Express} app - The ExpressJS instance.
    * @returns {undefined}
    */
   _preRoutes(app: $Application): void {
@@ -185,7 +185,7 @@ export default class Routes {
 
   /**
    * Hook method for setting up middleware post setting up the routes.
-   * @param {!Express} app - The ExpressJS instanace.
+   * @param {!Express} app - The ExpressJS instance.
    * @returns {undefined}
    */
   _postRoutes(app: $Application): void {

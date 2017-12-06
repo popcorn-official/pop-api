@@ -2,7 +2,7 @@
 
 The advanced setup has some more options to setup your API in regards with
 the database connection and the port your API will be listening on. But also
-how you can serve content through built-in route controllers aswell as how to
+how you can serve content through built-in route controllers as well as how to
 extend the built-in route controllers.
 
  - [Mongoose Models](#mongoose-models)

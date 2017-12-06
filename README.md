@@ -29,7 +29,7 @@ can also be used for other purposes by using middleware.
 
 ## Documentation
 
-For further documentation you can check the `./manual` or generate it localy
+For further documentation you can check the `./manual` or generate it locally
 with `npm run docs`.
 
 ## Usage
