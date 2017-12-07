@@ -54,6 +54,7 @@
     "dev": "cross-env DEBUG=pop-api* NODE_ENV=development node -r babel-register ./examples/exampleSetup.js",
     "docs": "esdoc -c .esdoc.json",
     "flow": "flow",
+    "flow-typed": "flow-typed install",
     "lint": "eslint {example,src,test}/** *.js$",
     "release": "standard-version",
     "precommit": "npm run lint && npm run flow",
