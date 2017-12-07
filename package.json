@@ -74,23 +74,5 @@
     "type": "git",
     "url": "git+https://github.com/popcorn-official/pop-api.git"
   },
-  "files": [
-    "build/**/*"
-  ],
-  "eslintConfig": {
-    "extends": "vixo",
-    "globals": {
-      "logger": true
-    }
-  },
-  "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "include": [
-      "src"
-    ],
-    "sourceMap": false,
-    "instrument": false
-  }
+  "files": ["build/**/*"]
 }
