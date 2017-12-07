@@ -158,6 +158,18 @@ describe('Logger', () => {
     process.env.TEMP_DIR = stub
   })
 
+  /** @test {Logger#_getExpressWinstonMessage} */
+  it('should get the message to print for express-winston', () => {
+    const message = logger._getExpressWinstonMessage({
+      method: 'GET',
+      url: 'http://mock.us'
+    }, {
+      statusCode: 418,
+      responseTime: 420
+    })
+    expect(message).to.be.a('string')
+  })
+
   /** @test {Logger#_createExpressWinston} */
   it('should create a configured ExpressWinston instance', () => {
     const logy = logger._createExpressWinston()
