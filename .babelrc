@@ -2,7 +2,9 @@
   "plugins": [
     "transform-class-properties",
     "transform-export-extensions",
-    "transform-object-rest-spread",
+    ["transform-object-rest-spread", {
+      "useBuiltIns": true
+    }],
     "transform-strict-mode"
   ],
   "presets": ["flow"],
@@ -27,9 +29,8 @@
             "node": "7.10.1"
           },
           "modules": false
-        }],
-        "minify"
-      ],
+        }]
+      ]
     },
     "test": {
       "plugins": [

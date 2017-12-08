@@ -1,5 +1,7 @@
 import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
+import uglify from 'rollup-plugin-uglify'
+import { minify } from 'uglify-es'
 import {
   main,
   module,
@@ -19,9 +21,9 @@ export default {
   ],
   plugins: [
     resolve(),
-    babel()
+    babel(),
+    uglify({}, minify)
   ],
-  interop: false,
   output: [{
     file: main,
     format: 'cjs'
