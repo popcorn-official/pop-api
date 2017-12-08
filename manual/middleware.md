@@ -143,8 +143,8 @@ logger.info('\logger\' will be a global object')
 
 // Log middleware for logging routes, used by the `Routes` middleware, or set
 // it yourself.
-const { expressLogger } = PopApi
-PopApi.app.use(expressLogger)
+const { httpLogger } = PopApi
+PopApi.app.use(httpLogger)
 ```
 
 ## Routes

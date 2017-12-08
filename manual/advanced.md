@@ -107,7 +107,7 @@ export default class MyRouteController extends BaseContentController {
   // `ContentService` which we will create later. It can also take additional
   // parameters for your own implementation.
   constructor({basePath, service, name}) {
-    // binds: this._baseBath and this._service.
+    // binds: this.baseBath and this.service.
     super({basePath, service})
 
     this.name = name
@@ -160,8 +160,7 @@ import { name, version } from './package.json'
         service: myService,           // The content service for the
                                       // BaseContentController.
         name: 'John'                  // The additional arguments to pass to
-                                      // your route controller.
-      }
+      }                               // your route controller.
     }]
 
     // Initiate your API with optional parameters.
@@ -171,8 +170,7 @@ import { name, version } from './package.json'
       name,                    // The name of your API.
       version,                 // The version of your API.
       logDir: join(...[        // (Optional) The directory to store the log
-                               // files in. Defaults to `./tmp`.
-        __dirname,
+        __dirname,             // files in. Defaults to `./tmp`.
         '..',
         'tmp'
       ]),
@@ -187,8 +185,7 @@ import { name, version } from './package.json'
       serverPort: 8080,        // (Optional) The port to run your API on.
                                // Defaults to `5000`.
       workers: 4               // The amount of workers to fork for the server.
-                               // Defaults to `2`.
-    })
+    })                         // Defaults to `2`.
     // API is available on port 8080.
 
     // GET http://localhost:8080/hello
