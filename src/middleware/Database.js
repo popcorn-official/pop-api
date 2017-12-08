@@ -11,7 +11,7 @@ import { URL } from 'url'
 import { executeCommand } from '../utils'
 
 /**
- * Class for setting up MongoDB.
+ * Class for setting up a database connection.
  * @type {Database}
  */
 export default class Database {
@@ -36,7 +36,7 @@ export default class Database {
   dbPort: number
 
   /**
-   * The username of the database. DBy default this is left empty.
+   * The username of the database. By default this is left empty.
    * @type {string}
    */
   username: string
@@ -53,12 +53,12 @@ export default class Database {
    * @param {!Object} options - The options for the database.
    * @param {!string} options.database - The arguments to be parsed by
    * @param {!Array<string>} [options.hosts=['localhost']] - The hosts for the
-   * MongoDb connection.
-   * @param {!number} [options.dbPort=27017] - The port for the MongoDb
+   * database connection.
+   * @param {!number} [options.dbPort=27017] - The port for the database
    * connection.
-   * @param {?string} [options.username] - The username for the MongoDB
+   * @param {?string} [options.username] - The username for the database
    * connection.
-   * @param {?string} [options.password] - The password for the MongoDb
+   * @param {?string} [options.password] - The password for the database
    * connection.
    */
   constructor(PopApi: any, {
@@ -88,8 +88,9 @@ export default class Database {
   }
 
   /**
-   * Connection and configuration of the MongoDB database.
-   * @returns {Promise<undefined, Error>} - The promise to connect to MongoDB.
+   * Connection and configuration of the database.
+   * @returns {Promise<undefined, Error>} - The promise to connect to the
+   * database.
    */
   connect(): Promise<void> {
     const uri = new URL(`mongodb://${this.username}:${this.password}@${this.hosts.join(',')}:${this.dbPort}/${this.database}`)
@@ -101,9 +102,9 @@ export default class Database {
   }
 
   /**
-   * Disconnect from the MongoDB database.
+   * Disconnect from the database.
    * @returns {Promise<undefined, Error>} - The promise to disconnect from
-   * MongoDB.
+   * the database.
    */
   disconnect(): Promise<void> {
     return mongoose.connection.close()
