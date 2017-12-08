@@ -25,4 +25,4 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **initial-release:** Initial release for npm registery ([c5269e7](https://github.com/popcorn-official/pop-api/commit/c5269e7))
+* **initial-release:** Initial release for npm registry ([c5269e7](https://github.com/popcorn-official/pop-api/commit/c5269e7))
