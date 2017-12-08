@@ -4,7 +4,7 @@
  * Fast, unopinionated, minimalist web framework for node.
  * @external {Express} https://github.com/expressjs/express
  */
-import express from 'express'
+import express, { type $Application } from 'express'
 import { isMaster } from 'cluster'
 import { join } from 'path'
 
@@ -34,18 +34,6 @@ const defaultLogDir = join(...[
 export default class PopApi {
 
   /**
-   * The Express instance for the PopApi framework.
-   * @type {Express}
-   */
-  static app: mixed = express()
-
-  /**
-   * A map of the installed plugins.
-   * @type {Map<any>}
-   */
-  static _installedPlugins: Map<string, any> = new Map()
-
-  /**
    * The database connection.
    * @type {Database}
    */
@@ -58,10 +46,22 @@ export default class PopApi {
   static loggerArgs: Object
 
   /**
+   * The application instance for the PopApi framework.
+   * @type {Express}
+   */
+  static app: $Application = express()
+
+  /**
+   * A map of the installed plugins.
+   * @type {Map<any>}
+   */
+  static _installedPlugins: Map<string, any> = new Map()
+
+  /**
    * The setup for the base framework.
    * @param {!Object} options - The options for the framework.
-   * @param {!Express} options.app=express()] - The webframework instance you
-   * watn to use. Currently supports Express and Restify.
+   * @param {!Express} [options.app=express()] - The webframework instance you
+   * watn to use.
    * @param {!Array<Object>} options.controllers - The controllers to register.
    * @param {!string} options.name - The name for your API.
    * @param {!string} options.version - The version of your API.

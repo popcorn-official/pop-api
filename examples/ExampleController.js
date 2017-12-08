@@ -22,11 +22,11 @@ export default class ExampleController extends BaseContentController {
   /**
    * Default method to register the routes.
    * @override
-   * @param {!Object} router - The express router to register the routes to.
+   * @param {!Object} router - The router to register the routes to.
    * @param {?PopApi} [PopApi] - The PopApi instance.
    * @returns {undefined}
    */
-  registerRoutes(router: any, PopApi?: any): void {
+  registerRoutes(router: Object, PopApi?: any): void {
     // Include the routes from the BaseContentController.
     super.registerRoutes(router, PopApi)
 
@@ -43,9 +43,10 @@ export default class ExampleController extends BaseContentController {
 
   /**
    * Say hello to a user.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Object} - Object with a message saying the name parameter.
    */
   getHello(req: $Request, res: $Response, next: NextFunction): $Response {
@@ -57,9 +58,10 @@ export default class ExampleController extends BaseContentController {
 
   /**
    * Throw an error on purpose as a demonstration.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - An error occurred!
    * @returns {Error} - A demonstration error.
    */
@@ -70,9 +72,10 @@ export default class ExampleController extends BaseContentController {
 
   /**
    * Throw a custom error on purpose as a demonstration.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - A custom error occurred!
    * @returns {Error} - A demonstration error.
    */

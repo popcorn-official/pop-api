@@ -65,15 +65,15 @@ describe('Logger', () => {
 
   /** @test {Logger#constructor} */
   it('should check the attributes of the Logger', () => {
-    expect(logger._levels).to.exist
-    expect(logger._levels).to.be.an('object')
-    expect(logger._name).to.exist
-    expect(logger._name).to.be.a('string')
-    expect(logger._logDir).to.exist
-    expect(logger._logDir).to.be.a('string')
+    expect(logger.levels).to.exist
+    expect(logger.levels).to.be.an('object')
+    expect(logger.name).to.exist
+    expect(logger.name).to.be.a('string')
+    expect(logger.logDir).to.exist
+    expect(logger.logDir).to.be.a('string')
   })
 
-  /** @test {Logger#_checkEmptyMessage} */
+  /** @test {Logger#checkEmptyMessage} */
   it('should check for an empty message with a full message', () => {
     const empty = {
       message: '',
@@ -81,7 +81,7 @@ describe('Logger', () => {
         message: 'test'
       }
     }
-    const emptyResult = logger._checkEmptyMessage(empty)
+    const emptyResult = logger.checkEmptyMessage(empty)
     expect(emptyResult.message).to.exist
     expect(emptyResult.message).to.equal(JSON.stringify(empty.meta))
     expect(emptyResult.meta).to.exist
@@ -90,107 +90,107 @@ describe('Logger', () => {
     })
   })
 
-  /** @test {Logger#_checkEmptyMessage} */
+  /** @test {Logger#checkEmptyMessage} */
   it('should check for an empty message with an empty message', () => {
     const full = {
       message: 'test',
       meta: {}
     }
-    const fullResult = logger._checkEmptyMessage(full)
+    const fullResult = logger.checkEmptyMessage(full)
     expect(fullResult.message).to.exist
     expect(fullResult.message).to.equal('test')
     expect(fullResult.meta).to.exist
     expect(fullResult.meta).to.deep.equal({})
   })
 
-  /** @test {Logger#_getLevelColor} */
+  /** @test {Logger#getLevelColor} */
   it('should test if the correct logger colors are returned', () => {
-    const error = logger._getLevelColor('error')
+    const error = logger.getLevelColor('error')
     expect(error).to.equal('\x1b[31m')
-    const warn = logger._getLevelColor('warn')
+    const warn = logger.getLevelColor('warn')
     expect(warn).to.equal('\x1b[33m')
-    const info = logger._getLevelColor('info')
+    const info = logger.getLevelColor('info')
     expect(info).to.equal('\x1b[36m')
-    const debug = logger._getLevelColor('debug')
+    const debug = logger.getLevelColor('debug')
     expect(debug).to.equal('\x1b[34m')
-    const nothing = logger._getLevelColor(undefined)
+    const nothing = logger.getLevelColor(undefined)
     expect(nothing).to.equal('\x1b[36m')
   })
 
-  /** @test {Logger#_consoleFormatter} */
+  /** @test {Logger#consoleFormatter} */
   it('should make an object into a string for the console formatter', () => {
-    expect(logger._consoleFormatter({
+    expect(logger.consoleFormatter({
       level: 'info'
     })).to.be.a('string')
   })
 
-  /** @test {Logger#_fileFormatter} */
+  /** @test {Logger#fileFormatter} */
   it('should make an object into a string for the file formatter', () => {
-    expect(logger._fileFormatter({})).to.be.a('string')
+    expect(logger.fileFormatter({})).to.be.a('string')
   })
 
-  /** @test {Logger#_getConsoleTransport} */
+  /** @test {Logger#getConsoleTransport} */
   it('should get a configured winston console transport', () => {
-    const transport = logger._getConsoleTransport()
+    const transport = logger.getConsoleTransport()
     expect(transport).to.be.an('object')
   })
 
-  /** @test {Logger#_getFileTransport} */
+  /** @test {Logger#getFileTransport} */
   it('should get a configured winston file transport', () => {
-    const transport = logger._getFileTransport('winston')
+    const transport = logger.getFileTransport('winston')
     expect(transport).to.be.an('object')
   })
 
-  /** @test {Logger#_createWinston} */
+  /** @test {Logger#createLoggerInstance} */
   it('should create a configured winston instance', () => {
-    const logy = logger._createWinston()
+    const logy = logger.createLoggerInstance()
     expect(logy).to.be.an('object')
   })
 
-  /** @test {Logger#_createWinston} */
+  /** @test {Logger#createLoggerInstance} */
   it('should create a configured winston instance', () => {
     const stub = process.env.TEMP_DIR
     process.env.TEMP_DIR = null
 
-    const logy = logger._createWinston()
+    const logy = logger.createLoggerInstance()
     expect(logy).to.be.an('object')
 
     process.env.TEMP_DIR = stub
   })
 
-  /** @test {Logger#_createExpressWinston} */
-  it('should create a configured ExpressWinston instance', () => {
-    const logy = logger._createExpressWinston()
+  /** @test {Logger#createHttpLogger} */
+  it('should create a configured Http logger instance', () => {
+    const logy = logger.createHttpLogger()
     expect(logy).to.be.a('function')
   })
 
-  /** @test {Logger#_createExpressWinston} */
-  it('should create a configured ExpressWinston instance with developer output', () => {
+  /** @test {Logger#createHttpLogger} */
+  it('should create a configured Http logger instance with developer output', () => {
     const stub = sinon.stub(process.env, 'NODE_ENV')
     stub.value('development')
 
-    const logy = logger._createExpressWinston()
+    const logy = logger.createHttpLogger()
     expect(logy).to.be.a('function')
 
     stub.restore()
   })
 
-  /** @test {Logger#_createLogger} */
+  /** @test {Logger#createLogger} */
   it('should create the global logger object', () => {
-    let val = logger._createLogger(true, true)
+    let val = logger.createLogger(true, true)
     expect(val).to.be.an('object')
 
-    val = logger._createLogger(false, false)
+    val = logger.createLogger(false, false)
     expect(val).to.be.an('object')
 
-    val = logger._createLogger(false, true)
+    val = logger.createLogger(false, true)
     expect(val).to.be.an('object')
   })
 
-  /** @test {Logger#_getLogger} */
+  /** @test {Logger#getLogger} */
   it('should not create an instance of ExpressWinston or Winston', () => {
-    expect(logger._getLogger()).to.be.undefined
-    expect(logger._getLogger('FAULTY')).to.be.undefined
+    expect(logger.getLogger()).to.be.undefined
+    expect(logger.getLogger('FAULTY')).to.be.undefined
   })
 
   /**
