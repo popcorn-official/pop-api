@@ -60,8 +60,8 @@ export default class PopApi {
   /**
    * The setup for the base framework.
    * @param {!Object} options - The options for the framework.
-   * @param {!Express} [options.app=express()] - The webframework instance you
-   * watn to use.
+   * @param {!Express} [options.app=express()] - The web framework instance you
+   * want to use.
    * @param {!Array<Object>} options.controllers - The controllers to register.
    * @param {!string} options.name - The name for your API.
    * @param {!string} options.version - The version of your API.

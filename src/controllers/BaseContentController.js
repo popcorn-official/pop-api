@@ -95,7 +95,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Get all the available pages.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -128,7 +128,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Get content from one page.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -153,7 +153,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Get a content item based on the id.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -172,7 +172,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Create a new content item.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -192,7 +192,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Update the info of one content item.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -212,7 +212,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Delete a content item.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -232,7 +232,7 @@ export default class BaseContentController extends IContentController {
   /**
    * Get a random item.
    * @override
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.

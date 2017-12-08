@@ -43,7 +43,7 @@ export default class ExampleController extends BaseContentController {
 
   /**
    * Say hello to a user.
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -58,7 +58,7 @@ export default class ExampleController extends BaseContentController {
 
   /**
    * Throw an error on purpose as a demonstration.
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -72,7 +72,7 @@ export default class ExampleController extends BaseContentController {
 
   /**
    * Throw a custom error on purpose as a demonstration.
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
