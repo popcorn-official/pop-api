@@ -60,8 +60,8 @@ export default class PopApi {
   /**
    * The setup for the base framework.
    * @param {!Object} options - The options for the framework.
-   * @param {!Express} options.app=express()] - The webframework instance you
-   * watn to use. Currently supports Express and Restify.
+   * want to use. Currently supports Express and Restify.
+   * @param {!Express} [options.app=express()] - The webframework instance you
    * @param {!Array<Object>} options.controllers - The controllers to register.
    * @param {!string} options.name - The name for your API.
    * @param {!string} options.version - The version of your API.
@@ -75,6 +75,8 @@ export default class PopApi {
    * connection.
    * @param {?number} [options.serverPort] - The port the API will run on.
    * @param {?number} [options.workers=2] - The number of workers for the API.
+   * @param {!Array<Function>} middlewares - The list of middlewares to use.
+   * The order of the middlewares is important.
    * @returns {Promise<PopApi, Error>} - The initialized PopApi instance.
    */
   static async init({
@@ -89,41 +91,35 @@ export default class PopApi {
     password,
     serverPort = process.env.PORT,
     workers = 2
-  }: Object): Promise<Object | Error> {
+  }: Object, middlewares: Array<Function> = [
+    Cli,
+    Logger,
+    Database,
+    Routes,
+    HttpServer
+  ]): Promise<Object | Error> {
     PopApi.app = app
     if (isMaster) {
       await utils.createTemp(logDir)
     }
 
-    PopApi.use(Cli, {
-      argv: process.argv,
-      name,
-      version
+    middlewares.map(Middleware => {
+      PopApi.use(Middleware, {
+        app,
+        controllers,
+        name,
+        version,
+        logDir,
+        hosts,
+        dbPort,
+        username,
+        password,
+        serverPort,
+        workers,
+        argv: process.argv,
+        ...PopApi.loggerArgs || {}
+      })
     })
-
-    const loggerOpts = {
-      name,
-      logDir,
-      ...PopApi.loggerArgs
-    }
-    PopApi.use(Logger, loggerOpts)
-    PopApi.use(Database, {
-      database: name,
-      hosts,
-      username,
-      password,
-      dbPort
-    })
-    PopApi.use(HttpServer, {
-      app,
-      workers,
-      serverPort
-    })
-    PopApi.use(Routes, {
-      app,
-      controllers
-    })
-
     await PopApi.database.connect()
 
     return PopApi
