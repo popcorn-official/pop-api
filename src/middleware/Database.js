@@ -6,6 +6,7 @@ import {
   isAbsolute,
   join
 } from 'path'
+import { URL } from 'url'
 
 import { executeCommand } from '../utils'
 
@@ -20,31 +21,31 @@ export default class Database {
    * environment mode.
    * @type {string}
    */
-  _database: string
+  database: string
 
   /**
    * The host of the server of the database. Default is `['localhost']`.
    * @type {Array<string>}
    */
-  _hosts: Array<string>
+  hosts: Array<string>
 
   /**
    * The port of the database. Default is `27017`.
    * @type {string}
    */
-  _dbPort: number
+  dbPort: number
 
   /**
    * The username of the database. DBy default this is left empty.
    * @type {string}
    */
-  _username: string
+  username: string
 
   /**
    * The password of the database. By default this is left empty.
    * @type {string}
    */
-  _password: string
+  password: string
 
   /**
    * Create a new Database object.
@@ -55,19 +56,19 @@ export default class Database {
    * MongoDb connection.
    * @param {!number} [options.dbPort=27017] - The port for the MongoDb
    * connection.
-   * @param {?string} [options.username=''] - The username for the MongoDB
+   * @param {?string} [options.username] - The username for the MongoDB
    * connection.
-   * @param {?string} [options.password=''] - The password for the MongoDb
+   * @param {?string} [options.password] - The password for the MongoDb
    * connection.
    */
   constructor(PopApi: any, {
     database,
     hosts = ['localhost'],
     dbPort = 27017,
-    username = '',
-    password = ''
+    username,
+    password
   }: Object): void {
-    process.env.NODE_ENV = process.env.NODE_ENV || ''
+    process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
     const {
       MONGO_PORT_27017_TCP_ADDR,
@@ -75,13 +76,13 @@ export default class Database {
       NODE_ENV
     } = process.env
 
-    this._database = `${database}-${NODE_ENV}`
-    this._hosts = MONGO_PORT_27017_TCP_ADDR
+    this.database = `${database}-${NODE_ENV}`
+    this.hosts = MONGO_PORT_27017_TCP_ADDR
       ? [MONGO_PORT_27017_TCP_ADDR]
       : hosts
-    this._dbPort = Number(MONGO_PORT_27017_TCP_PORT) || dbPort
-    this._username = username
-    this._password = password
+    this.dbPort = Number(MONGO_PORT_27017_TCP_PORT) || dbPort
+    this.username = username || ''
+    this.password = password || ''
 
     PopApi.database = this
   }
@@ -91,14 +92,10 @@ export default class Database {
    * @returns {Promise<undefined, Error>} - The promise to connect to MongoDB.
    */
   connect(): Promise<void> {
-    let uri = 'mongodb://'
-    if (this._username && this._password) {
-      uri += `${this._username}:${this._password}@`
-    }
-    uri += `${this._hosts.join(',')}:${this._dbPort}/${this._database}`
+    const uri = new URL(`mongodb://${this.username}:${this.password}@${this.hosts.join(',')}:${this.dbPort}/${this.database}`)
 
-    mongoose.Promise = global.Promise
-    return mongoose.connect(uri, {
+    mongoose.Promise = Promise
+    return mongoose.connect(uri.href, {
       useMongoClient: true
     }).catch(err => Promise.reject(new Error(err)))
   }
@@ -123,12 +120,11 @@ export default class Database {
     collection: string,
     outputFile: string
   ): Promise<string | void> {
-    const args = [
-      '-d', this._database,
+    return executeCommand('mongoexport', [
+      '-d', this.database,
       '-c', `${collection}s`,
       '-o', outputFile
-    ]
-    return executeCommand('mongoexport', args)
+    ])
   }
 
   /**
@@ -142,7 +138,7 @@ export default class Database {
     collection: string,
     jsonFile: string
   ): Promise<string | void> {
-    const file = isAbsolute(jsonFile)
+    const file = !isAbsolute(jsonFile)
       ? jsonFile
       : join(...[__dirname, '..', '..', jsonFile])
 
@@ -151,13 +147,12 @@ export default class Database {
       return Promise.reject(err)
     }
 
-    const args = [
-      '-d', this._database,
+    return executeCommand('mongoimport', [
+      '-d', this.database,
       '-c', `${collection}s`,
       '--file', jsonFile,
       '--upsert'
-    ]
-    return executeCommand('mongoimport', args)
+    ])
   }
 
 }

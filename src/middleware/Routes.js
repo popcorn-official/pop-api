@@ -27,23 +27,23 @@ export default class Routes {
    * Create a new Routes object.
    * @param {!PopApi} PopApi - The PopApi instance to bind the routes to.
    * @param {!Object} options - The options for the routes.
-   * @param {!Express} options.app - The Express application.
+   * @param {!Express} options.app - The application instance to add middleware
+   * and bind the routes to.
    * @param {?Array<Object>} options.controllers - The controllers to register.
    */
   constructor(PopApi: any, {app, controllers}: Object): void {
-    this._setupRoutes(app, PopApi, controllers)
-
-    PopApi.app = app
+    this.setupRoutes(app, PopApi, controllers)
   }
 
   /**
    * Register the controllers found in the controllers directory.
-   * @param {!Express} app - The Express instance to register the routers to.
+   * @param {!Express} app - The application instance to register the routers
+   * to.
    * @param {!PopApi} PopApi - The PopApi instance to bind the routes to.
    * @param {!Array<Object>} controllers - The controllers to register.
    * @returns {undefined}
    */
-  _registerControllers(
+  registerControllers(
     app: $Application,
     PopApi: any,
     controllers: Array<Object>
@@ -59,12 +59,13 @@ export default class Routes {
   /**
    * Convert the thrown errors to an instance of ApiError.
    * @param {!Error} err - The caught error.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {ApiError} - The converted error.
    */
-  _convertErrors(
+  convertErrors(
     err: Error,
     req: $Request,
     res: $Response,
@@ -82,12 +83,13 @@ export default class Routes {
 
   /**
    * Catch the 404 errors.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {ApiError} - A standard 404 error.
    */
-  _setNotFoundHandler(
+  setNotFoundHandler(
     req: $Request,
     res: $Response,
     next: NextFunction
@@ -103,12 +105,13 @@ export default class Routes {
   /**
    * Error handler middleware
    * @param {!ApiError} err - The caught error.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Object} - The error object.
    */
-  _setErrorHandler(
+  setErrorHandler(
     err: ApiError,
     req: $Request,
     res: $Response,
@@ -135,12 +138,13 @@ export default class Routes {
   /**
    * Remove security sensitive headers.
    * @see https://github.com/shieldfy/API-Security-Checklist#output
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {undefined}
    */
-  _removeServerHeader(
+  removeServerHeader(
     req: $Request,
     res: $Response,
     next: NextFunction
@@ -151,10 +155,10 @@ export default class Routes {
 
   /**
    * Hook method for setting up middleware pre setting up the routes.
-   * @param {!Express} app - The ExpressJS instanace.
+   * @param {!Express} app - The application instance to add middleware to.
    * @returns {undefined}
    */
-  _preRoutes(app: $Application): void {
+  preRoutes(app: $Application): void {
     // Enable parsing URL encoded bodies.
     app.use(bodyParser.urlencoded({
       extended: true
@@ -180,52 +184,53 @@ export default class Routes {
         defaultSrc: ['\'none\'']
       }
     }))
-    app.use(this._removeServerHeader)
+    app.use(this.removeServerHeader)
   }
 
   /**
    * Hook method for setting up middleware post setting up the routes.
-   * @param {!Express} app - The ExpressJS instanace.
+   * @param {!Express} app - The application instance to add middleware to.
    * @returns {undefined}
    */
-  _postRoutes(app: $Application): void {
+  postRoutes(app: $Application): void {
     // Convert the caught errors to the ApiError instance.
-    app.use(this._convertErrors)
+    app.use(this.convertErrors)
 
     // Set the default not found handling middleware.
-    app.use(this._setNotFoundHandler)
+    app.use(this.setNotFoundHandler)
 
     // Set the default error handling middleware.
-    app.use(this._setErrorHandler)
+    app.use(this.setErrorHandler)
   }
 
   /**
-   * Setup the ExpressJS service.
-   * @param {!Express} app - The ExpressJS instance.
+   * Setup the application service.
+   * @param {!Express} app - The application instance to add middleware and
+   * bind the routes to.
    * @param {!PopApi} PopApi - The PopApi instance to bind the routes to.
-   * @param {!Array<Object>} controllers - The controllers to register.
+   * @param {?Array<Object>} [controllers] - The controllers to register.
    * @returns {undefined}
    */
-  _setupRoutes(
+  setupRoutes(
     app: $Application,
     PopApi?: any,
     controllers?: Array<Object>
   ): void {
     // Pre routes hook.
-    this._preRoutes(app)
+    this.preRoutes(app)
 
     // Enable HTTP request logging.
-    if (PopApi && PopApi.expressLogger) {
-      app.use(PopApi.expressLogger)
+    if (PopApi && PopApi.httpLogger) {
+      app.use(PopApi.httpLogger)
     }
 
     // Register the controllers.
     if (controllers) {
-      this._registerControllers(app, PopApi, controllers)
+      this.registerControllers(app, PopApi, controllers)
     }
 
     // Post routes hook.
-    this._postRoutes(app)
+    this.postRoutes(app)
   }
 
 }

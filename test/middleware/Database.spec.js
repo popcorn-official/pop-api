@@ -57,7 +57,9 @@ describe('Database', () => {
     mkdirp.sync(tmp)
 
     database = new Database({}, {
-      database: name
+      database: name,
+      username: '',
+      password: ''
     })
   })
 
@@ -80,18 +82,18 @@ describe('Database', () => {
   it('should check the attributes of the Database', () => {
     const temp = process.env.MONGO_PORT_27017_TCP_ADDR
     process.env.MONGO_PORT_27017_TCP_ADDR = null
-    expect(database._hosts).to.exist
-    expect(database._hosts).to.be.an('array')
+    expect(database.hosts).to.exist
+    expect(database.hosts).to.be.an('array')
     process.env.MONGO_PORT_27017_TCP_ADDR = temp
 
-    expect(database._database).to.exist
-    expect(database._database).to.be.a('string')
-    expect(database._dbPort).to.exist
-    expect(database._dbPort).to.be.a('number')
-    expect(database._username).to.exist
-    expect(database._username).to.be.a('string')
-    expect(database._password).to.exist
-    expect(database._password).to.be.a('string')
+    expect(database.database).to.exist
+    expect(database.database).to.be.a('string')
+    expect(database.dbPort).to.exist
+    expect(database.dbPort).to.be.a('number')
+    expect(database.username).to.exist
+    expect(database.username).to.be.a('string')
+    expect(database.password).to.exist
+    expect(database.password).to.be.a('string')
   })
 
   /** @test {Database#constructor} */

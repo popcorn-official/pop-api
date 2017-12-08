@@ -9,6 +9,9 @@ import type { MongooseModel } from 'mongoose'
 
 import IController from './IController'
 
+/** @external {IncommingMessage} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage */
+/** @external {ServerResponse} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse */
+
 /**
  * Interface for handling the content endpoints.
  * @interface
@@ -20,9 +23,10 @@ export default class IContentController extends IController {
   /**
    * Default method to get content pages.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'getContents'.
    * @returns {Promise<Array<string>, Object>} - A list of pages which are
    * available.
@@ -50,9 +54,10 @@ export default class IContentController extends IController {
   /**
    * Default method to get a page of content.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'getPage'.
    * @returns {Promise<Array<Object>, Error>} - The content of one page.
    */
@@ -67,9 +72,10 @@ export default class IContentController extends IController {
   /**
    * Get a content item based on the id.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'getContent'.
    * @returns {Promise<Object, Error>} - The details of a single content item.
    */
@@ -84,9 +90,10 @@ export default class IContentController extends IController {
   /**
    * Create a new content item.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'createContent'.
    * @returns {Promise<Object, Error>} - The created content item.
    */
@@ -101,9 +108,10 @@ export default class IContentController extends IController {
   /**
    * Update the info of one content item.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'updateContent'.
    * @returns {Promise<Object, Error>} - The updated content item.
    */
@@ -118,9 +126,10 @@ export default class IContentController extends IController {
   /**
    * Delete a content item.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'deleteContent'.
    * @returns {Promise<Object, Error>} - The deleted content item
    */
@@ -135,9 +144,10 @@ export default class IContentController extends IController {
   /**
    * Default method to get a random content item.
    * @abstract
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @throws {Error} - Using default method: 'getRandomContent'.
    * @returns {Promise<Object, Error>} - A random item.
    */

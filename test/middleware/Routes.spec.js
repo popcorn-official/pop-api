@@ -65,7 +65,7 @@ describe('Routes', () => {
     }]
 
     routes = new Routes({
-      expressLogger(req, res, next) {
+      httpLogger(req, res, next) {
         return next()
       }
     }, {
@@ -80,15 +80,15 @@ describe('Routes', () => {
     new Routes({}, { app }) // eslint-disable-line no-new
   })
 
-  /** @test {Routes#_registerControllers} */
+  /** @test {Routes#registerControllers} */
   it('should register a controller', () => {
     const exp = express()
-    const registered = routes._registerControllers(exp, {}, controllers)
+    const registered = routes.registerControllers(exp, {}, controllers)
 
     expect(registered).to.be.undefined
   })
 
-  /** @test {Routes#_convertErrors} */
+  /** @test {Routes#convertErrors} */
   it('should catch a 500 internal server error with a default error', done => {
     request.get('/error')
       .expect(500)
@@ -96,7 +96,7 @@ describe('Routes', () => {
       .catch(done)
   })
 
-  /** @test {Routes#_setNotFoundHandler} */
+  /** @test {Routes#setNotFoundHandler} */
   it('should catch a 404 not found error', done => {
     request.get('/not-found')
       .expect(404)
@@ -105,12 +105,12 @@ describe('Routes', () => {
   })
 
   /**
-   * Helper function for the '_setErrorHandler' method.
+   * Helper function for the 'setErrorHandler' method.
    * @param {!string} env - The value for the NODE_ENV stub.
    * @returns {undefined}
    */
   function testErrorHandler(env: string): void {
-    /** @test {Routes#_setErrorHandler} */
+    /** @test {Routes#setErrorHandler} */
     it('should catch a 500 internal server error with a custom error', done => {
       const stub = sinon.stub(process, 'env')
       stub.value({
@@ -130,7 +130,7 @@ describe('Routes', () => {
   // Execute the tests.
   ['development', 'test'].map(testErrorHandler)
 
-  /** @test {Routes#_removeServerHeader} */
+  /** @test {Routes#removeServerHeader} */
   it('should remove the security headers', done => {
     request.get('/hello/world')
       .expect(200)
@@ -141,7 +141,7 @@ describe('Routes', () => {
       .catch(done)
   })
 
-  /** @test {Routes#_preRoutes} */
+  /** @test {Routes#preRoutes} */
   it('should add the security headers', done => {
     request.get('/hello/world')
       .expect(200)
@@ -160,19 +160,19 @@ describe('Routes', () => {
       .catch(done)
   })
 
-  /** @test {Routes#_preRoutes} */
+  /** @test {Routes#preRoutes} */
   it('should execute the pre routes hook', () => {
-    const res = routes._preRoutes(express())
+    const res = routes.preRoutes(express())
     expect(res).to.be.undefined
   })
 
-  /** @test {Routes#_postRoutes} */
+  /** @test {Routes#postRoutes} */
   it('should execute the post routes hook', () => {
-    const res = routes._postRoutes(express())
+    const res = routes.postRoutes(express())
     expect(res).to.be.undefined
   })
 
-  /** @test {Routes#_setupRoutes} */
+  /** @test {Routes#setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
     const PopApi = {}
@@ -187,14 +187,14 @@ describe('Routes', () => {
       type: 'express'
     })
 
-    routes._setupRoutes(exp, PopApi)
+    routes.setupRoutes(exp, PopApi)
     expect(express).to.not.equal(express())
   })
 
-  /** @test {Routes#_setupRoutes} */
+  /** @test {Routes#setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
-    routes._setupRoutes(exp)
+    routes.setupRoutes(exp)
     expect(express).to.not.equal(express())
   })
 })
