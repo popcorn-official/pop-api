@@ -1,147 +1,95 @@
 # Extending Middleware
 
-TODO: introduction
+ - [Cli](#cli)
+ - [Database](#database)
+ - [Logger](#logger)
+ - [Routes](#routes)
+ - [Using Custom Middlewares](#using-custom-middlewares)
 
 ## Cli
 
 TODO: Add documentation how to add more cli options
 
 ```js
-// @flow
-/* eslint-disable no-console */
+// ./middlewares/MyCli.js
 import { Cli } from 'pop-api'
 
-/**
- * node.js command-line interfaces made easy
- * @external {Command} https://github.com/tj/commander.js
- */
 export default class MyCli extends Cli {
 
   /**
-   * Create a new Cli object.
-   * @param {!PopApi} PopApi - The PopApi instance to bind the cli to.
-   * @param {!Object} options - The options for the cli.
-   * @param {?Array<string>} options.argv - The arguments to be parsed by
-   * commander.
-   * @param {!string} options.name - The name of the Cli program.
-   * @param {!string} options.version - The version of the Cli program.
+   * @override
    */
-  constructor(PopApi: any, {argv, name, version}: Object): void {
+  constructor(PopApi, {argv, name, version, myCliOption}) {
+    // Do not pass down the 'argv' key so it does not get parsed by commander.
     super(PopApi, {name, version})
 
-    if (argv) {
-      this.run(PopApi, argv)
-    }
+    this.myCliOption = myCliOption
+
+    // Run the Cli middleware.
+    this.run(PopApi, argv)
   }
 
   /**
-   * Initiate the options for the Cli.
-   * @returns {undefined}
+   * @override
    */
-  initOptions(): void {
+  initOptions() {
+    // First initiate the options from the base Cli middleware.
     super.initOptions()
 
+    // Now you can add your own options.
     return this.program
       .option('--my-option', 'My awesome option')
   }
 
   /**
-   * Get the help message.
-   * @returns {Array<string>} - The help message to print.
+   * @override
    */
-  getHelp(): Array<string> {
+  getHelp() {
+    // Get the help message from the base Cli middleware.
     const baseHelp = super.getHelp()
+
+    // And add your own message for your options.  
     return baseHelp.concat([
       `    $ ${this.name} --my-option`
     ])
   }
 
-  runMyOption(): void {
-    console.log('Executing my awesome option')
+  runMyOption() {
+    console.log(`Executing my awesome option: ${this.myCliOption}`)
   }
 
   /**
-   * Run the Cli program.
-   * @param {!PopApi} PopApi - The PopApi instance to bind the logger to.
-   * @param {?Array<string>} argv - The arguments to be parsed by commander.
-   * @returns {undefined}
+   * @override
    */
-  run(PopApi: any, argv?: Array<string>): any {
-    if (argv) {
-      this.program.parse(argv)
-    }
+  run(PopApi, argv) {
+    // Now we parse the options.
+    this.program.parse(argv)
 
+    // Check the use input if your option flag has been filled.
     if (this.program.myOption) {
       return this.runMyOption()
     }
 
+    // Run any other input options from the base Cli middleware.
     return super.run(PopApi)
   }
 
 }
-``
+```
 
 ### Database
 
 TODO: Add documentation how to setup for MySql
 
 ```js
-// @flow
+// ./middlewares/MySqlDatabase.js
 import mysql from 'mysql'
 import { Database } from 'pop-api'
 
 export default class MySqlDatabase extends Database {
 
   /**
-   * The name of the database. Default is the package name with the
-   * environment mode.
-   * @type {string}
-   */
-  database: string
-
-  /**
-   * The host of the server of the database. Default is `['localhost']`.
-   * @type {Array<string>}
-   */
-  hosts: Array<string>
-
-  /**
-   * The port of the database. Default is `3306`.
-   * @type {string}
-   */
-  dbPort: number
-
-  /**
-   * The username of the database. DBy default this is left empty.
-   * @type {string}
-   */
-  username: string
-
-  /**
-   * The password of the database. By default this is left empty.
-   * @type {string}
-   */
-  password: string  
-
-  /**
-   * The connection object from MySql.
-   * @type {Object}
-   */
-  connection: Object
-
-  /**
-   * Create a new MySqlDatabase object.
-   * @param {!PopApi} PopApi - The PopApi instance to bind the database to.
-   * @param {!Object} options - The options for the database.
-   * @param {!string} options.database - The arguments to be parsed by
-   * @param {!Array<string>} [options.hosts=['localhost']] - The hosts for the
-   * MongoDb connection.
-   * @param {!number} [options.dbPort=3306] - The port for the MySQL
-   * connection.
-   * @param {?string} [options.username] - The username for the MySQL
-   * connection.
-   * @param {?string} [options.password] - The password for the MySQL
-   * connection.
+   * @override
    */
   constructor(PopApi: any, {
     database,
@@ -149,7 +97,7 @@ export default class MySqlDatabase extends Database {
     dbPort = 3306,
     username,
     password
-  }: Object): void {
+  }) {
     super(PopApi, {
       database,
       hosts,
@@ -158,6 +106,7 @@ export default class MySqlDatabase extends Database {
       password
     })
 
+    // Bind the connection to the instance to connect and disconnect.
     this.connection = mysql.createConnection({
       host: this.hosts[0],
       user: this.username,
@@ -165,14 +114,14 @@ export default class MySqlDatabase extends Database {
       database: this.database,
       port: this.dbPort
     })
+    // Set the database middleware as an instance of MySqlDatabase.
     PopApi.database = this
   }
 
   /**
-   * Connection and configuration of the MySQL database.
-   * @returns {Promise<string, Error>} - The promise to connect to MySQL.
+   * @override
    */
-  connect(): Promise<string | Error> {
+  connect()  {
     return new Promise((resolve, reject) => {
       return this.connection
         .connect(err => err ? reject(err) : resolve('Connected'))
@@ -180,10 +129,9 @@ export default class MySqlDatabase extends Database {
   }
 
   /**
-   * Disconnect from the MySQL database.
-   * @returns {Promsise<void>} - The promise to disconnect from MySQL.
+   * @override
    */
-  disconnect(): Promise<void> {
+  disconnect() {
     return new Promise(resolve => this.connection.end())
   }
 
@@ -192,14 +140,10 @@ export default class MySqlDatabase extends Database {
 
 ### Logger
 
-TODO: Add documentation how to setup for Pino 
+TODO: Add documentation how to setup for Pino
 
 ```js
-// @flow
-/**
- * super fast, all natural json logger
- * @external {Pino} https://github.com/pinojs/pino
- */
+// ./middlewares/PinoLogger.js
 import pino from 'pino'
 import { join } from 'path'
 import { Logger } from 'pop-api'
@@ -208,11 +152,9 @@ import { sprintf } from 'sprintf-js'
 export default class PinoLogger extends Logger {
 
   /**
-   * Formatter method which formats the output to the console.
-   * @param {!Object} args - Arguments passed by Winston.
-   * @returns {string} - The formatted message.
+   * @override
    */
-  consoleFormatter(args: Object): string {
+  consoleFormatter(args) {
     const level = pino.levels.labels[args.level]
     const color = this.getLevelColor(level)
 
@@ -227,17 +169,21 @@ export default class PinoLogger extends Logger {
   }
 
   /**
-   * Create a logger instance.
-   * @param {!string} suffix - The suffix for the log file.
-   * @param {?boolean} [pretty] - Pretty mode for output with colors.
-   * @returns {Pino} - A configured logger instance.
+   * @override
    */
-  createLoggerInstance(suffix: string, pretty?: boolean): Pino {
+  createLoggerInstance(suffix, pretty) {
+    // Let the http logger middleware be handled by the base Logger middleware.
+    if (suffix === 'http') {
+      return super.createLoggerInstance(suffix, pretty)
+    }
+
     const prettyPino = pino.pretty({
+      // Or don't use a formatter at all.
       formatter: this.consoleFormatter.bind(this)
     })
     prettyPino.pipe(process.stdout)
 
+    // Create our logger object.
     return pino({
       name: `${this.name}-${suffix}`,
       safe: true
@@ -247,79 +193,75 @@ export default class PinoLogger extends Logger {
 }
 ```
 
-### HttpServer
-
 ### Routes
 
 TODO: Add documentation how to setup for Restify
+
+```js
+// ./middlewares/RestifyRoutes.js
+import helmet from 'helmet'
+import restify from 'restify'
+import { Routes } from 'pop-api'
+
+export default class RestifyRoutes extends Routes {
+
+  /**
+   * @override
+   */
+  preRoutes(app) {
+    // Register the middleware plugins for Restify.
+    app.use(restify.plugins.bodyParser())
+    app.use(restify.plugins.queryParser())
+    app.use(restify.plugins.gzipResponse())
+
+    // Use helmet middleware or any other for Restify.
+    app.use(helmet())
+    app.use(helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ['\'none\'']
+      }
+    }))
+    app.use(this.removeServerHeader)
+  }
+
+}
+```
 
 ## Using Custom Middlewares
 
 TODO: Add documentation how to use custom middlewares
 
-
 ```js
+// ./index.js
 import restify from 'restify'
-import { isMaster } from 'cluster'
-import { join } from 'path'
 import { PopApi, HttpServer, utils } from 'pop-api'
-import { name, version } from '../package.json'
 
 import {
   MyCli,
   MySqlDatabase,
   PinoLogger,
   RestifyRoutes
-} from './middlewares' 
+} from './middlewares'
+import { name, version } from '../package.json'
 
 (async () => {
   try {
-    // XXX: for v0.3.0
-    // await PopApi.init({ name, version }, [
-    //   MyCli,
-    //   PinoLogger,
-    //   MySqlDatabase,
-    //   RestifyRoutes,
-    //   HttpServer
-    // ])
-
-    const logDir = join(...[
-      __dirname,
-      '..',
-      'tmp'
-    ])
-    PopApi.app = restify.createServer()
-    if (isMaster) {
-      await utils.createTemp(logDir)
-    }
-
-    PopApi.use(MyCli, {
+    // The 'init' method  can take a list of middlewares as a second parameter.
+    // This list of middlewares will be used by the PopApi instance. All the
+    // middlewares will be initiated with options from the 'init' method, so
+    // you can add additional options to your middleware.
+    await PopApi.init({
       name,
       version,
-      argv: process.argv
-    })
-    PopApi.use(PinoLogger, {
-      name,
-      logDir,
-      ...PopApi.loggerArgs
-    })
-    PopApi.use(MySqlDatabase, {
-      database: name,
-      hosts: ['localhost'],
-      username: 'root',
-      password: 'root',
-      dbPort: 3306
-    })
-    PopApi.use(RestifyRoutes, {
-      app: PopApi.app
-    })
-    PopApi.use(HttpServer, {
-      app: PopApi.app,
-      workers: 2,
-      serverPort: 5000
-    })
-
-    await PopApi.database.connect()
+      myCliOption,
+      ...
+    }, [
+      MyCli, // Will be initiated with additional 'myCliOption' value.
+      PinoLogger,
+      MySqlDatabase,
+      RestifyRoutes,
+      HttpServer
+    ])
   } catch (err) {
     console.log(err)
   }

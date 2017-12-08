@@ -59,7 +59,7 @@ export default class Routes {
   /**
    * Convert the thrown errors to an instance of ApiError.
    * @param {!Error} err - The caught error.
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -83,7 +83,7 @@ export default class Routes {
 
   /**
    * Catch the 404 errors.
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -105,7 +105,7 @@ export default class Routes {
   /**
    * Error handler middleware
    * @param {!ApiError} err - The caught error.
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -138,7 +138,7 @@ export default class Routes {
   /**
    * Remove security sensitive headers.
    * @see https://github.com/shieldfy/API-Security-Checklist#output
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.

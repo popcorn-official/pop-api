@@ -9,7 +9,7 @@ import type { MongooseModel } from 'mongoose'
 
 import IController from './IController'
 
-/** @external {IncommingMessage} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage */
+/** @external {IncomingMessage} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage */
 /** @external {ServerResponse} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse */
 
 /**
@@ -23,7 +23,7 @@ export default class IContentController extends IController {
   /**
    * Default method to get content pages.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -54,7 +54,7 @@ export default class IContentController extends IController {
   /**
    * Default method to get a page of content.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -72,7 +72,7 @@ export default class IContentController extends IController {
   /**
    * Get a content item based on the id.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -90,7 +90,7 @@ export default class IContentController extends IController {
   /**
    * Create a new content item.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -108,7 +108,7 @@ export default class IContentController extends IController {
   /**
    * Update the info of one content item.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -126,7 +126,7 @@ export default class IContentController extends IController {
   /**
    * Delete a content item.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
@@ -144,7 +144,7 @@ export default class IContentController extends IController {
   /**
    * Default method to get a random content item.
    * @abstract
-   * @param {!IncommingMessage} req - The incomming message request object.
+   * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
