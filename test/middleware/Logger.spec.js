@@ -157,6 +157,17 @@ describe('Logger', () => {
 
     process.env.TEMP_DIR = stub
   })
+  /** @test {Logger#_getHttpLoggerMessage} */
+  it('should get the message to print for express-winston', () => {
+    const message = logger._getHttpLoggerMessage({
+      method: 'GET',
+      url: 'http://mock.us'
+    }, {
+      statusCode: 418,
+      responseTime: 420
+    })
+    expect(message).to.be.a('string')
+})
 
   /** @test {Logger#createHttpLogger} */
   it('should create a configured Http logger instance', () => {
