@@ -21,13 +21,15 @@ install:
   - npm i
   - npm run flow-typed
 
+build_script:
+  - npm run build
+
 test_script:
   - npm run lint
   - npm run flow
   - npm run test
 
-build_script:
-  - npm run build
+after_test:
   - npm run docs
 
 artifacts:
