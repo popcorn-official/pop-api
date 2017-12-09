@@ -69,7 +69,7 @@ import { name, version } from './package.json'
     // API is available on port 5000.
     // GET http://localhost:5000/hello -> { message: 'Hello, John' }
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 })()
 ```

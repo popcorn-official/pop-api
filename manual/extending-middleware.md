@@ -1,5 +1,8 @@
 # Extending Middleware
 
+The behaviour of the default middlewares can be overwritten or extended by
+creating a new class which extends from the base middleware class. This section
+will look into how you can do this for your own project.
  - [Cli](#cli)
  - [Database](#database)
  - [Logger](#logger)
@@ -9,6 +12,13 @@
 ## Cli
 
 TODO: Add documentation how to add more cli options
+
+The `CLi` middleware uses [`commander.js`](https://github.com/tj/commander) for
+parsing the command line input. The following example overrides the
+`initOptions` method to add additional options for your cli middleware. It also
+overrides the `getHelp` method to add an example which will be printed wiith
+the `--help` flag. Lastly it overrides the `run` method which parses the cli
+input and runs the prrogram based on the input.
 
 ```js
 // ./middlewares/MyCli.js
@@ -23,6 +33,7 @@ export default class MyCli extends Cli {
     // Do not pass down the 'argv' key so it does not get parsed by commander.
     super(PopApi, {name, version})
 
+    // Bind our option to the instance.
     this.myCliOption = myCliOption
 
     // Run the Cli middleware.
@@ -54,6 +65,7 @@ export default class MyCli extends Cli {
     ])
   }
 
+  // Method ot be executed when the `--my-option` flag is set.
   runMyOption() {
     console.log(`Executing my awesome option: ${this.myCliOption}`)
   }
@@ -79,7 +91,11 @@ export default class MyCli extends Cli {
 
 ### Database
 
-TODO: Add documentation how to setup for MySql
+By default the `Database` middleware uses
+[`mongoose`](https://github.com/Automattic/mongoose) to create a Connection to
+MongoDB. For this example we will create a MySQL connection with the
+[`mysql`](https://github.com/mysqljs/mysql) module. It overrides the `connect`
+and `disconnect` methods to establish and end a connection.
 
 ```js
 // ./middlewares/MySqlDatabase.js
@@ -140,7 +156,11 @@ export default class MySqlDatabase extends Database {
 
 ### Logger
 
-TODO: Add documentation how to setup for Pino
+The `Logger` middleware uses [`winston`](https://github.com/winstonjs/winston)
+by default as a logger. Here we will extend the default logger middleware to
+use [`pino`](). We override the `createLoggerInstance` to create an instance of
+`pino` and override the `consoleFormatter` to use as a formatter function for
+`pino`.
 
 ```js
 // ./middlewares/PinoLogger.js
@@ -196,6 +216,12 @@ export default class PinoLogger extends Logger {
 ### Routes
 
 TODO: Add documentation how to setup for Restify
+The default web framework used by the `Routes` middleware is
+[`express`](https://github.com/expressjs/express). For this example we will
+extend the `Routes` middleware to use
+[`restfy`](https://github.com/restify/node-restify) as the web framework. For
+this we will override the `preRoutes` method to use middleware for `restify`
+instead of `express`.
 
 ```js
 // ./middlewares/RestifyRoutes.js
@@ -229,7 +255,10 @@ export default class RestifyRoutes extends Routes {
 
 ## Using Custom Middlewares
 
-TODO: Add documentation how to use custom middlewares
+The 'init' method  can take a list of middlewares as a second parameter. This
+list of middlewares will be used by the PopApi instance. All the middlewares
+will be initiated with options from the 'init' method, so you can add
+additional options to your middleware.
 
 ```js
 // ./index.js
@@ -246,10 +275,6 @@ import { name, version } from '../package.json'
 
 (async () => {
   try {
-    // The 'init' method  can take a list of middlewares as a second parameter.
-    // This list of middlewares will be used by the PopApi instance. All the
-    // middlewares will be initiated with options from the 'init' method, so
-    // you can add additional options to your middleware.
     await PopApi.init({
       name,
       version,
@@ -263,7 +288,7 @@ import { name, version } from '../package.json'
       HttpServer
     ])
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 })()
 ```

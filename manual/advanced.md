@@ -1,4 +1,4 @@
-# Advanced Usage 
+# Advanced Usage
 
 The advanced setup has some more options to setup your API in regards with
 the database connection and the port your API will be listening on. But also
@@ -185,7 +185,14 @@ import { name, version } from './package.json'
       serverPort: 8080,        // (Optional) The port to run your API on.
                                // Defaults to `5000`.
       workers: 4               // The amount of workers to fork for the server.
-    })                         // Defaults to `2`.
+                               // Defaults to `2`.
+    }, [                       // (Optional) A list of middlewares to register.
+      // Cli,                  // Defaults to:
+      // Logger,               //  [Cli, Logger, Database, Routes, HtttpServer]
+      // Database,
+      // Routes,
+      // HttpServer
+    ])
     // API is available on port 8080.
 
     // GET http://localhost:8080/hello
@@ -217,7 +224,7 @@ import { name, version } from './package.json'
     // GET http://localhost:8080/random/example -> { }
     // { "_id": "578df3efb618f5141202a196", "name": "Mary", "slug": "mary" }
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 })()
 ```

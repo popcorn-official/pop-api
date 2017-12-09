@@ -75,5 +75,7 @@
     "type": "git",
     "url": "git+https://github.com/popcorn-official/pop-api.git"
   },
-  "files": ["build/**/*"]
+  "files": [
+    "build/**/*"
+  ]
 }
