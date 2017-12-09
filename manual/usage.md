@@ -1,38 +1,4 @@
-# pop-api
-
-[![Build Status](https://travis-ci.org/popcorn-official/pop-api.svg?branch=master)](https://travis-ci.org/popcorn-official/pop-api)
-[![Coverage Status](https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=master)](https://coveralls.io/github/popcorn-official/pop-api?branch=master)
-[![Dependency Status](https://david-dm.org/popcorn-official/pop-api.svg)](https://david-dm.org/popcorn-official/pop-api)
-[![devDependencies Status](https://david-dm.org/popcorn-official/pop-api/dev-status.svg)](https://david-dm.org/popcorn-official/pop-api?type=dev)
-
-## Features
-
-The pop-api project aims to provide the core modules for the
-[`popcorn-api`](https://github.com/popcorn-official/popcorn-api) project, but
-can also be used for other purposes by using middleware.
- - Cli middleware for reading user input with [`commander.js`](https://github.com/tj/commander.js).
- - Database middleware for connection to MongoDB through [`mongoose`](https://github.com/Automattic/mongoose).
- - Logging of routes and other information using [`winston`](https://github.com/winstonjs/winston).
- - Uses [`express`](https://github.com/expressjs/express) under the hood with:
-   - Body middleware with [`body-parser`](https://github.com/expressjs/body-parser)
-   - Error handling
-   - Security middleware with [`helmet`](https://github.com/helmetjs/helmet)
- - Interface for registering routes for [`express`](https://github.com/expressjs/express).
- - Data Access Layer (DAL) class for standard CRUD operations.
- - Route controller to handle routes for your content.
-
-## Installation
-
-```
- $ npm install --save pop-api
-```
-
-## Documentation
-
-For further documentation you can check the `./manual` or generate it locally
-with `npm run docs`.
-
-## Usage
+# Usage
 
 For your basic setup you have to create a controller which will handle the
 routes. Your controller needs to extend from the `IController` interface to
@@ -103,11 +69,7 @@ import { name, version } from './package.json'
     // API is available on port 5000.
     // GET http://localhost:5000/hello -> { message: 'Hello, John' }
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 })()
 ```
-
-## License
-
-MIT License

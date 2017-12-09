@@ -21,13 +21,13 @@ export default class BaseContentController extends IContentController {
    * The base path for the routes.
    * @type {string}
    */
-  _basePath: string
+  basePath: string
 
   /**
    * The service of the content controller.
    * @type {ContentService}
    */
-  _service: ContentService
+  service: ContentService
 
   /**
    * Create a new base content controller.
@@ -43,22 +43,23 @@ export default class BaseContentController extends IContentController {
      * The base path for the routes.
      * @type {string}
      */
-    this._basePath = basePath
+    this.basePath = basePath
     /**
      * The service of the content controller.
      * @type {ContentService}
      */
-    this._service = service
+    this.service = service
   }
 
   /**
    * Default method to register the routes.
-   * @param {!Object} router - The express router to register the routes to.
+   * @override
+   * @param {!Object} router - The router to register the routes to.
    * @param {?PopApi} [PopApi] - The PopApi instance.
    * @returns {undefined}
    */
-  registerRoutes(router: any, PopApi?: any): void {
-    const t = this._basePath
+  registerRoutes(router: Object, PopApi?: any): void {
+    const t = this.basePath
 
     router.get(`/${t}s`, this.getContents.bind(this))
     router.get(`/${t}s/:page`, this.getPage.bind(this))
@@ -75,12 +76,12 @@ export default class BaseContentController extends IContentController {
 
   /**
    * Check if the content is empty or the length of the content array is zero.
-   * @param {!Object} res - The ExpressJS response object.
+   * @param {!ServerResponse} res - The server response object.
    * @param {!Object|Array<Object>} content - The content to check.
    * @returns {Object} - Returns a 204 response if the content is empty, or a
    * 200 response with the content if it is not empty.
    */
-  _checkEmptyContent(res: $Response, content: any): Object {
+  checkEmptyContent(res: $Response, content: any): Object {
     res.setHeader('Content-Type', 'application/json')
     if (!content || content.length === 0) {
       res.status(204)
@@ -93,9 +94,11 @@ export default class BaseContentController extends IContentController {
 
   /**
    * Get all the available pages.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Array<string>, Error>} - A list of pages which are
    * available.
    */
@@ -104,13 +107,14 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<Array<string> | mixed> {
-    return this._service.getContents(`/${this._basePath}`)
-      .then(content => this._checkEmptyContent(res, content))
+    return this.service.getContents(`/${this.basePath}`)
+      .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
 
   /**
    * Default method to sort the items.
+   * @override
    * @param {!string} sort - The property to sort on.
    * @param {!number} order - The way to sort the property.
    * @returns {Object} - The sort object.
@@ -123,9 +127,11 @@ export default class BaseContentController extends IContentController {
 
   /**
    * Get content from one page.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Array<Object>, Error>} - The content of one page.
    */
   getPage(
@@ -139,16 +145,18 @@ export default class BaseContentController extends IContentController {
     const o = parseInt(order, 10) ? parseInt(order, 10) : -1
     const s = typeof sort === 'string' ? this.sortContent(sort, o) : null
 
-    return this._service.getPage(s, Number(page))
-      .then(content => this._checkEmptyContent(res, content))
+    return this.service.getPage(s, Number(page))
+      .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
 
   /**
    * Get a content item based on the id.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Object, Error>} - The details of a single content item.
    */
   getContent(
@@ -156,16 +164,18 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
-    return this._service.getContent(req.params.id)
-      .then(content => this._checkEmptyContent(res, content))
+    return this.service.getContent(req.params.id)
+      .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
 
   /**
    * Create a new content item.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Object, Error>} - The created content item.
    */
   createContent(
@@ -174,16 +184,18 @@ export default class BaseContentController extends IContentController {
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
     res.setHeader('Content-Type', 'application/json')
-    return this._service.createContent(req.body)
+    return this.service.createContent(req.body)
       .then(content => res.send(content))
       .catch(err => next(err))
   }
 
   /**
    * Update the info of one content item.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Object, Error>} - The updated content item.
    */
   updateContent(
@@ -192,16 +204,18 @@ export default class BaseContentController extends IContentController {
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
     res.setHeader('Content-Type', 'application/json')
-    return this._service.updateContent(req.params.id, req.body)
+    return this.service.updateContent(req.params.id, req.body)
       .then(content => res.send(content))
       .catch(err => next(err))
   }
 
   /**
    * Delete a content item.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Object, Error>} - The deleted content item
    */
   deleteContent(
@@ -210,16 +224,18 @@ export default class BaseContentController extends IContentController {
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
     res.setHeader('Content-Type', 'application/json')
-    return this._service.deleteContent(req.params.id)
+    return this.service.deleteContent(req.params.id)
       .then(content => res.send(content))
       .catch(err => next(err))
   }
 
   /**
    * Get a random item.
-   * @param {!Object} req - The ExpressJS request object.
-   * @param {!Object} res - The ExpressJS response object.
-   * @param {!Function} next - The ExpressJS next function.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
    * @returns {Promise<Object, Error>} - A random item.
    */
   getRandomContent(
@@ -227,8 +243,8 @@ export default class BaseContentController extends IContentController {
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
-    return this._service.getRandomContent()
-      .then(content => this._checkEmptyContent(res, content))
+    return this.service.getRandomContent()
+      .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
 

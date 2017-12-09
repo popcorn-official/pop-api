@@ -21,6 +21,10 @@
         "globalIndex": false,
         "coverage": true,
         "files": [
+          "./manual/usage.md",
+          "./manual/middleware.md",
+          "./manual/advanced.md",
+          "./manual/extending-middleware.md",
           "./CHANGELOG.md",
           "./CONTRIBUTING.md",
           "./CODE_OF_CONDUCT.md"

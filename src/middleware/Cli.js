@@ -14,16 +14,22 @@ import Command from 'commander'
 export default class Cli {
 
   /**
-   * The name of the Cli program.
-   * @type {string}
-   */
-  _name: string
-
-  /**
    * The command line parser to process the Cli inputs.
    * @type {Command}
    */
   program: Object
+
+  /**
+   * The name of the Cli program.
+   * @type {string}
+   */
+  name: string
+
+  /**
+   * The version of the Cli program.
+   * @type {string}
+   */
+  version: string
 
   /**
    * Create a new Cli object.
@@ -44,23 +50,27 @@ export default class Cli {
      * The name of the Cli program.
      * @type {string}
      */
-    this._name = name
+    this.name = name
+    /**
+     * The version of the Cli program.
+     * @type {string}
+     */
+    this.version = version
 
-    this.initOptions(version)
+    this.initOptions()
     this.program.on('--help', this.printHelp.bind(this))
 
     if (argv) {
-      this._run(PopApi, argv)
+      this.run(PopApi, argv)
     }
   }
 
   /**
    * Initiate the options for the Cli.
-   * @param {!string} version - The version of the Cli program.
    * @returns {undefined}
    */
-  initOptions(version: string): void {
-    return this.program.version(`${this._name} v${version}`)
+  initOptions(): void {
+    return this.program.version(`${this.name} v${this.version}`)
       .option(
         '-m, --mode <type>',
         'Run the API in a particular mode.',
@@ -77,8 +87,8 @@ export default class Cli {
       '',
       '  Examples:',
       '',
-      `    $ ${this._name} -m <pretty|quiet|ugly>`,
-      `    $ ${this._name} --mode <pretty|quiet|ugly>`
+      `    $ ${this.name} -m <pretty|quiet|ugly>`,
+      `    $ ${this.name} --mode <pretty|quiet|ugly>`
     ]
   }
 
@@ -95,7 +105,7 @@ export default class Cli {
    * @param {?string} [m] - The mode to run the API in.
    * @returns {Object} - The options to pass to the Logger middleware.
    */
-  _mode(m?: string): Object {
+  mode(m?: string): Object {
     const testing = process.env.NODE_ENV === 'test'
 
     switch (m) {
@@ -124,13 +134,13 @@ export default class Cli {
    * @param {?Array<string>} argv - The arguments to be parsed by commander.
    * @returns {undefined}
    */
-  _run(PopApi: any, argv?: Array<string>): void {
+  run(PopApi: any, argv?: Array<string>): void {
     if (argv) {
       this.program.parse(argv)
     }
 
     if (this.program.mode) {
-      PopApi.loggerArgs = this._mode(this.program.mode)
+      PopApi.loggerArgs = this.mode(this.program.mode)
     } else {
       console.error('\n  error: no valid command given, please check below:')
       return this.program.help()

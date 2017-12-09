@@ -97,10 +97,10 @@ describe('BaseContentController', () => {
 
   /** @test {BaseContentController#constructor} */
   it('should check the attributes of the BaseContentController', () => {
-    expect(baseContentController._service).to.be.an('object')
-    expect(baseContentController._service).to.equal(service)
-    expect(baseContentController._basePath).to.a('string')
-    expect(baseContentController._basePath).to.equal(content)
+    expect(baseContentController.service).to.be.an('object')
+    expect(baseContentController.service).to.equal(service)
+    expect(baseContentController.basePath).to.a('string')
+    expect(baseContentController.basePath).to.equal(content)
   })
 
   /** @test {BaseContentController#registerRoutes} */
