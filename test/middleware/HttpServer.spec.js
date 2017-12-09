@@ -96,32 +96,32 @@ describe('HttpServer', () => {
 
   /** @test {HttpServer#constructor} */
   it('should check the attributes of the HttpServer', () => {
-    expect(httpServer._serverPort).to.exist
-    expect(httpServer._serverPort).to.be.a('number')
-    expect(httpServer._server).to.exist
-    expect(httpServer._server).to.be.an('object')
-    expect(httpServer._workers).to.exist
-    expect(httpServer._workers).to.be.a('number')
+    expect(httpServer.serverPort).to.exist
+    expect(httpServer.serverPort).to.be.a('number')
+    expect(httpServer.server).to.exist
+    expect(httpServer.server).to.be.an('object')
+    expect(httpServer.workers).to.exist
+    expect(httpServer.workers).to.be.a('number')
   })
 
-  /** @test {HttpServer#_forkWorkers} */
+  /** @test {HttpServer#forkWorkers} */
   it('should fork the workers', () => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    httpServer._workers = 2
-    httpServer._forkWorkers()
+    httpServer.workers = 2
+    httpServer.forkWorkers()
 
-    httpServer._workers = 0
+    httpServer.workers = 0
     stub.restore()
   })
 
-  /** @test {HttpServer#_workersOnExit} */
+  /** @test {HttpServer#workersOnExit} */
   it('should handle the exit event of the workers', done => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    httpServer._workersOnExit()
+    httpServer.workersOnExit()
 
     cluster.emit('exit', {
       process: {
@@ -139,7 +139,7 @@ describe('HttpServer', () => {
    * @returns {undefined}
    */
   function testSetupApi(workers): void {
-    /** @test {HttpServer#_setupApi} */
+    /** @test {HttpServer#setupApi} */
     it('should start the API in worker mode', () => {
       const httpStub = sinon.stub(http, 'createServer')
       const listen = {
@@ -156,7 +156,7 @@ describe('HttpServer', () => {
         workers,
         app: express()
       })
-      httpServer._setupApi(app)
+      httpServer.setupApi(app)
 
       httpStub.restore()
       stubMaster.restore()

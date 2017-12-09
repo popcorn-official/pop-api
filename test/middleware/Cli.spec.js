@@ -65,8 +65,10 @@ describe('Cli', () => {
   it('should check the attributes of the Cli', () => {
     expect(cli.program).to.exist
     expect(cli.program).to.be.an('object')
-    expect(cli._name).to.exist
-    expect(cli._name).to.be.a('string')
+    expect(cli.name).to.exist
+    expect(cli.name).to.be.a('string')
+    expect(cli.version).to.exist
+    expect(cli.version).to.be.a('string')
   })
 
   /** @test {Cli#initOptions} */
@@ -93,9 +95,9 @@ describe('Cli', () => {
    * @returns {void}
    */
   function testMode(mode: string): void {
-    /** @test {Cli#_mode} */
+    /** @test {Cli#mode} */
     it(`should run the --mode option with the '${mode}' option`, () => {
-      const val = cli._mode(mode)
+      const val = cli.mode(mode)
       expect(val).to.be.an('object')
     })
   }
@@ -103,22 +105,22 @@ describe('Cli', () => {
   // Execute the test.
   ['quiet', 'ugly', 'pretty'].map(testMode)
 
-  /** @test {Cli#_run} */
+  /** @test {Cli#run} */
   it('should invoke no options and print the --help option', () => {
     const stub = sinon.stub(cli.program, 'outputHelp')
 
-    const val = cli._run({}, ['', '', '--help'])
+    const val = cli.run({}, ['', '', '--help'])
     expect(val).to.be.undefined
 
     stub.restore()
   })
 
-  /** @test {Cli#_run} */
+  /** @test {Cli#run} */
   it('should not parse the arguments since there are none', () => {
     cli.program.mode = null
     const stub = sinon.stub(cli.program, 'outputHelp')
 
-    const val = cli._run()
+    const val = cli.run()
     expect(val).to.be.undefined
 
     stub.restore()

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/popcorn-official/pop-api/compare/v0.2.0...v0.2.1) (2017-12-09)
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/popcorn-official/pop-api/compare/v0.1.0...v0.2.0) (2017-12-05)
 
@@ -25,4 +30,4 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **initial-release:** Initial release for npm registery ([c5269e7](https://github.com/popcorn-official/pop-api/commit/c5269e7))
+* **initial-release:** Initial release for npm registry ([c5269e7](https://github.com/popcorn-official/pop-api/commit/c5269e7))

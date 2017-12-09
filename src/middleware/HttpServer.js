@@ -3,7 +3,7 @@
 import cluster from 'cluster'
 /** @external {http~Server} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server */
 import http from 'http'
-import os from 'os'
+import { cpus } from 'os'
 
 import type Database from './Database'
 
@@ -15,31 +15,32 @@ export default class HttpServer {
 
   /**
    * the http server object.
-   * @type {http~server}
+   * @type {http~Server}
    * @see https://nodejs.org/api/http.html#http_http_createserver_requestlistener
    */
-  _server: Server
+  server: Server
 
   /**
    * The port on which the API will run on. Default is `5000`.
    * @type {number}
    */
-  _serverPort: number
+  serverPort: number
 
   /**
    * The amount of workers on the cluster.
    * @type {number}
    */
-  _workers: number
+  workers: number
 
   /**
    * Create a new Server object.
    * @param {!PopApi} PopApi - The PopApi instance to bind the server to.
    * @param {!Object} options - The options for the server.
-   * @param {!Express} options.app - The Express application.
-   * @param {!Express} [options.serverPort=process.env.PORT] - The port the
-   * API will run on.
-   * @param {!Express} [options.workers=2] - The amount of workers to fork.
+   * @param {!Express} options.app - The application instance to create a
+   * server for.
+   * @param {!number} [options.serverPort=process.env.PORT] - The port the API
+   * will run on.
+   * @param {!number} [options.workers=2] - The amount of workers to fork.
    */
   constructor(PopApi: any, {
     app,
@@ -50,19 +51,18 @@ export default class HttpServer {
      * The amount of workers on the cluster.
      * @type {number}
      */
-    this._server = typeof app === 'function' ? http.createServer(app) : app
+    this.server = typeof app === 'function' ? http.createServer(app) : app
     /**
      * The port on which the API will run on. Default is `5000`.
      * @type {number}
      */
-    this._serverPort = serverPort || 5000
+    this.serverPort = serverPort || 5000
     /**
      * The amount of workers on the cluster.
      * @type {number}
      */
-    this._workers = workers
-
-    this._setupApi(app)
+    this.workers = workers
+    this.setupApi(app)
 
     PopApi.server = this
   }
@@ -71,8 +71,8 @@ export default class HttpServer {
    * For the workers.
    * @returns {undefined}
    */
-  _forkWorkers(): void {
-    for (let i = 0; i < Math.min(os.cpus().length, this._workers); i++) {
+  forkWorkers(): void {
+    for (let i = 0; i < Math.min(cpus().length, this.workers); i++) {
       cluster.fork()
     }
   }
@@ -81,9 +81,9 @@ export default class HttpServer {
    * Handle the errors for workers.
    * @returns {undefined}
    */
-  _workersOnExit(): void {
-    cluster.on('exit', worker => {
-      const msg = `Worker '${worker.process.pid}' died, spinning up another!`
+  workersOnExit(): void {
+    cluster.on('exit', ({ process }) => {
+      const msg = `Worker '${process.pid}' died, spinning up another!`
       logger.error(msg)
 
       cluster.fork()
@@ -92,28 +92,28 @@ export default class HttpServer {
 
   /**
    * Method to setup the cron job.
-   * @param {!Express} app - The Express application.
+   * @param {!Express} app - The application instance to create a server for.
    * @returns {undefined}
    */
-  _setupApi(app): void {
+  setupApi(app: Object): void {
     if (cluster.isMaster) {
-      this._forkWorkers()
-      this._workersOnExit()
+      this.forkWorkers()
+      this.workersOnExit()
 
-      logger.info(`API started on port: ${this._serverPort}`)
-    } else if (cluster.isWorker || this._workers === 0) {
-      app.listen(this._serverPort)
+      logger.info(`API started on port: ${this.serverPort}`)
+    } else if (cluster.isWorker || this.workers === 0) {
+      app.listen(this.serverPort)
     }
   }
 
   /**
    * Method to stop the API from running.
    * @param {!Database} database - The database connection to close.
-   * @param {?Function} [done=() => {}] - function to exit the API.
+   * @param {?Function} [done=() => {}] - Function to exit the API.
    * @returns {undefined}
    */
   closeApi(database: Database, done: Function = () => {}): void {
-    this._server.close(() => {
+    this.server.close(() => {
       database.disconnect().then(() => {
         logger.info('Closed out remaining connections.')
         done()

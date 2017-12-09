@@ -126,7 +126,7 @@ steps:
 2. Install [NodeJS](https://nodejs.org/) (at least Node v7.10.1 or greater)
 3. Clone the repository with: `git clone https://github.com/popcorn-official/popcorn-api.git`
 4. Install dependencies `npm i`
-5. Install the flow-typed libraries with `./node_modules/.bin/flow-typed install`
+5. Install the flow-typed libraries with `npm run flow-typed`
 
 ### npm scripts
 
