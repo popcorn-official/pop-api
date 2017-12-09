@@ -17,7 +17,8 @@ export default {
     'fs',
     'http',
     'os',
-    'path'
+    'path',
+    'url'
   ],
   plugins: [
     resolve(),

@@ -56,7 +56,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir build --no-comments",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "debug": "npm run dev --inspect",
     "dev": "cross-env DEBUG=pop-api* NODE_ENV=development node -r babel-register ./examples/exampleSetup.js",
