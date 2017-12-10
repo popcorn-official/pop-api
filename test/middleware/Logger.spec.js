@@ -167,7 +167,7 @@ describe('Logger', () => {
       responseTime: 420
     })
     expect(message).to.be.a('string')
-})
+  })
 
   /** @test {Logger#createHttpLogger} */
   it('should create a configured Http logger instance', () => {
