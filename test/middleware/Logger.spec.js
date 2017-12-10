@@ -157,9 +157,9 @@ describe('Logger', () => {
 
     process.env.TEMP_DIR = stub
   })
-  /** @test {Logger#_getHttpLoggerMessage} */
+  /** @test {Logger#getHttpLoggerMessage} */
   it('should get the message to print for express-winston', () => {
-    const message = logger._getHttpLoggerMessage({
+    const message = logger.getHttpLoggerMessage({
       method: 'GET',
       url: 'http://mock.us'
     }, {

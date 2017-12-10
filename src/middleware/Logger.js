@@ -207,7 +207,7 @@ export default class Logger {
    * @param {!Object} res - The response object to log.
    * @returns {string} - The HtpP log message to print.
    */
-  _getHttpLoggerMessage(req: $Response, res: $Response): string {
+  getHttpLoggerMessage(req: $Response, res: $Response): string {
     return `HTTP ${req.method} ${req.url} ${res.statusCode} ${res.responseTime}ms`
   }
 
@@ -223,7 +223,7 @@ export default class Logger {
     } = {
       winstonInstance: logger,
       meta: true,
-      msg: 'HTTP {{req.method}} {{req.url}} {{res.statusCode}} {{res.responseTime}}ms',
+      msg: this.getHttpLoggerMessage,
       statusLevels: true
     }
 
