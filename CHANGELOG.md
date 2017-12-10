@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/popcorn-official/pop-api/compare/v0.3.0...v0.3.1) (2017-12-10)
+
+
+### Bug Fixes
+
+* Fixed issue where database name is undefined when initiating the api ([#28](https://github.com/popcorn-official/pop-api/issues/28)) ([2a16bda](https://github.com/popcorn-official/pop-api/commit/2a16bda))
+* Make msg a function to fix http logging ([#29](https://github.com/popcorn-official/pop-api/issues/29)) ([4d2fa4e](https://github.com/popcorn-official/pop-api/commit/4d2fa4e))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/popcorn-official/pop-api/compare/v0.2.1...v0.3.0) (2017-12-10)
 
