@@ -11,8 +11,6 @@ will look into how you can do this for your own project.
 
 ## Cli
 
-TODO: Add documentation how to add more cli options
-
 The `CLi` middleware uses [`commander.js`](https://github.com/tj/commander) for
 parsing the command line input. The following example overrides the
 `initOptions` method to add additional options for your cli middleware. It also
@@ -215,7 +213,6 @@ export default class PinoLogger extends Logger {
 
 ### Routes
 
-TODO: Add documentation how to setup for Restify
 The default web framework used by the `Routes` middleware is
 [`express`](https://github.com/expressjs/express). For this example we will
 extend the `Routes` middleware to use
