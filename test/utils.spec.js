@@ -18,13 +18,15 @@ describe('utils', () => {
    * Hook for setting up the utils tests.
    * @type {Function}
    */
-  before(() => {
+  before(done => {
     tmp = join(...[
       __dirname,
       '..',
       'tmp'
     ])
-    del.sync(tmp)
+    del(tmp)
+      .then(() => done())
+      .catch(done)
   })
 
   /** @test {createTemp} */

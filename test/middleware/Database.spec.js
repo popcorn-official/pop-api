@@ -20,10 +20,10 @@ describe('Database', () => {
   let stub: Object
 
   /**
-   * The path the to the temporary directory to test.
+   * The direcotry where the logs are saved.
    * @type {string}
    */
-  let tmp: string
+  let logDir: string
 
   /**
    * The database manager to connect to mongodb.
@@ -48,13 +48,13 @@ describe('Database', () => {
       PATH
     })
 
-    tmp = join(...[
+    logDir = join(...[
       __dirname,
       '..',
       '..',
       'tmp'
     ])
-    mkdirp.sync(tmp)
+    mkdirp.sync(logDir)
 
     database = new Database({}, {
       database: name,
@@ -173,7 +173,7 @@ describe('Database', () => {
   it('should export a collection', done => {
     const collection = 'example'
     const outputFile = join(...[
-      tmp,
+      logDir,
       `${collection}s.json`
     ])
 
@@ -208,10 +208,9 @@ describe('Database', () => {
    * @type {Function}
    */
   after(done => {
-    del.sync([tmp])
     stub.restore()
-
     database.disconnect()
+      .then(() => del([logDir]))
       .then(() => done())
       .catch(done)
   })

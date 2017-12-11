@@ -30,6 +30,12 @@ import {
 export default class Logger {
 
   /**
+   * The file transport for the logger.
+   * @type {Object}
+   */
+  static fileTransport: Object
+
+  /**
    * The log levels the logger middleware will be using.
    * @type {Object}
    */
@@ -169,16 +175,20 @@ export default class Logger {
    * @returns {Object} - A configured File transport.
    */
   getFileTransport(file: string): Object {
-    return new transports.File({
-      level: 'warn',
-      filename: join(...[
-        this.logDir,
-        `${file}.log`
-      ]),
-      format: format.printf(this.fileFormatter.bind(this)),
-      maxsize: 5242880,
-      handleExceptions: true
-    })
+    if (!Logger.fileTransport) {
+      Logger.fileTransport = new transports.File({
+        level: 'warn',
+        filename: join(...[
+          this.logDir,
+          `${file}.log`
+        ]),
+        format: format.printf(this.fileFormatter.bind(this)),
+        maxsize: 5242880,
+        handleExceptions: true
+      })
+    }
+
+    return Logger.fileTransport
   }
 
   /**

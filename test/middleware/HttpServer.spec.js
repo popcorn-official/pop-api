@@ -7,6 +7,7 @@ import express, { type $Application } from 'express'
 import http from 'http'
 import mkdirp from 'mkdirp'
 import sinon from 'sinon'
+import winston from 'winston'
 import { expect } from 'chai'
 import { join } from 'path'
 
@@ -52,7 +53,6 @@ describe('HttpServer', () => {
     new Logger({}, { // eslint-disable-line no-new
       name,
       logDir,
-      type: 'winston',
       pretty: false,
       quiet: true
     })
@@ -180,7 +180,12 @@ describe('HttpServer', () => {
    * Hook for tearing down the HttpServer tests.
    * @type {Function}
    */
-  after(() => {
-    del.sync([logDir])
+  after(done => {
+    winston.loggers.close()
+    Logger.fileTransport = null
+
+    del([logDir])
+      .then(() => done())
+      .catch(done)
   })
 })
