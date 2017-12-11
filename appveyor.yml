@@ -22,6 +22,7 @@ install:
   - ps: Install-Product node $env:nodejs_version $env:platform
   - npm i
   - npm run flow-typed
+  - set PATH=C:\mongodb\server\3.2\bin;%PATH%
 
 build_script:
   - npm run build
