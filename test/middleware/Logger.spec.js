@@ -4,6 +4,7 @@
 import del from 'del'
 import mkdirp from 'mkdirp'
 import sinon from 'sinon'
+import winston from 'winston'
 import { expect } from 'chai'
 import { join } from 'path'
 
@@ -40,7 +41,6 @@ describe('Logger', () => {
     logger = new Logger({}, {
       name,
       logDir,
-      type: 'winston',
       pretty: false,
       quiet: true
     })
@@ -54,7 +54,6 @@ describe('Logger', () => {
     const logger = new Logger({}, {
       name,
       logDir,
-      type: 'express',
       pretty: true,
       quiet: false
     })
@@ -137,13 +136,14 @@ describe('Logger', () => {
 
   /** @test {Logger#getFileTransport} */
   it('should get a configured winston file transport', () => {
-    const transport = logger.getFileTransport('winston')
+    const transport = logger.getFileTransport(`${name}-app`)
     expect(transport).to.be.an('object')
+    transport.close()
   })
 
   /** @test {Logger#createLoggerInstance} */
   it('should create a configured winston instance', () => {
-    const logy = logger.createLoggerInstance()
+    const logy = logger.createLoggerInstance('app')
     expect(logy).to.be.an('object')
   })
 
@@ -152,11 +152,12 @@ describe('Logger', () => {
     const stub = process.env.TEMP_DIR
     process.env.TEMP_DIR = null
 
-    const logy = logger.createLoggerInstance()
+    const logy = logger.createLoggerInstance('app')
     expect(logy).to.be.an('object')
 
     process.env.TEMP_DIR = stub
   })
+
   /** @test {Logger#getHttpLoggerMessage} */
   it('should get the message to print for express-winston', () => {
     const message = logger.getHttpLoggerMessage({
@@ -208,7 +209,12 @@ describe('Logger', () => {
    * Hook for tearing down the Logger tests.
    * @type {Function}
    */
-  after(() => {
-    del.sync([logDir])
+  after(done => {
+    winston.loggers.close()
+    Logger.fileTransport = null
+
+    del([logDir])
+      .then(() => done())
+      .catch(done)
   })
 })

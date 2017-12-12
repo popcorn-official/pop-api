@@ -5,6 +5,7 @@ import { expect } from 'chai'
 import express, { type $Application } from 'express'
 import sinon from 'sinon'
 import supertest from 'supertest'
+import winston from 'winston'
 import { join } from 'path'
 
 import {
@@ -183,12 +184,14 @@ describe('Routes', () => {
         '..',
         '..',
         'tmp'
-      ]),
-      type: 'express'
+      ])
     })
 
     routes.setupRoutes(exp, PopApi)
     expect(express).to.not.equal(express())
+
+    winston.loggers.close()
+    Logger.fileTransport = null
   })
 
   /** @test {Routes#setupRoutes} */

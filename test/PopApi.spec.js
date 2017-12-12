@@ -3,9 +3,11 @@
 /* eslint-disable no-unused-expressions */
 import cluster from 'cluster'
 import sinon from 'sinon'
+import winston from 'winston'
 import { expect } from 'chai'
 
 import {
+  Logger,
   PopApi,
   Routes
 } from '../src'
@@ -92,7 +94,9 @@ describe('PopApi', () => {
    * @type {Function}
    */
   after(done => {
+    winston.loggers.close()
     process.env.NODE_ENV = 'test'
     PopApi.server.closeApi(PopApi.database, done)
+    Logger.fileTransport = null
   })
 })
