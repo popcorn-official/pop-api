@@ -96,13 +96,13 @@ export default class HttpServer {
    * @returns {undefined}
    */
   setupApi(app: Object): void {
-    if (cluster.isMaster) {
+    if (cluster.isWorker || this.workers === 0) {
+      this.server = app.listen(this.serverPort)
+    } else if (cluster.isMaster || this.workers === 0) {
       this.forkWorkers()
       this.workersOnExit()
 
       logger.info(`API started on port: ${this.serverPort}`)
-    } else if (cluster.isWorker || this.workers === 0) {
-      app.listen(this.serverPort)
     }
   }
 
