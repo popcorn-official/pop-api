@@ -110,6 +110,7 @@ export default class PopApi {
         name,
         version,
         logDir,
+        database: name,
         hosts,
         dbPort,
         username,
