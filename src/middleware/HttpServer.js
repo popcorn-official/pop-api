@@ -98,7 +98,9 @@ export default class HttpServer {
   setupApi(app: Object): void {
     if (cluster.isWorker || this.workers === 0) {
       this.server = app.listen(this.serverPort)
-    } else if (cluster.isMaster || this.workers === 0) {
+    }
+
+    if (cluster.isMaster || this.workers === 0) {
       this.forkWorkers()
       this.workersOnExit()
 
