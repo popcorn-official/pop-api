@@ -63,11 +63,17 @@ describe('ContentService', () => {
     expect(contentService.pageSize).to.equal(25)
   })
 
-  /** @test {ContentService#getPage} */
-  it('should get a page of content items', done => {
-    contentService.getPage({
-      name: -1
-    }, 1, {
+  /** @test {ContentService#constructor} */
+  it('should create a ContentService without a projection', () => {
+    contentService = new ContentService({
+      Model: ExampleModel
+    })
+    expect(contentService).to.be.an('object')
+  })
+
+  /** @test {ContentService#list} */
+  it('should get a list of content models', done => {
+    contentService.list('name', -1, 1, {
       name: exampleModel1.name
     }).then(res => {
       expect(res).to.be.an('array')
@@ -75,72 +81,58 @@ describe('ContentService', () => {
     }).catch(done)
   })
 
-  /** @test {ContentService#getPage} */
-  it('should get a page of content items', done => {
-    contentService.getPage({
-      name: -1
-    }, 'all').then(res => {
+  /** @test {ContentService#list} */
+  it('should get a list of content models', done => {
+    contentService.list('name', -1, 'all').then(res => {
       expect(res).to.be.an('array')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#getPage} */
-  it('should get a page of content items', done => {
-    contentService.getPage({
-      name: -1
-    }, NaN).then(res => {
+  /** @test {ContentService#list} */
+  it('should get a list of content models', done => {
+    contentService.list('name', -1, 1).then(res => {
       expect(res).to.be.an('array')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#getPage} */
-  it('should get a page of content items', done => {
-    contentService.getPage({
-      name: -1
-    }).then(res => {
+  /** @test {ContentService#list} */
+  it('should get a list of content models', done => {
+    contentService.list('name').then(res => {
       expect(res).to.be.an('array')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#createContent} */
-  it('should create a single content item', done => {
-    contentService.createContent(exampleModel1).then(res => {
+  /** @test {ContentService#create} */
+  it('should create a single content model', done => {
+    contentService.create(exampleModel1).then(res => {
       expect(res).to.be.an('object')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#createMany} */
-  it('should create multiple content items', done => {
-    contentService.createMany([exampleModel2]).then(res => {
+  /** @test {ContentService#create} */
+  it('should create multiple content models', done => {
+    contentService.create([exampleModel2]).then(res => {
       expect(res).to.be.an('array')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#getContents} */
-  it('should get the available pages', done => {
-    contentService.getContents().then(res => {
-      expect(res).to.be.an('array')
-      done()
-    }).catch(done)
-  })
-
-  /** @test {ContentService#updateContent} */
-  it('should update a single content item', done => {
+  /** @test {ContentService#update} */
+  it('should update a single content model', done => {
     const { slug } = exampleModel1
-    contentService.updateContent(slug, exampleModel1).then(res => {
+    contentService.update(slug, exampleModel1).then(res => {
       expect(res).to.be.an('object')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#updateMany} */
-  it('should update multiple content items', done => {
-    contentService.updateMany([
+  /** @test {ContentService#update} */
+  it('should update multiple content models', done => {
+    contentService.update([
       exampleModel1,
       exampleModel2
     ]).then(res => {
@@ -149,33 +141,33 @@ describe('ContentService', () => {
     }).catch(done)
   })
 
-  /** @test {ContentService#getContent} */
-  it('should get a single content item', done => {
-    contentService.getContent(exampleModel1.slug).then(res => {
+  /** @test {ContentService#get} */
+  it('should get a single content models', done => {
+    contentService.get(exampleModel1.slug).then(res => {
       expect(res).to.be.an('object')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#getRandomContent} */
-  it('should get a single random content item', done => {
-    contentService.getRandomContent().then(res => {
+  /** @test {ContentService#random} */
+  it('should get a single random content model', done => {
+    contentService.random().then(res => {
       expect(res).to.be.an('object')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#deleteContent} */
-  it('should delete a single content item', done => {
-    contentService.deleteContent(exampleModel1.slug).then(res => {
+  /** @test {ContentService#remove} */
+  it('should remove a single content remove', done => {
+    contentService.remove(exampleModel1.slug).then(res => {
       expect(res).to.be.an('object')
       done()
     }).catch(done)
   })
 
-  /** @test {ContentService#deleteMany} */
-  it('should delete multiple content items', done => {
-    contentService.deleteMany([exampleModel2]).then(res => {
+  /** @test {ContentService#remove} */
+  it('should remove multiple content models', done => {
+    contentService.remove([exampleModel2]).then(res => {
       expect(res).to.be.an('array')
       done()
     }).catch(done)

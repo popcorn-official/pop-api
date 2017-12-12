@@ -11,10 +11,12 @@ import {
 
 // Import the examples.
 import {
-  ExampleController,
+  // ExampleController,
   ExampleMiddleware,
-  ExampleModel
+  // ExampleModel,
+  TodoController
 } from '.'
+import { todo } from './models'
 
 // Import the name and version from your package.json for the Cli and Database
 // middleware.
@@ -25,17 +27,20 @@ import {
 
 // Create a new service object for the `ExampleController`.
 const service = new ContentService({
-  Model: ExampleModel,
+  Model: todo.Todo,
+  // Model: ExampleModel,
   projection: { name: 1 },
   query: {}
 })
 
 // Create a controllers array with the controllers to register.
 const controllers = [{
-  Controller: ExampleController,
+  // Controller: ExampleController,
+  Controller: TodoController,
   args: {
     service,
-    basePath: 'example'
+    // basePath: 'example'
+    basePath: 'todo'
   }
 }]
 
@@ -51,6 +56,7 @@ const controllers = [{
     app,
     controllers,
     name,
+    workers: 0,
     version
   })
 

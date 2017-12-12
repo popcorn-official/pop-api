@@ -179,11 +179,11 @@ export default class Routes {
 
     // Set and remove the security sensitive headers.
     app.use(helmet())
-    app.use(helmet.contentSecurityPolicy({
-      directives: {
-        defaultSrc: ['\'none\'']
-      }
-    }))
+    // app.use(helmet.contentSecurityPolicy({
+    //   directives: {
+    //     defaultSrc: ['\'none\'']
+    //   }
+    // }))
     app.use(this.removeServerHeader)
   }
 

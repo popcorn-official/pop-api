@@ -23,7 +23,7 @@ import { name } from '../../package'
  * The base endpoint to test.
  * @type {string}
  */
-const content: string = 'example'
+const content: string = 'examples'
 
 /** @test {BaseContentController} */
 describe('BaseContentController', () => {
@@ -146,7 +146,6 @@ describe('BaseContentController', () => {
 
     // Execute the tests.
     [
-      `/${content}s`,
       `/${content}/1`,
       `/${content}/id`,
       `/random/${content}`
@@ -186,32 +185,28 @@ describe('BaseContentController', () => {
         .catch(done)
     }
 
-    /** @test {BaseContentController#createContent} */
-    it(`should get a 200 status from the POST [/${content}s] route`, done => {
-      const req = request.post(`/${content}s`)
+    /** @test {BaseContentController#create} */
+    it(`should get a 200 status from the POST [/${content}] route`, done => {
+      const req = request.post(`/${content}`)
         .send(exampleModel1)
       testOkResponse(req, done)
     })
 
-    /** @test {BaseContentController#getContents} */
-    it(`should get a 200 status from the GET [/${content}s] route`, done => {
-      const req = request.get(`/${content}s`)
-      testOkResponse(req, done)
-    })
-
-    /** @test {BaseContentController#getPage} */
-    it(`should get a 200 status from the GET [/${content}s/:page] route`, done => {
-      const req = request.get(`/${content}s/1`).query({
+    /** @test {BaseContentController#list} */
+    it(`should get a 200 status from the GET [/${content}] route`, done => {
+      const req = request.get(`/${content}`).query({
         ...query,
+        page: 1,
         sort: 'name'
       })
       testOkResponse(req, done)
     })
 
-    /** @test {BaseContentController#getPage} */
-    it(`should get a 200 status from the GET [/${content}s/:page] route`, done => {
-      request.get(`/${content}s/1`).query({
-        ...query
+    /** @test {BaseContentController#list} */
+    it(`should get a 200 status from the GET [/${content}] route`, done => {
+      request.get(`/${content}`).query({
+        ...query,
+        page: 1
       }).expect(200)
         .then(res => {
           const random = Math.floor(Math.random() * res.body.length)
@@ -221,7 +216,7 @@ describe('BaseContentController', () => {
         }).catch(done)
     })
 
-    /** @test {BaseContentController#updateContent} */
+    /** @test {BaseContentController#update} */
     it(`should get a 200 status from the PUT [/${content}/:id] route`, done => {
       const { name } = exampleModel2
       const req = request.put(`/${content}/${id}`)
@@ -230,19 +225,19 @@ describe('BaseContentController', () => {
       testOkResponse(req, done)
     })
 
-    /** @test {BaseContentController#getContent} */
+    /** @test {BaseContentController#get} */
     it(`should get a 200 status from the GET [/${content}/:id] route`, done => {
       const req = request.get(`/${content}/${id}`)
       testOkResponse(req, done)
     })
 
-    /** @test {BaseContentController#getRandomContent} */
+    /** @test {BaseContentController#random} */
     it(`should get a 200 status from the GET [/random/${content}] route`, done => {
       const req = request.get(`/random/${content}`)
       testOkResponse(req, done)
     })
 
-    /** @test {BaseContentController#deleteContent} */
+    /** @test {BaseContentController#remove} */
     it(`should get a 200 status from the DELETE [/${content}/:id] route`, done => {
       const req = request.delete(`/${content}/${id}`)
       testOkResponse(req, done)
@@ -275,32 +270,23 @@ describe('BaseContentController', () => {
         .catch(done)
     }
 
-    /** @test {BaseContentController#createContent} */
+    /** @test {BaseContentController#create} */
     it(`should get a 500 status from the POST [/${content}/:id] route`, done => {
-      const req = request.post(`/${content}s`)
+      const req = request.post(`/${content}`)
       testInternalServerError(req, done)
     })
 
-    /** @test {BaseContentController#getContents} */
-    it(`should get a 500 status from the GET [/${content}s] route`, done => {
-      const stub = sinon.stub(ExampleModel, 'count')
-      stub.rejects()
-
-      const req = request.get(`/${content}s`)
-      testInternalServerError(req, done, stub)
-    })
-
-    /** @test {BaseContentController#getPage} */
-    it(`should get a 500 status from the GET [/${content}s/:page] route`, done => {
+    /** @test {BaseContentController#list} */
+    it(`should get a 500 status from the GET [/${content}] route`, done => {
       const stub = sinon.stub(ExampleModel, 'aggregate')
       stub.rejects()
 
-      const req = request.get(`/${content}s/1`)
+      const req = request.get(`/${content}`)
       testInternalServerError(req, done, stub)
     })
 
-    /** @test {BaseContentController#updateContent} */
-    it(`should get a 500 status from the PUT [/${content}s] route`, done => {
+    /** @test {BaseContentController#update} */
+    it(`should get a 500 status from the PUT [/${content}/:id] route`, done => {
       const stub = sinon.stub(ExampleModel, 'findOneAndUpdate')
       stub.rejects()
 
@@ -308,7 +294,7 @@ describe('BaseContentController', () => {
       testInternalServerError(req, done, stub)
     })
 
-    /** @test {BaseContentController#getContent} */
+    /** @test {BaseContentController#get} */
     it(`should get a 500 status from the GET [/${content}/:id] route`, done => {
       const stub = sinon.stub(ExampleModel, 'findOne')
       stub.rejects()
@@ -317,7 +303,7 @@ describe('BaseContentController', () => {
       testInternalServerError(req, done, stub)
     })
 
-    /** @test {BaseContentController#getRandomContent} */
+    /** @test {BaseContentController#random} */
     it(`should get a 500 status from the GET [/random/${content}] route`, done => {
       const stub = sinon.stub(ExampleModel, 'aggregate')
       stub.rejects()
@@ -326,7 +312,7 @@ describe('BaseContentController', () => {
       testInternalServerError(req, done, stub)
     })
 
-    /** @test {BaseContentController#deleteContent} */
+    /** @test {BaseContentController#remove} */
     it(`should get a 500 status from the DELETE [/${content}/:id] route`, done => {
       const stub = sinon.stub(ExampleModel, 'findOneAndRemove')
       stub.rejects()

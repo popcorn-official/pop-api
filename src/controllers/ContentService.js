@@ -41,13 +41,13 @@ export default class ContentService {
    * Create a new ContentService.
    * @param {!Object} options - The options for the content service.
    * @param {!MongooseModel} options.Model - The model of the service.
-   * @param {!Object} options.projection - The projection of the service.
+   * @param {!Object} options.projection=null - The projection of the service.
    * @param {!Object} options.query={} - The query of the service.
    * @param {!number} [options.pageSize=25] - The page size of the service.
    */
   constructor({
     Model,
-    projection,
+    projection = null,
     query = {},
     pageSize = 25
   }: Object): void {
@@ -74,58 +74,57 @@ export default class ContentService {
   }
 
   /**
-   * Get all the available pages.
-   * @param {!string} [base=''] - The base of the url to display.
-   * @returns {Promise<Array<string>, Error>} - A list of pages which are
-   * available.
+   * Get a sort object to sort the content models of one page.
+   * @param {!string} sort - The property to sort on.
+   * @param {!number} order - The way to sort the property.
+   * @returns {Object} - The sort object.
    */
-  getContents(base: string = ''): Promise<Array<string>> {
-    return this.Model.count(this.query).then(count => {
-      const pages = Math.ceil(count / this.pageSize)
-      const docs = []
-
-      for (let i = 1; i < pages + 1; i++) {
-        docs.push(`${base}/${i}`)
-      }
-
-      return docs
-    })
+  sort(sort: string, order: number): Object {
+    return {
+      [sort]: order
+    }
   }
 
   /**
-   * Get content from one page.
-   * @param {?Object} sort - The sort object to sort and order content.
-   * @param {!number} [p=1] - The page to get.
-   * @param {!Object} [query=this.query] - A copy of the query object to
-   * get the objects.
-   * @returns {Promise<Array<MongooseModel>, Error>} - The content of one page.
+   * Get a list of content models, allows to skip content models with 'page',
+   * and sort content models with 'sort' and 'order'.
+   * @param {?string} sort - The sort porperty to sort the content models.
+   * @param {!number} order - The order to sort the content models.
+   * @param {!number} [page=1] - The page of content models to get.
+   * @param {!Object} [query=this.query] - A copy of the query object to get
+   * the objects.
+   * @returns {Promise<Array<MongooseModel>, Error>} - The content models of a
+   * page, max depends on 'pageSize'.
    */
-  getPage(
-    sort?: Object | null,
-    p?: number | string = 1,
+  list(
+    sort?: string | null,
+    order?: order | null = -1,
+    page?: number | string = 1,
     query?: Object = {
       ...this.query
     }
   ): Promise<Array<any>> {
-    const page = !isNaN(p) ? Number(p) - 1 : 0
-    const offset = page * this.pageSize
-
     let aggregateQuery = [{
       $match: query
-    }, {
-      $project: this.projection
     }]
+
+    if (this.projection) {
+      aggregateQuery.push({
+        $project: this.projection
+      })
+    }
 
     if (sort) {
       aggregateQuery = [{
-        $sort: sort
+        $sort: this.sort(sort, order)
       }, ...aggregateQuery]
     }
 
-    if (typeof p === 'string' && p.toLowerCase() === 'all') {
+    if (typeof page === 'string' && page.toLowerCase() === 'all') {
       return this.Model.aggregate(aggregateQuery)
     }
 
+    const offset = (page - 1) * this.pageSize
     aggregateQuery = [...aggregateQuery, {
       $skip: offset
     }, {
@@ -138,52 +137,55 @@ export default class ContentService {
   /**
    * Get the content from the database with an id.
    * @param {!string} id - The id of the content to get.
-   * @param {!Object} projection - The projection for the content.
+   * @param {?Object} projection - The projection for the content.
    * @returns {Promise<MongooseModel, Error>} - The details of the content.
    */
-  getContent(id: string, projection?: Object): Promise<any> {
+  get(id: string, projection?: Object): Promise<any> {
     return this.Model.findOne({
       _id: id
     }, projection)
   }
 
   /**
-   * Insert the content into the database.
-   * @param {!Object} obj - The object to insert.
-   * @returns {Promise<MongooseModel, Error>} - The created content.
+   * Insert one or multiple content models into the database.
+   * @param {!Array<Object>} toCreate - The object or array of content models
+   * to create.
+   * @returns {Promise<MongooseModel|Array<MongooseModel>, Error>} - The
+   * created content model(s).
    */
-  createContent(obj: Object): Promise<any> {
-    return new this.Model(obj).save()
-  }
+  create(toCreate: Array<Object>): Promise<Array<any>> {
+    if (toCreate instanceof Array) {
+      return pMap(toCreate, async obj => {
+        const found = await this.Model.findOne({
+          _id: obj.slug
+        })
 
-  /**
-   * Insert multiple content models into the database.
-   * @param {!Array<Object>} arr - The array of content to insert.
-   * @returns {Promise<Array<MongooseModel>, Error>} - The inserted content.
-   */
-  createMany(arr: Array<Object>): Promise<Array<any>> {
-    return pMap(arr, async obj => {
-      const found = await this.Model.findOne({
-        _id: obj.slug
+        return found
+          ? this.update(obj.slug, obj)
+          : this.create(obj)
+      }, {
+        concurrency: 1
       })
+    }
 
-      return found
-        ? this.updateContent(obj.slug, obj)
-        : this.createContent(obj)
-    }, {
-      concurrency: 1
-    })
+    return new this.Model(toCreate).save()
   }
 
   /**
-   * Update the content.
-   * @param {!string} id - The id of the content to get.
+   * Update one or multiple content models.
+   * @param {!string} toUpdate - The id or array of objects of the content to
+   * update.
    * @param {!Object} obj - The object to update.
-   * @returns {Promise<MongooseModel, Error>} - The updated content.
+   * @returns {Promise<MongooseModel|Array<MongooseModel>, Error>} - The
+   * updated content model(s).
    */
-  updateContent(id: string, obj: Object): Promise<any> {
+  update(toUpdate: string | Array<Object>, obj?: Object): Promise<any> {
+    if (toUpdate instanceof Array) {
+      return this.create(toUpdate)
+    }
+
     return this.Model.findOneAndUpdate({
-      _id: id
+      _id: toUpdate
     }, new this.Model(obj), {
       upsert: true,
       new: true
@@ -191,50 +193,45 @@ export default class ContentService {
   }
 
   /**
-   * Update multiple content models into the database.
-   * @param {!Array<Object>} arr - The array of content to update.
-   * @returns {Promise<Array<MongooseModel>, Error>} - The updated content.
+   * Delete one or multiple content models.
+   * @param {!string|Array<Object>} toDel - The id or array of objects to
+   * delete.
+   * @returns {Promise<MongooseModel|Array<MongooseModel>, Error>} - The
+   * deleted content model(s).
    */
-  updateMany(arr: Array<Object>): Promise<Array<any>> {
-    return this.createMany(arr)
-  }
+  remove(toDel: string | Array<Object>): Promise<any> {
+    if (toDel instanceof Array) {
+      return pMap(toDel, obj => this.remove(obj._id))
+    }
 
-  /**
-   * Delete a content model.
-   * @param {!string} id - The id of the content to delete.
-   * @returns {Promise<MongooseModel, Error>} - The deleted content.
-   */
-  deleteContent(id: string): Promise<any> {
     return this.Model.findOneAndRemove({
-      _id: id
+      _id: toDel
     })
   }
 
   /**
-   * Delete multiple content models from the database.
-   * @param {!Array<Object>} arr - The array of content to delete.
-   * @returns {Promise<Array<MongooseModel>, Error>} - The deleted content.
+   * Get a random content model.
+   * @returns {Promise<MongooseModel, Error>} - A random content model.
    */
-  deleteMany(arr: Array<Object>): Promise<Array<any>> {
-    return pMap(arr, obj => this.deleteContent(obj._id))
-  }
-
-  /**
-   * Get random content.
-   * @returns {Promise<MongooseModel, Error>} - Random content.
-   */
-  getRandomContent(): Promise<any> {
-    return this.Model.aggregate([{
+  random(): Promise<any> {
+    const aggregateQuery = [{
       $match: this.query
-    }, {
-      $project: this.projection
     }, {
       $sample: {
         size: 1
       }
     }, {
       $limit: 1
-    }]).then(([ res ]) => res)
+    }]
+
+    if (this.projection) {
+      aggregateQuery.push({
+        $project: this.projection
+      })
+    }
+
+    return this.Model.aggregate(aggregateQuery)
+      .then(([ res ]) => res)
   }
 
 }

@@ -7,15 +7,18 @@ import type {
 } from 'express'
 import type { MongooseModel } from 'mongoose'
 
-import IContentController from './IContentController'
+import IController from './IController'
 import type ContentService from './ContentService'
+
+/** @external {IncomingMessage} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage */
+/** @external {ServerResponse} https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse */
 
 /**
  * Base class for getting content from endpoints.
  * @implements {IContentController}
  * @type {BaseContentController}
  */
-export default class BaseContentController extends IContentController {
+export default class BaseContentController extends IController {
 
   /**
    * The base path for the routes.
@@ -61,16 +64,15 @@ export default class BaseContentController extends IContentController {
   registerRoutes(router: Object, PopApi?: any): void {
     const t = this.basePath
 
-    router.get(`/${t}s`, this.getContents.bind(this))
-    router.get(`/${t}s/:page`, this.getPage.bind(this))
-    router.get(`/${t}/:id`, this.getContent.bind(this))
-    router.post(`/${t}s`, this.createContent.bind(this))
-    router.put(`/${t}/:id`, this.updateContent.bind(this))
-    router.get(`/random/${t}`, this.getRandomContent.bind(this))
+    router.get(`/${t}`, this.list.bind(this))
+    router.get(`/${t}/:id`, this.get.bind(this))
+    router.post(`/${t}`, this.create.bind(this))
+    router.put(`/${t}/:id`, this.update.bind(this))
+    router.get(`/random/${t}`, this.random.bind(this))
     if (typeof router.delete === 'function') {
-      router.delete(`/${t}/:id`, this.deleteContent.bind(this))
+      router.delete(`/${t}/:id`, this.remove.bind(this))
     } else {
-      router.del(`/${t}/:id`, this.deleteContent.bind(this))
+      router.del(`/${t}/:id`, this.remove.bind(this))
     }
   }
 
@@ -93,157 +95,121 @@ export default class BaseContentController extends IContentController {
   }
 
   /**
-   * Get all the available pages.
-   * @override
+   * Get a list of content models, allows to skip content models with 'page',
+   * and sort content models with 'sort' and 'order'.
    * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
-   * @returns {Promise<Array<string>, Error>} - A list of pages which are
-   * available.
+   * @returns {Promise<Array<MongooseModel>, Error>} - The content models of a
+   * page, max depends on 'pageSize'.
    */
-  getContents(
-    req: $Request,
-    res: $Response,
-    next: NextFunction
-  ): Promise<Array<string> | mixed> {
-    return this.service.getContents(`/${this.basePath}`)
-      .then(content => this.checkEmptyContent(res, content))
-      .catch(err => next(err))
-  }
-
-  /**
-   * Default method to sort the items.
-   * @override
-   * @param {!string} sort - The property to sort on.
-   * @param {!number} order - The way to sort the property.
-   * @returns {Object} - The sort object.
-   */
-  sortContent(sort: string, order: number): Object {
-    return {
-      [sort]: order
-    }
-  }
-
-  /**
-   * Get content from one page.
-   * @override
-   * @param {!IncomingMessage} req - The incoming message request object.
-   * @param {!ServerResponse} res - The server response object.
-   * @param {!Function} next - The next function to move to the next
-   * middleware.
-   * @returns {Promise<Array<Object>, Error>} - The content of one page.
-   */
-  getPage(
+  list(
     req: $Request,
     res: $Response,
     next: NextFunction
   ): Promise<Array<MongooseModel> | mixed> {
-    const { page } = req.params
-    const { sort, order } = req.query
-
+    const { sort, order, page } = req.query
     const o = parseInt(order, 10) ? parseInt(order, 10) : -1
-    const s = typeof sort === 'string' ? this.sortContent(sort, o) : null
+    const p = parseInt(page, 10) ? parseInt(page, 10) : 1
 
-    return this.service.getPage(s, Number(page))
+    return this.service.list(sort, o, p)
       .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
 
   /**
-   * Get a content item based on the id.
-   * @override
+   * Get the content from the database with an id.
    * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
-   * @returns {Promise<Object, Error>} - The details of a single content item.
+   * @returns {Promise<MongooseModel, Error>} - The details of the content.
    */
-  getContent(
+  get(
     req: $Request,
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
-    return this.service.getContent(req.params.id)
+    return this.service.get(req.params.id)
       .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
 
   /**
-   * Create a new content item.
-   * @override
+   * Insert one or multiple content models into the database.
    * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
-   * @returns {Promise<Object, Error>} - The created content item.
+   * @returns {Promise<MongooseModel|Array<MongooseModel>, Error>} - The
+   * created content model(s).
    */
-  createContent(
+  create(
     req: $Request,
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
     res.setHeader('Content-Type', 'application/json')
-    return this.service.createContent(req.body)
+    return this.service.create(req.body)
       .then(content => res.send(content))
       .catch(err => next(err))
   }
 
   /**
-   * Update the info of one content item.
-   * @override
+   * Update one or multiple content models.
    * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
-   * @returns {Promise<Object, Error>} - The updated content item.
+   * @returns {Promise<MongooseModel|Array<MongooseModel>, Error>} - The
+   * updated content model(s).
    */
-  updateContent(
+  update(
     req: $Request,
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
     res.setHeader('Content-Type', 'application/json')
-    return this.service.updateContent(req.params.id, req.body)
+    return this.service.update(req.params.id, req.body)
       .then(content => res.send(content))
       .catch(err => next(err))
   }
 
   /**
-   * Delete a content item.
-   * @override
+   * Delete one or multiple content models.
    * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
-   * @returns {Promise<Object, Error>} - The deleted content item
+   * @returns {Promise<MongooseModel|Array<MongooseModel>, Error>} - The
+   * deleted content model(s).
    */
-  deleteContent(
+  remove(
     req: $Request,
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
     res.setHeader('Content-Type', 'application/json')
-    return this.service.deleteContent(req.params.id)
+    return this.service.remove(req.params.id)
       .then(content => res.send(content))
       .catch(err => next(err))
   }
 
   /**
-   * Get a random item.
-   * @override
+   * Get a random content model.
    * @param {!IncomingMessage} req - The incoming message request object.
    * @param {!ServerResponse} res - The server response object.
    * @param {!Function} next - The next function to move to the next
    * middleware.
-   * @returns {Promise<Object, Error>} - A random item.
+   * @returns {Promise<MongooseModel, Error>} - A random content model.
    */
-  getRandomContent(
+  random(
     req: $Request,
     res: $Response,
     next: NextFunction
   ): Promise<MongooseModel | mixed> {
-    return this.service.getRandomContent()
+    return this.service.random()
       .then(content => this.checkEmptyContent(res, content))
       .catch(err => next(err))
   }
