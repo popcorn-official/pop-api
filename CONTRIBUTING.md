@@ -124,7 +124,7 @@ steps:
 
 1. Install [MongoDB](https://www.mongodb.com/) including `mongoexport` and `mongoimport`
 2. Install [NodeJS](https://nodejs.org/) (at least Node v7.10.1 or greater)
-3. Clone the repository with: `git clone https://github.com/popcorn-official/popcorn-api.git`
+3. Clone the repository with: `git clone https://github.com/popcorn-official/pop-api.git`
 4. Install dependencies `npm i`
 5. Install the flow-typed libraries with `npm run flow-typed`
 
