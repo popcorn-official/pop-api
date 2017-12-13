@@ -7,9 +7,9 @@
 <PROJECT_ROOT>/node_modules/.*
 
 [include]
-<PROJECT_ROOT>/examples/.*
-<PROJECT_ROOT>/src/.*
-<PROJECT_ROOT>/test/.*
+./examples/.*
+./src/.*
+./test/.*
 
 [libs]
 
