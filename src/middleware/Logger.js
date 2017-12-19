@@ -152,7 +152,6 @@ export default class Logger {
 
   /**
    * Formatter method which formats the output to the log file.
-   * @param {!Object} args - The object to be logged.
    * @returns {Object} - The formatter for the file transport.
    */
   fileFormatter(): Object {
