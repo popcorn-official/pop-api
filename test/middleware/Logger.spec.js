@@ -48,8 +48,10 @@ describe('Logger', () => {
 
   /** @test {Logger#constructor} */
   it('should create an ExpressWinston instance', () => {
-    const stub = sinon.stub(process.env, 'NODE_ENV')
-    stub.value('development')
+    const processStub = sinon.stub(process.env, 'NODE_ENV')
+    processStub.value('development')
+    const padStartStub = sinon.stub(String.prototype, 'padStart')
+    padStartStub.value(undefined)
 
     const logger = new Logger({}, {
       name,
@@ -59,7 +61,8 @@ describe('Logger', () => {
     })
     expect(logger).to.be.an('object')
 
-    stub.restore()
+    processStub.restore()
+    padStartStub.restore()
   })
 
   /** @test {Logger#constructor} */
