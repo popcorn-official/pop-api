@@ -60,6 +60,8 @@ export default class Database {
    * connection.
    * @param {?string} [options.password] - The password for the database
    * connection.
+   * @throws {TypeError} - 'database' is a required option for the Database
+   * middleware!
    */
   constructor(PopApi: any, {
     database,
@@ -68,6 +70,10 @@ export default class Database {
     username,
     password
   }: Object): void {
+    if (!database) {
+      throw new TypeError('\'database\' is a required option for the Database middleware!')
+    }
+
     process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
     const {

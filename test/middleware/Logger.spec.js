@@ -61,6 +61,16 @@ describe('Logger', () => {
     })
     expect(logger).to.be.an('object')
 
+    try {
+      new Logger({}, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an('Error')
+      expect(err.message).to.equal(
+        '\'name\' and \'logDir\' are required options for the Logger middleware!'
+      )
+    }
+
     processStub.restore()
     padStartStub.restore()
   })

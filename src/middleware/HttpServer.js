@@ -41,12 +41,18 @@ export default class HttpServer {
    * @param {!number} [options.serverPort=process.env.PORT] - The port the API
    * will run on.
    * @param {!number} [options.workers=2] - The amount of workers to fork.
+   * @throws {TypeError} - 'app' is a required option for the HttpServer
+   * middleware!
    */
   constructor(PopApi: any, {
     app,
     serverPort = process.env.PORT,
     workers = 2
   }: Object): void {
+    if (!app) {
+      throw new TypeError('\'app\' is a required option for the HttpServer middleware!')
+    }
+
     /**
      * The amount of workers on the cluster.
      * @type {number}

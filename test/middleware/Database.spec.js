@@ -76,6 +76,16 @@ describe('Database', () => {
       database: name
     })
     process.env.MONGO_PORT_27017_TCP_ADDR = stub
+
+    try {
+      new Database({}, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an('Error')
+      expect(err.message).to.equal(
+        '\'database\' is a required option for the Database middleware!'
+      )
+    }
   })
 
   /** @test {Database#constructor} */

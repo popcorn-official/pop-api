@@ -61,8 +61,14 @@ export default class Logger {
    * @param {!string} options.name - The name of the log file.
    * @param {?boolean} [options.pretty] - Pretty mode for output with colors.
    * @param {?boolean} [options.quiet] - No output.
+   * @throws {TypeError} - 'name' and 'logDir' are required options for the
+   * Logger middleware!
    */
   constructor(PopApi: any, {name, logDir, pretty, quiet}: Object): void {
+    if (!name || !logDir) {
+      throw new TypeError('\'name\' and \'logDir\' are required options for the Logger middleware!')
+    }
+
     /**
      * The log levels the logger middleware will be using.
      * @type {Object}
