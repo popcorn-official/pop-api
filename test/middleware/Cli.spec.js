@@ -1,5 +1,5 @@
 // Import the necessary modules.
-//  @flow
+// @flow
 /* eslint-disable no-unused-expressions */
 import sinon from 'sinon'
 import { expect } from 'chai'
