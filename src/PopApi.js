@@ -90,7 +90,8 @@ export default class PopApi {
     username,
     password,
     serverPort = process.env.PORT,
-    workers = 2
+    workers = 2,
+    ...opts
   }: Object, middlewares: Array<Function> = [
     Cli,
     Logger,
@@ -118,7 +119,8 @@ export default class PopApi {
         serverPort,
         workers,
         argv: process.argv,
-        ...PopApi.loggerArgs || {}
+        ...PopApi.loggerArgs || {},
+        ...opts
       })
     })
     await PopApi.database.connect()
