@@ -1,6 +1,5 @@
 // Import the necessary modules.
 // @flow
-import 'babel-polyfill'
 import { join } from 'path'
 /**
  * express.js middleware for winstonjs
@@ -22,6 +21,12 @@ import {
   format,
   transports
 } from 'winston'
+
+import { padStart } from './internal'
+
+// Apply the polyfill if necessary.
+// @flow-ignore
+String.prototype.padStart = String.prototype.padStart || padStart // eslint-disable-line no-extend-native
 
 /**
  * Class for setting up the logger.
