@@ -24,10 +24,6 @@ import {
 
 import { padStart } from './internal'
 
-// Apply the polyfill if necessary.
-// @flow-ignore
-String.prototype.padStart = String.prototype.padStart || padStart // eslint-disable-line no-extend-native
-
 /**
  * Class for setting up the logger.
  * @type {Logger}
@@ -87,6 +83,10 @@ export default class Logger {
      * @type {string}
      */
     this.logDir = logDir
+
+    // Apply the polyfill if necessary.
+    // @flow-ignore
+    String.prototype.padStart = String.prototype.padStart || padStart // eslint-disable-line no-extend-native
 
     global.logger = this.getLogger('logger', pretty, quiet)
     if (process.env.NODE_ENV !== 'test') {

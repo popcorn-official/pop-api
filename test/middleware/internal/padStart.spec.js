@@ -34,6 +34,9 @@ describe('padStart', () => {
 
     res = ''.padStart(4, 'baz')
     expect(res.length).to.equal(4)
+
+    res = 'quz'.padStart(4, 'quux')
+    expect(res.length).to.equal(4)
   })
 
   /**
