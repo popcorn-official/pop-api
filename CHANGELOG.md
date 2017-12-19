@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/popcorn-official/pop-api/compare/v0.4.0...v0.4.1) (2017-12-19)
+
+
+### Bug Fixes
+
+* **padStart:** Add polyfill for String.prototype.padStart ([#34](https://github.com/popcorn-official/pop-api/issues/34)) ([a22670b](https://github.com/popcorn-official/pop-api/commit/a22670b))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/popcorn-official/pop-api/compare/v0.3.1...v0.4.0) (2017-12-19)
 
