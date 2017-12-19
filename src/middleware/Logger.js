@@ -1,5 +1,6 @@
 // Import the necessary modules.
 // @flow
+import 'babel-polyfill'
 import { join } from 'path'
 /**
  * express.js middleware for winstonjs
@@ -10,7 +11,6 @@ import {
   requestWhitelist,
   responseWhitelist
 } from 'express-winston'
-import { sprintf } from 'sprintf-js'
 import type { Middleware } from 'express'
 /**
  * a multi-transport async logging library for node.js
@@ -90,19 +90,6 @@ export default class Logger {
   }
 
   /**
-   * Check if the message is empty and replace it with the meta.
-   * @param {!Object} args - The object to be logged.
-   * @returns {Object} - The object to be logged.
-   */
-  checkEmptyMessage(args: Object): Object {
-    if (args.message === '' && Object.keys(args.meta).length !== 0) {
-      args.message = JSON.stringify(args.meta)
-    }
-
-    return args
-  }
-
-  /**
    * Get the color of the output based on the log level.
    * @param {?string} [level=info] - The log level.
    * @returns {string} - A color based on the log level.
@@ -119,38 +106,66 @@ export default class Logger {
   }
 
   /**
-   * Formatter method which formats the output to the console.
-   * @param {!Object} args - The object to be logged.
-   * @returns {string} - The formatted message for the console transport.
+   * Update the message property and add the splat property to the info
+   * object for interpolation.
+   * @param {Object} info - The info object processed by logform.
+   * @returns {Object} - The info object with the modified message and splat
+   * property.
    */
-  consoleFormatter(args: Object): string {
-    const { level, message } = this.checkEmptyMessage(args)
-    const color = this.getLevelColor(level)
+  prettyPrintConsole(info: Object): Object {
+    const { level, message, timestamp } = info
+    const c = this.getLevelColor(level)
 
-    return sprintf(
-      `\x1b[0m[%s] ${color}%5s:\x1b[0m %2s/%d: \x1b[36m%s\x1b[0m`,
-      new Date().toISOString(),
-      level.toUpperCase(),
-      this.name,
+    info.splat = [
+      timestamp,
+      level.toUpperCase().padStart(5),
+      this.name.padStart(2),
       process.pid,
       message
+    ]
+    info.message = `\x1b[0m[%s] ${c}%s:\x1b[0m %s/%d: \x1b[36m%s\x1b[0m`
+
+    return info
+  }
+
+  /**
+   * Get the message string from the info object.
+   * @param {Object} info - The info object processed by logform.
+   * @returns {string} - The message string to print out of the info object.
+   */
+  _getMessage(info: Object): string {
+    return info.message
+  }
+
+  /**
+   * Formatter method which formats the output to the console.
+   * @returns {Object} - The formatter for the console transport.
+   */
+  consoleFormatter(): Object {
+    return format.combine(
+      format.timestamp(),
+      format.printf(this.prettyPrintConsole.bind(this)),
+      format.splat(),
+      format.printf(this._getMessage)
     )
   }
 
   /**
    * Formatter method which formats the output to the log file.
-   * @param {!Object} args - The object to be logged.
-   * @returns {string} - The formatted message for the file transport.
+   * @returns {Object} - The formatter for the file transport.
    */
-  fileFormatter(args: Object): string {
-    const { level, message } = this.checkEmptyMessage(args)
-    return JSON.stringify({
-      name: this.name,
-      pid: process.pid,
-      level,
-      msg: message,
-      time: new Date().toISOString()
-    })
+  fileFormatter(): Object {
+    return format.combine(
+      format.timestamp(),
+      format.printf(info => {
+        Object.assign(info, {
+          name: this.name,
+          pid: process.pid
+        })
+        return info
+      }),
+      format.json()
+    )
   }
 
   /**
@@ -160,7 +175,7 @@ export default class Logger {
    */
   getConsoleTransport(pretty?: boolean): Object {
     const f = pretty
-      ? format.printf(this.consoleFormatter.bind(this))
+      ? this.consoleFormatter()
       : format.simple()
 
     return new transports.Console({
@@ -182,7 +197,7 @@ export default class Logger {
           this.logDir,
           `${file}.log`
         ]),
-        format: format.printf(this.fileFormatter.bind(this)),
+        format: this.fileFormatter(),
         maxsize: 5242880,
         handleExceptions: true
       })

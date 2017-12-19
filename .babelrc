@@ -28,6 +28,7 @@
           "targets": {
             "node": "7.10.1"
           },
+          "useBuiltIns": "entry",
           "modules": false
         }]
       ]
