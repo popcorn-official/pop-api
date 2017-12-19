@@ -72,36 +72,6 @@ describe('Logger', () => {
     expect(logger.logDir).to.be.a('string')
   })
 
-  /** @test {Logger#checkEmptyMessage} */
-  it('should check for an empty message with a full message', () => {
-    const empty = {
-      message: '',
-      meta: {
-        message: 'test'
-      }
-    }
-    const emptyResult = logger.checkEmptyMessage(empty)
-    expect(emptyResult.message).to.exist
-    expect(emptyResult.message).to.equal(JSON.stringify(empty.meta))
-    expect(emptyResult.meta).to.exist
-    expect(emptyResult.meta).to.deep.equal({
-      message: 'test'
-    })
-  })
-
-  /** @test {Logger#checkEmptyMessage} */
-  it('should check for an empty message with an empty message', () => {
-    const full = {
-      message: 'test',
-      meta: {}
-    }
-    const fullResult = logger.checkEmptyMessage(full)
-    expect(fullResult.message).to.exist
-    expect(fullResult.message).to.equal('test')
-    expect(fullResult.meta).to.exist
-    expect(fullResult.meta).to.deep.equal({})
-  })
-
   /** @test {Logger#getLevelColor} */
   it('should test if the correct logger colors are returned', () => {
     const error = logger.getLevelColor('error')
@@ -116,16 +86,35 @@ describe('Logger', () => {
     expect(nothing).to.equal('\x1b[36m')
   })
 
-  /** @test {Logger#consoleFormatter} */
-  it('should make an object into a string for the console formatter', () => {
-    expect(logger.consoleFormatter({
-      level: 'info'
+  /** @test {Logger#prettyPrintConsole} */
+  it('should enrich the info object to pretty print the console', () => {
+    let info = {
+      level: 'info',
+      message: 'This is a test message'
+    }
+    info = logger.prettyPrintConsole(info)
+
+    expect(info.level).to.be.a('string')
+    expect(info.message).to.be.a('string')
+    expect(info.splat).to.be.an('array')
+  })
+
+  /** @test {Logger#_getMessage} */
+  it('should get the message string from the info object', () => {
+    expect(logger._getMessage({
+      level: 'info',
+      message: 'This is a test message'
     })).to.be.a('string')
   })
 
+  /** @test {Logger#consoleFormatter} */
+  it('should make the console formatter', () => {
+    expect(logger.consoleFormatter()).to.be.an('object')
+  })
+
   /** @test {Logger#fileFormatter} */
-  it('should make an object into a string for the file formatter', () => {
-    expect(logger.fileFormatter({})).to.be.a('string')
+  it('should make the file formatter', () => {
+    expect(logger.fileFormatter()).to.be.an('object')
   })
 
   /** @test {Logger#getConsoleTransport} */
