@@ -59,6 +59,16 @@ describe('Cli', () => {
       version
     })
     expect(cli).to.be.an('object')
+
+    try {
+      new Cli({}, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an('Error')
+      expect(err.message).to.equal(
+        '\'name\' and \'version\' are required options for the Cli middleware!'
+      )
+    }
   })
 
   /** @test {Cli#constructor} */

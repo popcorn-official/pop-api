@@ -62,6 +62,16 @@ describe('HttpServer', () => {
       app,
       workers: 0
     })
+
+    try {
+      new HttpServer({}, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an('Error')
+      expect(err.message).to.equal(
+        '\'app\' is a required option for the HttpServer middleware!'
+      )
+    }
   })
 
   /** @test {HttpServer#constructor} */

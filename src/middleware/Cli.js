@@ -39,8 +39,14 @@ export default class Cli {
    * commander.
    * @param {!string} options.name - The name of the Cli program.
    * @param {!string} options.version - The version of the Cli program.
+   * @throw {TypeError} - 'name' and 'version' are required options for the Cli
+   * middleware!
    */
   constructor(PopApi: any, {argv, name, version}: Object): void {
+    if (!name || !version) {
+      throw new TypeError('\'name\' and \'version\' are required options for the Cli middleware!')
+    }
+
     /**
      * The command line parser to process the Cli inputs.
      * @type {Command}
