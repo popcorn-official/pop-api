@@ -1,5 +1,6 @@
 // Import the necessary modules.
 // @flow
+import 'babel-polyfill'
 import { join } from 'path'
 /**
  * express.js middleware for winstonjs
