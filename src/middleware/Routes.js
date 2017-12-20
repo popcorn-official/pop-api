@@ -30,8 +30,14 @@ export default class Routes {
    * @param {!Express} options.app - The application instance to add middleware
    * and bind the routes to.
    * @param {?Array<Object>} options.controllers - The controllers to register.
+   * @throws {TypeError} - 'app' are required options for the routes
+   * middleware!
    */
   constructor(PopApi: any, {app, controllers}: Object): void {
+    if (!app) {
+      throw new TypeError('\'app\' is a required option for the Routes middleware!')
+    }
+
     this.setupRoutes(app, PopApi, controllers)
   }
 

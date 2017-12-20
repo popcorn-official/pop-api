@@ -79,6 +79,16 @@ describe('Routes', () => {
   /** @test {Routes#constructor} */
   it('should register the routes when creating a new Routes object', () => {
     new Routes({}, { app }) // eslint-disable-line no-new
+
+    try {
+      new Routes({}, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an('Error')
+      expect(err.message).to.equal(
+        '\'app\' is a required option for the Routes middleware!'
+      )
+    }
   })
 
   /** @test {Routes#registerControllers} */
