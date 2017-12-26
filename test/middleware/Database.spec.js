@@ -179,33 +179,33 @@ describe('Database', () => {
       })
   })
 
-  /** @test {Database#exportCollection} */
-  it('should export a collection', done => {
+  /** @test {Database#exportFile} */
+  it('should export a file', done => {
     const collection = 'example'
     const outputFile = join(...[
       logDir,
       `${collection}s.json`
     ])
 
-    database.exportCollection(collection, outputFile).then(res => {
+    database.exportFile(collection, outputFile).then(res => {
       expect(res).to.be.undefined
       done()
     }).catch(done)
   })
 
-  /** @test {Database#importCollection} */
-  it('should import a collection', done => {
+  /** @test {Database#importFile} */
+  it('should import a file', done => {
     const file = './examples/exampleModel1.json'
 
-    database.importCollection('example', file).then(res => {
+    database.importFile('example', file).then(res => {
       expect(res).to.be.undefined
       done()
     }).catch(done)
   })
 
-  /** @test {Database#importCollection} */
+  /** @test {Database#importFile} */
   it('should not find the file to import', done => {
-    database.importCollection('example', '/data/example.json')
+    database.importFile('example', '/data/example.json')
       .then(done)
       .catch(err => {
         expect(err).to.be.an('Error')

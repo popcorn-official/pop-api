@@ -123,7 +123,7 @@ export default class Database {
    * @returns {Promise<string, undefined>} - The promise to export a
    * collection.
    */
-  exportCollection(
+  exportFile(
     collection: string,
     outputFile: string
   ): Promise<string | void> {
@@ -141,7 +141,7 @@ export default class Database {
    * @returns {Promise<string, undefined>} - The promise to import a
    * collection.
    */
-  importCollection(
+  importFile(
     collection: string,
     jsonFile: string
   ): Promise<string | void> {
