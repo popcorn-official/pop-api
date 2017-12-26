@@ -1,5 +1,6 @@
 // Import the necessary modules.
 // @flow
+import debug from 'debug'
 /**
  * Fast, unopinionated, minimalist web framework for node.
  * @external {Express} https://github.com/expressjs/express
@@ -16,6 +17,7 @@ import {
   Routes
 } from './middleware'
 import * as utils from './utils'
+import { name } from '../package.json'
 
 /**
  * The default log directory.
@@ -50,6 +52,12 @@ export default class PopApi {
    * @type {Express}
    */
   static app: $Application = express()
+
+  /**
+   * The debugger for extra  output.
+   * @type {Function}
+   */
+  static debug: Function = debug(name)
 
   /**
    * A map of the installed plugins.

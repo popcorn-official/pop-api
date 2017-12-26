@@ -70,6 +70,15 @@ export default class Database {
     username,
     password
   }: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      database,
+      hosts,
+      dbPort,
+      username,
+      password
+    })
+
     if (!database) {
       throw new TypeError('\'database\' is a required option for the Database middleware!')
     }

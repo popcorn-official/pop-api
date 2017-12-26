@@ -55,10 +55,10 @@ export default class BaseContentController extends IContentController {
    * Default method to register the routes.
    * @override
    * @param {!Object} router - The router to register the routes to.
-   * @param {?PopApi} [PopApi] - The PopApi instance.
+   * @param {!PopApi} PopApi - The PopApi instance.
    * @returns {undefined}
    */
-  registerRoutes(router: Object, PopApi?: any): void {
+  registerRoutes(router: Object, PopApi: any): void {
     const t = this.basePath
 
     router.get(`/${t}s`, this.getContents.bind(this))

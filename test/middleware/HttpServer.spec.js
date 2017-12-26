@@ -14,7 +14,8 @@ import { join } from 'path'
 import {
   Database,
   Logger,
-  HttpServer
+  HttpServer,
+  PopApi
 } from '../../src'
 import { name } from '../../package'
 
@@ -50,7 +51,7 @@ describe('HttpServer', () => {
       'tmp'
     ])
     mkdirp.sync(logDir)
-    new Logger({}, { // eslint-disable-line no-new
+    new Logger(PopApi, { // eslint-disable-line no-new
       name,
       logDir,
       pretty: false,
@@ -58,13 +59,28 @@ describe('HttpServer', () => {
     })
 
     app = express()
-    httpServer = new HttpServer({}, {
+    httpServer = new HttpServer(PopApi, {
       app,
       workers: 0
     })
+  })
+
+  /** @test {HttpServer#constructor} */
+  it('should create a HttpServer with an Express instance', () => {
+    const stub = sinon.stub(cluster, 'fork')
+    stub.returns(null)
+
+    const httpServer = new HttpServer(PopApi, {
+      app: express()
+    })
+    httpServer.closeApi({
+      disconnect() {}
+    })
+
+    stub.restore()
 
     try {
-      new HttpServer({}, {}) // eslint-disable-line no-new
+      new HttpServer(PopApi, {}) // eslint-disable-line no-new
       expect(true).to.be.false
     } catch (err) {
       expect(err).to.be.an('Error')
@@ -75,26 +91,11 @@ describe('HttpServer', () => {
   })
 
   /** @test {HttpServer#constructor} */
-  it('should create a HttpServer with an Express instance', () => {
-    const stub = sinon.stub(cluster, 'fork')
-    stub.returns(null)
-
-    const httpServer = new HttpServer({}, {
-      app: express()
-    })
-    httpServer.closeApi({
-      disconnect() {}
-    })
-
-    stub.restore()
-  })
-
-  /** @test {HttpServer#constructor} */
   it('should create a HttpServer with a Restify instance', () => {
     const stub = sinon.stub(cluster, 'fork')
     stub.returns(null)
 
-    const httpServer = new HttpServer({}, {
+    const httpServer = new HttpServer(PopApi, {
       app: http.createServer(() => {})
     })
     httpServer.closeApi({
@@ -162,7 +163,7 @@ describe('HttpServer', () => {
       const stubMaster = sinon.stub(cluster, 'isMaster')
       stubMaster.value(false)
 
-      const httpServer = new HttpServer({}, {
+      const httpServer = new HttpServer(PopApi, {
         workers,
         app: express()
       })
@@ -178,7 +179,7 @@ describe('HttpServer', () => {
 
   /** @test {HttpServer.closeApi} */
   it('should close the API', done => {
-    const database = new Database({}, {
+    const database = new Database(PopApi, {
       database: name
     })
 

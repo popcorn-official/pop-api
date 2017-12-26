@@ -34,6 +34,11 @@ export default class Routes {
    * middleware!
    */
   constructor(PopApi: any, {app, controllers}: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      controllers
+    })
+
     if (!app) {
       throw new TypeError('\'app\' is a required option for the Routes middleware!')
     }
@@ -58,6 +63,7 @@ export default class Routes {
       const { Controller, args } = c
       const controller = new Controller(args)
 
+      PopApi.debug(`Registering ${Controller.name} route controller`)
       controller.registerRoutes(app, PopApi)
     })
   }
