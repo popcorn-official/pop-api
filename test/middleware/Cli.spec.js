@@ -4,7 +4,10 @@
 import sinon from 'sinon'
 import { expect } from 'chai'
 
-import { Cli } from '../../src'
+import {
+  Cli,
+  PopApi
+} from '../../src'
 import {
   name,
   version
@@ -45,7 +48,7 @@ describe('Cli', () => {
     error = sinon.stub(console, 'error')
     info = sinon.stub(console, 'info')
 
-    cli = new Cli({}, {
+    cli = new Cli(PopApi, {
       argv: ['', '', '-m', 'pretty'],
       name,
       version
@@ -54,14 +57,14 @@ describe('Cli', () => {
 
   /** @test {Cli#constructor} */
   it('should create a new Cli instance without arguments to parse', () => {
-    const cli = new Cli({}, {
+    const cli = new Cli(PopApi, {
       name,
       version
     })
     expect(cli).to.be.an('object')
 
     try {
-      new Cli({}, {}) // eslint-disable-line no-new
+      new Cli(PopApi, {}) // eslint-disable-line no-new
       expect(true).to.be.false
     } catch (err) {
       expect(err).to.be.an('Error')

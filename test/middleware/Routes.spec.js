@@ -11,7 +11,8 @@ import { join } from 'path'
 import {
   ContentService,
   Logger,
-  Routes
+  Routes,
+  PopApi
 } from '../../src'
 import {
   ExampleController,
@@ -65,11 +66,8 @@ describe('Routes', () => {
       }
     }]
 
-    routes = new Routes({
-      httpLogger(req, res, next) {
-        return next()
-      }
-    }, {
+    PopApi.httpLogger = (req, res, next) => next()
+    routes = new Routes(PopApi, {
       app,
       controllers
     })
@@ -78,10 +76,10 @@ describe('Routes', () => {
 
   /** @test {Routes#constructor} */
   it('should register the routes when creating a new Routes object', () => {
-    new Routes({}, { app }) // eslint-disable-line no-new
+    new Routes(PopApi, { app }) // eslint-disable-line no-new
 
     try {
-      new Routes({}, {}) // eslint-disable-line no-new
+      new Routes(PopApi, {}) // eslint-disable-line no-new
       expect(true).to.be.false
     } catch (err) {
       expect(err).to.be.an('Error')
@@ -94,7 +92,7 @@ describe('Routes', () => {
   /** @test {Routes#registerControllers} */
   it('should register a controller', () => {
     const exp = express()
-    const registered = routes.registerControllers(exp, {}, controllers)
+    const registered = routes.registerControllers(exp, PopApi, controllers)
 
     expect(registered).to.be.undefined
   })
@@ -186,7 +184,6 @@ describe('Routes', () => {
   /** @test {Routes#setupRoutes} */
   it('should setup the Express instance', () => {
     const exp = express()
-    const PopApi = {}
     new Logger(PopApi, { // eslint-disable-line no-new
       name,
       logDir: join(...[

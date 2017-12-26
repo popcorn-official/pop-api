@@ -43,6 +43,13 @@ export default class Cli {
    * middleware!
    */
   constructor(PopApi: any, {argv, name, version}: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      argv,
+      name,
+      version
+    })
+
     if (!name || !version) {
       throw new TypeError('\'name\' and \'version\' are required options for the Cli middleware!')
     }

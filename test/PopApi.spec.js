@@ -23,6 +23,12 @@ describe('PopApi', () => {
     expect(PopApi.app).to.exist
   })
 
+  /** @test {PopApi.debug} */
+  it('should have a debug function for extra output', () => {
+    expect(PopApi.debug).to.exist
+    expect(PopApi.debug).to.be.a('function')
+  })
+
   /** @test {PopApi._installedPlugins} */
   it('should have a static map for the installed plugins', () => {
     expect(PopApi._installedPlugins).to.exist

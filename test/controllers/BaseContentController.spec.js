@@ -10,7 +10,8 @@ import supertest from 'supertest'
 import {
   BaseContentController,
   ContentService,
-  Database
+  Database,
+  PopApi
 } from '../../src'
 import {
   ExampleModel,
@@ -87,7 +88,7 @@ describe('BaseContentController', () => {
     baseContentController.registerRoutes(app)
     request = supertest(app)
 
-    database = new Database({}, {
+    database = new Database(PopApi, {
       database: name
     })
     database.connect()

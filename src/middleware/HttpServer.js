@@ -46,9 +46,15 @@ export default class HttpServer {
    */
   constructor(PopApi: any, {
     app,
-    serverPort = process.env.PORT,
+    serverPort = process.env.PORT || 5000,
     workers = 2
   }: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      serverPort,
+      workers
+    })
+
     if (!app) {
       throw new TypeError('\'app\' is a required option for the HttpServer middleware!')
     }
@@ -62,7 +68,7 @@ export default class HttpServer {
      * The port on which the API will run on. Default is `5000`.
      * @type {number}
      */
-    this.serverPort = serverPort || 5000
+    this.serverPort = serverPort
     /**
      * The amount of workers on the cluster.
      * @type {number}

@@ -8,7 +8,10 @@ import sinon from 'sinon'
 import { expect } from 'chai'
 import { join } from 'path'
 
-import { Database } from '../../src'
+import {
+  Database,
+  PopApi
+} from '../../src'
 import { name } from '../../package'
 
 /** @test {Database} */
@@ -56,7 +59,7 @@ describe('Database', () => {
     ])
     mkdirp.sync(logDir)
 
-    database = new Database({}, {
+    database = new Database(PopApi, {
       database: name,
       username: '',
       password: ''
@@ -67,18 +70,18 @@ describe('Database', () => {
   it('should test the use the environment variables to connect', () => {
     const stub = process.env.MONGO_PORT_27017_TCP_ADDR
     process.env.MONGO_PORT_27017_TCP_ADDR = 'localhost'
-    new Database({}, { // eslint-disable-line no-new
+    new Database(PopApi, { // eslint-disable-line no-new
       database: name
     })
 
     process.env.MONGO_PORT_27017_TCP_ADDR = null
-    new Database({}, { // eslint-disable-line no-new
+    new Database(PopApi, { // eslint-disable-line no-new
       database: name
     })
     process.env.MONGO_PORT_27017_TCP_ADDR = stub
 
     try {
-      new Database({}, {}) // eslint-disable-line no-new
+      new Database(PopApi, {}) // eslint-disable-line no-new
       expect(true).to.be.false
     } catch (err) {
       expect(err).to.be.an('Error')
@@ -113,7 +116,7 @@ describe('Database', () => {
     expect(mongoose.connection.readyState).to.equal(0)
 
     try {
-      new Database({}, { // eslint-disable-line no-new
+      new Database(PopApi, { // eslint-disable-line no-new
         database: name
       })
       process.env.NODE_ENV = 'test'
@@ -165,7 +168,7 @@ describe('Database', () => {
     expect(mongoose.connection.readyState).to.be.a('number')
     expect(mongoose.connection.readyState).to.equal(0)
 
-    const database = new Database({}, {
+    const database = new Database(PopApi, {
       database: name,
       username: 'fault',
       password: 'faulty'

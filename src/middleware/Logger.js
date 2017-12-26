@@ -65,6 +65,14 @@ export default class Logger {
    * Logger middleware!
    */
   constructor(PopApi: any, {name, logDir, pretty, quiet}: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      name,
+      logDir,
+      pretty,
+      quiet
+    })
+
     if (!name || !logDir) {
       throw new TypeError('\'name\' and \'logDir\' are required options for the Logger middleware!')
     }

@@ -5,7 +5,8 @@ import { expect } from 'chai'
 
 import {
   ContentService,
-  Database
+  Database,
+  PopApi
 } from '../../src'
 import {
   ExampleModel,
@@ -41,7 +42,7 @@ describe('ContentService', () => {
       query: {}
     })
 
-    database = new Database({}, {
+    database = new Database(PopApi, {
       database: name
     })
     database.connect()

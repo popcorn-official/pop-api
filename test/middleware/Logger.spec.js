@@ -8,7 +8,10 @@ import winston from 'winston'
 import { expect } from 'chai'
 import { join } from 'path'
 
-import { Logger } from '../../src'
+import {
+  Logger,
+  PopApi
+} from '../../src'
 import { name } from '../../package'
 
 /** @test {Logger} */
@@ -38,7 +41,7 @@ describe('Logger', () => {
     ])
     mkdirp.sync(logDir)
 
-    logger = new Logger({}, {
+    logger = new Logger(PopApi, {
       name,
       logDir,
       pretty: false,
@@ -53,7 +56,7 @@ describe('Logger', () => {
     const padStartStub = sinon.stub(String.prototype, 'padStart')
     padStartStub.value(undefined)
 
-    const logger = new Logger({}, {
+    const logger = new Logger(PopApi, {
       name,
       logDir,
       pretty: true,
@@ -62,7 +65,7 @@ describe('Logger', () => {
     expect(logger).to.be.an('object')
 
     try {
-      new Logger({}, {}) // eslint-disable-line no-new
+      new Logger(PopApi, {}) // eslint-disable-line no-new
       expect(true).to.be.false
     } catch (err) {
       expect(err).to.be.an('Error')
