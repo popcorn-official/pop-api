@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/PopApi.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/PopApi.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+import debug from &apos;debug&apos;
+/**
+ * Fast, unopinionated, minimalist web framework for node.
+ * @external {Express} https://github.com/expressjs/express
+ */
+import express, { type $Application } from &apos;express&apos;
+import { isMaster } from &apos;cluster&apos;
+import { join } from &apos;path&apos;
+
+import {
+  Cli,
+  Database,
+  HttpServer,
+  Logger,
+  Routes
+} from &apos;./middleware&apos;
+import * as utils from &apos;./utils&apos;
+import { name } from &apos;../package.json&apos;
+
+/**
+ * The default log directory.
+ * @type {string}
+ */
+const defaultLogDir = join(...[
+  __dirname,
+  &apos;..&apos;,
+  &apos;tmp&apos;
+])
+
+/**
+ * The PopApi class with the middleware pattern.
+ * @type {PopApi}
+ */
+export default class PopApi {
+
+  /**
+   * The database connection.
+   * @type {Database}
+   */
+  static database: Database
+
+  /**
+   * The arguments passed down to the logger middleware.
+   * @type {Object}
+   */
+  static loggerArgs: Object
+
+  /**
+   * The application instance for the PopApi framework.
+   * @type {Express}
+   */
+  static app: $Application = express()
+
+  /**
+   * The debugger for extra  output.
+   * @type {Function}
+   */
+  static debug: Function = debug(name)
+
+  /**
+   * A map of the installed plugins.
+   * @type {Map&lt;any&gt;}
+   */
+  static _installedPlugins: Map&lt;string, any&gt; = new Map()
+
+  /**
+   * The setup for the base framework.
+   * @param {!Object} options - The options for the framework.
+   * @param {!Express} [options.app=PopApi.app] - The web framework instance you
+   * want to use.
+   * @param {!Array&lt;Object&gt;} options.controllers - The controllers to register.
+   * @param {!string} options.name - The name for your API.
+   * @param {!string} options.version - The version of your API.
+   * @param {?string} options.logDir - The directory to store the log files in.
+   * @param {?Array&lt;string&gt;} [options.hosts] - The hosts of
+   * the database cluster.
+   * @param {?number} [options.dbPort] - The port the database is on.
+   * @param {?string} [options.username] - The username for the database
+   * connection.
+   * @param {?string} [options.password] - The password for the database
+   * connection.
+   * @param {?number} [options.serverPort] - The port the API will run on.
+   * @param {?number} [options.workers] - The number of workers for the API.
+   * @param {?Object} [options.opts] - Additionl options for custom
+   * middlewares.
+   * @param {!Array&lt;Function&gt;} middlewares - The list of middlewares to use.
+   * The order of the middlewares is important.
+   * @returns {Promise&lt;PopApi, Error&gt;} - The initialized PopApi instance.
+   */
+  static async init({
+    app = PopApi.app,
+    controllers,
+    name,
+    version,
+    logDir = defaultLogDir,
+    hosts,
+    dbPort,
+    username,
+    password,
+    serverPort,
+    workers,
+    ...opts
+  }: Object, middlewares: Array&lt;Function&gt; = [
+    Cli,
+    Logger,
+    Database,
+    Routes,
+    HttpServer
+  ]): Promise&lt;Object | Error&gt; {
+    PopApi.app = app
+    if (isMaster) {
+      await utils.createTemp(logDir)
+    }
+
+    middlewares.map(Middleware =&gt; {
+      PopApi.use(Middleware, {
+        app,
+        controllers,
+        name,
+        version,
+        logDir,
+        database: name,
+        hosts,
+        dbPort,
+        username,
+        password,
+        serverPort,
+        workers,
+        argv: process.argv,
+        ...PopApi.loggerArgs,
+        ...opts
+      })
+    })
+    await PopApi.database.connect()
+
+    return PopApi
+  }
+
+  /**
+   * Register middleware for the PopApi framework.
+   * @param {!Function} Plugin - The plugin to use.
+   * @param {!Object} args - The arguments passed down to the constructor of
+   * the plugin.
+   * @returns {Promise&lt;PopApi&gt;} - The PopApi instance with the installed
+   * plugins.
+   */
+  static use(Plugin: any, ...args: any): any {
+    if (PopApi._installedPlugins.has(Plugin)) {
+      return this
+    }
+
+    const plugin = typeof Plugin === &apos;function&apos;
+      ? new Plugin(this, ...args)
+      : null
+
+    if (plugin) {
+      PopApi._installedPlugins.set(Plugin, plugin)
+    }
+
+    return this
+  }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

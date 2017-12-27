@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="">
+  <title data-ice="title">Test | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1>Test</h1>
+<table class="test-summary">
+  <thead>
+    <tr>
+      <td class="test-description">Description</td>
+      <td class="test-target">Identifier</td>
+    </tr>
+  </thead>
+
+  <tbody data-ice="tests"><tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/PopApi.spec.js.html#lineNumber20"><p>PopApi</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber22"><p>should have a static express instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-member-app">PopApi.app</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber27"><p>should have a debug function for extra output</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-member-debug">PopApi.debug</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber33"><p>should have a static map for the installed plugins</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-member-_installedPlugins">PopApi._installedPlugins</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber45">test/PopApi.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-method-use">PopApi.use</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber62"><p>should not register the plugin if it is not a class</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-method-use">PopApi.use</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber70"><p>should initiate the PopApi instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-method-init">PopApi.init</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/PopApi.spec.js.html#lineNumber81"><p>should initiate the PopApi instance and not create the temporary directory</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/PopApi.js~PopApi.html#static-method-init">PopApi.init</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber30"><p>BaseContentController</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber100"><p>should check the attributes of the BaseContentController</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-constructor-constructor">BaseContentController#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber108"><p>should register the routes with of the controller</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-registerRoutes">BaseContentController#registerRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber123"><p>with an empty database</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber140">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber158"><p>with a filled database</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber191">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-createContent">BaseContentController#createContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber198">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getContents">BaseContentController#getContents</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber204">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getPage">BaseContentController#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber213">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getPage">BaseContentController#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber226">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-updateContent">BaseContentController#updateContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber235">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getContent">BaseContentController#getContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber241">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getRandomContent">BaseContentController#getRandomContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber247">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-deleteContent">BaseContentController#deleteContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber254"><p>will throw errors</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber280">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-createContent">BaseContentController#createContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber286">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getContents">BaseContentController#getContents</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber295">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getPage">BaseContentController#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber304">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-updateContent">BaseContentController#updateContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber313">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getContent">BaseContentController#getContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber322">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-getRandomContent">BaseContentController#getRandomContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="2">
+  <td data-ice="testDescription" style="padding-left: 30px"><span><a href="test-file/test/controllers/BaseContentController.spec.js.html#lineNumber331">test/controllers/BaseContentController.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html#instance-method-deleteContent">BaseContentController#deleteContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber19"><p>ContentService</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber54"><p>should check the attributes of the ContentService</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-constructor-constructor">ContentService#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber68"><p>should get a page of content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getPage">ContentService#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber80"><p>should get a page of content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getPage">ContentService#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber90"><p>should get a page of content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getPage">ContentService#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber100"><p>should get a page of content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getPage">ContentService#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber110"><p>should create a single content item</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-createContent">ContentService#createContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber118"><p>should create multiple content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-createMany">ContentService#createMany</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber126"><p>should get the available pages</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getContents">ContentService#getContents</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber134"><p>should update a single content item</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-updateContent">ContentService#updateContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber143"><p>should update multiple content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-updateMany">ContentService#updateMany</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber154"><p>should get a single content item</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getContent">ContentService#getContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber162"><p>should get a single random content item</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-getRandomContent">ContentService#getRandomContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber170"><p>should delete a single content item</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-deleteContent">ContentService#deleteContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/ContentService.spec.js.html#lineNumber178"><p>should delete multiple content items</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/ContentService.js~ContentService.html#instance-method-deleteMany">ContentService#deleteMany</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber9"><p>IContentController</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber25"><p>should throw an error when calling the default getContents method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-getContents">IContentController#getContents</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber31"><p>should throw an error when calling the default sortContent method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-sortContent">IContentController#sortContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber37"><p>should throw an error when calling the default getPage method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-getPage">IContentController#getPage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber43"><p>should throw an error when calling the default getContent method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-getContent">IContentController#getContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber49"><p>should throw an error when calling the default createContent method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-createContent">IContentController#createContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber55"><p>should throw an error when calling the default updateContent method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-updateContent">IContentController#updateContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber61"><p>should throw an error when calling the default deleteContent method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-deleteContent">IContentController#deleteContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IContentController.spec.js.html#lineNumber67"><p>should throw an error when calling the default getRandomContent method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IContentController.js~IContentController.html#instance-method-getRandomContent">IContentController#getRandomContent</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/controllers/IController.spec.js.html#lineNumber9"><p>IController</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/controllers/IController.spec.js.html#lineNumber11"><p>should throw an error when calling the default registerRoutes method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/controllers/IController.js~IController.html#instance-method-registerRoutes">IController#registerRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/helpers/ApiError.spec.js.html#lineNumber12"><p>ApiError</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/helpers/ApiError.spec.js.html#lineNumber14"><p>should create a new ApiError</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/helpers/ApiError.js~ApiError.html#instance-constructor-constructor">ApiError#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/helpers/ApiError.spec.js.html#lineNumber22"><p>should create a new ApiError without default parameters</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/helpers/ApiError.js~ApiError.html#instance-constructor-constructor">ApiError#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/helpers/statusCodes.spec.js.html#lineNumber9"><p>statusCodes</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/helpers/statusCodes.spec.js.html#lineNumber11"><p>statusCodes should be an object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber17"><p>Cli</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber59"><p>should create a new Cli instance without arguments to parse</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-constructor-constructor">Cli#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber78"><p>should check the attributes of the Cli</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-constructor-constructor">Cli#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber88"><p>should initiate the options for the Cli</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-method-initOptions">Cli#initOptions</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber94"><p>should get the help message</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-method-getHelp">Cli#getHelp</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber100"><p>should print the --help option</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-method-printHelp">Cli#printHelp</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber112">test/middleware/Cli.spec.js</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-method-mode">Cli#mode</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber122"><p>should invoke no options and print the --help option</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-method-run">Cli#run</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Cli.spec.js.html#lineNumber132"><p>should not parse the arguments since there are none</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Cli.js~Cli.html#instance-method-run">Cli#run</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber18"><p>Database</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber70"><p>should test the use the environment variables to connect</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-constructor-constructor">Database#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber95"><p>should check the attributes of the Database</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-constructor-constructor">Database#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber113"><p>should fail to create a new Database object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-constructor-constructor">Database#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber157"><p>should connect to MongoDB</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-method-connect">Database#connect</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber162"><p>should disconnect from MongoDB</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-method-disconnect">Database#disconnect</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber167"><p>should fail to authenticate with MongoDB</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-method-connect">Database#connect</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber186"><p>should export a file</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-method-exportFile">Database#exportFile</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber200"><p>should import a file</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-method-importFile">Database#importFile</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Database.spec.js.html#lineNumber210"><p>should not find the file to import</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Database.js~Database.html#instance-method-importFile">Database#importFile</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber23"><p>HttpServer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber69"><p>should create a HttpServer with an Express instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-constructor-constructor">HttpServer#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber94"><p>should create a HttpServer with a Restify instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-constructor-constructor">HttpServer#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber109"><p>should check the attributes of the HttpServer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-constructor-constructor">HttpServer#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber119"><p>should fork the workers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-method-forkWorkers">HttpServer#forkWorkers</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber131"><p>should handle the exit event of the workers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-method-workersOnExit">HttpServer#workersOnExit</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber154"><p>should start the API in worker mode</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-method-setupApi">HttpServer#setupApi</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/HttpServer.spec.js.html#lineNumber181"><p>should close the API</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html#instance-method-closeApi">HttpServer.closeApi</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber18"><p>Logger</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber53"><p>should create an ExpressWinston instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-constructor-constructor">Logger#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber82"><p>should check the attributes of the Logger</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-constructor-constructor">Logger#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber92"><p>should test if the correct logger colors are returned</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-getLevelColor">Logger#getLevelColor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber106"><p>should enrich the info object to pretty print the console</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-prettyPrintConsole">Logger#prettyPrintConsole</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber119"><p>should get the message string from the info object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-_getMessage">Logger#_getMessage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber127"><p>should make the console formatter</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-consoleFormatter">Logger#consoleFormatter</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber132"><p>should make the file formatter</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-fileFormatter">Logger#fileFormatter</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber137"><p>should get a configured winston console transport</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-getConsoleTransport">Logger#getConsoleTransport</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber143"><p>should get a configured winston file transport</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-getFileTransport">Logger#getFileTransport</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber150"><p>should create a configured winston instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-createLoggerInstance">Logger#createLoggerInstance</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber156"><p>should create a configured winston instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-createLoggerInstance">Logger#createLoggerInstance</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber167"><p>should get the message to print for express-winston</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-getHttpLoggerMessage">Logger#getHttpLoggerMessage</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber179"><p>should create a configured Http logger instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-createHttpLogger">Logger#createHttpLogger</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber185"><p>should create a configured Http logger instance with developer output</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-createHttpLogger">Logger#createHttpLogger</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber196"><p>should create the global logger object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-createLogger">Logger#createLogger</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Logger.spec.js.html#lineNumber208"><p>should not create an instance of ExpressWinston or Winston</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Logger.js~Logger.html#instance-method-getLogger">Logger#getLogger</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber24"><p>Routes</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber78"><p>should register the routes when creating a new Routes object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-constructor-constructor">Routes#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber93"><p>should register a controller</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-registerControllers">Routes#registerControllers</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber101"><p>should catch a 500 internal server error with a default error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-convertErrors">Routes#convertErrors</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber109"><p>should catch a 404 not found error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-setNotFoundHandler">Routes#setNotFoundHandler</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber123"><p>should catch a 500 internal server error with a custom error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-setErrorHandler">Routes#setErrorHandler</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber143"><p>should remove the security headers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-removeServerHeader">Routes#removeServerHeader</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber154"><p>should add the security headers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-preRoutes">Routes#preRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber173"><p>should execute the pre routes hook</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-preRoutes">Routes#preRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber179"><p>should execute the post routes hook</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-postRoutes">Routes#postRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber185"><p>should setup the Express instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-setupRoutes">Routes#setupRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/Routes.spec.js.html#lineNumber205"><p>should setup the Express instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/middleware/Routes.js~Routes.html#instance-method-setupRoutes">Routes#setupRoutes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/middleware/internal/padStart.spec.js.html#lineNumber10"><p>padStart</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-padStart">padStart</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/middleware/internal/padStart.spec.js.html#lineNumber28"><p>should pad a string</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-padStart">padStart</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/utils.spec.js.html#lineNumber10"><p>utils</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/utils.spec.js.html#lineNumber33"><p>should create the temporary directory</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/utils.spec.js.html#lineNumber41"><p>should remove the files from the temporary directory</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/utils.spec.js.html#lineNumber49"><p>should successfully execute a command</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/utils.spec.js.html#lineNumber61"><p>should fail to execute a command</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

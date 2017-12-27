@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/middleware/Database.spec.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/middleware/Database.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+/* eslint-disable no-unused-expressions */
+import del from &apos;del&apos;
+import mkdirp from &apos;mkdirp&apos;
+import mongoose from &apos;mongoose&apos;
+import sinon from &apos;sinon&apos;
+import { expect } from &apos;chai&apos;
+import { join } from &apos;path&apos;
+
+import {
+  Database,
+  PopApi
+} from &apos;../../src&apos;
+import { name } from &apos;../../package&apos;
+
+/** @test {Database} */
+describe(&apos;Database&apos;, () =&gt; {
+  /**
+   * The stub for `process.env`.
+   * @type {Object}
+   */
+  let stub: Object
+
+  /**
+   * The direcotry where the logs are saved.
+   * @type {string}
+   */
+  let logDir: string
+
+  /**
+   * The database manager to connect to mongodb.
+   * @type {Database}
+   */
+  let database: Database
+
+  /**
+   * Hook for setting up the Database tests.
+   * @type {Function}
+   */
+  before(() =&gt; {
+    const {
+      MONGO_PORT_27017_TCP_ADDR,
+      NODE_ENV,
+      PATH
+    } = process.env
+    stub = sinon.stub(process, &apos;env&apos;)
+    stub.value({
+      MONGO_PORT_27017_TCP_ADDR,
+      NODE_ENV,
+      PATH
+    })
+
+    logDir = join(...[
+      __dirname,
+      &apos;..&apos;,
+      &apos;..&apos;,
+      &apos;tmp&apos;
+    ])
+    mkdirp.sync(logDir)
+
+    database = new Database(PopApi, {
+      database: name,
+      username: &apos;&apos;,
+      password: &apos;&apos;
+    })
+  })
+
+  /** @test {Database#constructor} */
+  it(&apos;should test the use the environment variables to connect&apos;, () =&gt; {
+    const stub = process.env.MONGO_PORT_27017_TCP_ADDR
+    process.env.MONGO_PORT_27017_TCP_ADDR = &apos;localhost&apos;
+    new Database(PopApi, { // eslint-disable-line no-new
+      database: name
+    })
+
+    process.env.MONGO_PORT_27017_TCP_ADDR = null
+    new Database(PopApi, { // eslint-disable-line no-new
+      database: name
+    })
+    process.env.MONGO_PORT_27017_TCP_ADDR = stub
+
+    try {
+      new Database(PopApi, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an(&apos;Error&apos;)
+      expect(err.message).to.equal(
+        &apos;\&apos;database\&apos; is a required option for the Database middleware!&apos;
+      )
+    }
+  })
+
+  /** @test {Database#constructor} */
+  it(&apos;should check the attributes of the Database&apos;, () =&gt; {
+    const temp = process.env.MONGO_PORT_27017_TCP_ADDR
+    process.env.MONGO_PORT_27017_TCP_ADDR = null
+    expect(database.hosts).to.exist
+    expect(database.hosts).to.be.an(&apos;array&apos;)
+    process.env.MONGO_PORT_27017_TCP_ADDR = temp
+
+    expect(database.database).to.exist
+    expect(database.database).to.be.a(&apos;string&apos;)
+    expect(database.dbPort).to.exist
+    expect(database.dbPort).to.be.a(&apos;number&apos;)
+    expect(database.username).to.exist
+    expect(database.username).to.be.a(&apos;string&apos;)
+    expect(database.password).to.exist
+    expect(database.password).to.be.a(&apos;string&apos;)
+  })
+
+  /** @test {Database#constructor} */
+  it(&apos;should fail to create a new Database object&apos;, () =&gt; {
+    process.env.NODE_ENV = null
+    expect(mongoose.connection.readyState).to.be.a(&apos;number&apos;)
+    expect(mongoose.connection.readyState).to.equal(0)
+
+    try {
+      new Database(PopApi, { // eslint-disable-line no-new
+        database: name
+      })
+      process.env.NODE_ENV = &apos;test&apos;
+    } catch (err) {
+      process.env.NODE_ENV = &apos;test&apos;
+      expect(err).to.be.an(&apos;Error&apos;)
+    }
+  })
+
+  /**
+   * Test the changing connection state.
+   * @param {!Function} method - Method to change to connection state.
+   * @param {!number} before - The connection state it is before executing the
+   * method to change it.
+   * @param {!number} after - The connection state it is after executing the
+   * method to change it.
+   * @param {Function} done - The method executed when the test is done.
+   * @returns {undefined}
+   */
+  function testConnection(
+    method: Function,
+    before: number,
+    after: number,
+    done: Function
+  ): void {
+    expect(mongoose.connection.readyState).to.be.a(&apos;number&apos;)
+    expect(mongoose.connection.readyState).to.equal(before)
+
+    method().then(() =&gt; {
+      expect(mongoose.connection.readyState).to.be.a(&apos;number&apos;)
+      expect(mongoose.connection.readyState).to.equal(after)
+
+      done()
+    }).catch(done)
+  }
+
+  /** @test {Database#connect} */
+  it(&apos;should connect to MongoDB&apos;, done =&gt; {
+    testConnection(database.connect.bind(database), 0, 1, done)
+  })
+
+  /** @test {Database#disconnect} */
+  it(&apos;should disconnect from MongoDB&apos;, done =&gt; {
+    testConnection(database.disconnect.bind(database), 1, 0, done)
+  })
+
+  /** @test {Database#connect} */
+  it(&apos;should fail to authenticate with MongoDB&apos;, done =&gt; {
+    expect(mongoose.connection.readyState).to.be.a(&apos;number&apos;)
+    expect(mongoose.connection.readyState).to.equal(0)
+
+    const database = new Database(PopApi, {
+      database: name,
+      username: &apos;fault&apos;,
+      password: &apos;faulty&apos;
+    })
+
+    database.connect()
+      .then(done)
+      .catch(err =&gt; {
+        expect(err).to.be.an(&apos;Error&apos;)
+        done()
+      })
+  })
+
+  /** @test {Database#exportFile} */
+  it(&apos;should export a file&apos;, done =&gt; {
+    const collection = &apos;example&apos;
+    const outputFile = join(...[
+      logDir,
+      `${collection}s.json`
+    ])
+
+    database.exportFile(collection, outputFile).then(res =&gt; {
+      expect(res).to.be.undefined
+      done()
+    }).catch(done)
+  })
+
+  /** @test {Database#importFile} */
+  it(&apos;should import a file&apos;, done =&gt; {
+    const file = &apos;./examples/exampleModel1.json&apos;
+
+    database.importFile(&apos;example&apos;, file).then(res =&gt; {
+      expect(res).to.be.undefined
+      done()
+    }).catch(done)
+  })
+
+  /** @test {Database#importFile} */
+  it(&apos;should not find the file to import&apos;, done =&gt; {
+    database.importFile(&apos;example&apos;, &apos;/data/example.json&apos;)
+      .then(done)
+      .catch(err =&gt; {
+        expect(err).to.be.an(&apos;Error&apos;)
+        done()
+      })
+  })
+
+  /**
+   * Hook for tearing down the Database tests.
+   * @type {Function}
+   */
+  after(done =&gt; {
+    stub.restore()
+    database.disconnect()
+      .then(() =&gt; del([logDir]))
+      .then(() =&gt; done())
+      .catch(done)
+  })
+})
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

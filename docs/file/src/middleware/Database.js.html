@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/middleware/Database.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/middleware/Database.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+import mongoose from &apos;mongoose&apos;
+import { existsSync } from &apos;fs&apos;
+import {
+  isAbsolute,
+  join
+} from &apos;path&apos;
+import { URL } from &apos;url&apos;
+
+import { executeCommand } from &apos;../utils&apos;
+
+/**
+ * Class for setting up a database connection.
+ * @type {Database}
+ */
+export default class Database {
+
+  /**
+   * The name of the database. Default is the package name with the
+   * environment mode.
+   * @type {string}
+   */
+  database: string
+
+  /**
+   * The host of the server of the database. Default is `[&apos;localhost&apos;]`.
+   * @type {Array&lt;string&gt;}
+   */
+  hosts: Array&lt;string&gt;
+
+  /**
+   * The port of the database. Default is `27017`.
+   * @type {string}
+   */
+  dbPort: number
+
+  /**
+   * The username of the database. By default this is left empty.
+   * @type {string}
+   */
+  username: string
+
+  /**
+   * The password of the database. By default this is left empty.
+   * @type {string}
+   */
+  password: string
+
+  /**
+   * Create a new Database object.
+   * @param {!PopApi} PopApi - The PopApi instance to bind the database to.
+   * @param {!Object} options - The options for the database.
+   * @param {!string} options.database - The arguments to be parsed by
+   * @param {!Array&lt;string&gt;} [options.hosts=[&apos;localhost&apos;]] - The hosts for the
+   * database connection.
+   * @param {!number} [options.dbPort=27017] - The port for the database
+   * connection.
+   * @param {?string} [options.username] - The username for the database
+   * connection.
+   * @param {?string} [options.password] - The password for the database
+   * connection.
+   * @throws {TypeError} - &apos;database&apos; is a required option for the Database
+   * middleware!
+   */
+  constructor(PopApi: any, {
+    database,
+    hosts = [&apos;localhost&apos;],
+    dbPort = 27017,
+    username,
+    password
+  }: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      database,
+      hosts,
+      dbPort,
+      username,
+      password
+    })
+
+    if (!database) {
+      throw new TypeError(&apos;\&apos;database\&apos; is a required option for the Database middleware!&apos;)
+    }
+
+    process.env.NODE_ENV = process.env.NODE_ENV || &apos;development&apos;
+
+    const {
+      MONGO_PORT_27017_TCP_ADDR,
+      MONGO_PORT_27017_TCP_PORT,
+      NODE_ENV
+    } = process.env
+
+    this.database = `${database}-${NODE_ENV}`
+    this.hosts = MONGO_PORT_27017_TCP_ADDR
+      ? [MONGO_PORT_27017_TCP_ADDR]
+      : hosts
+    this.dbPort = Number(MONGO_PORT_27017_TCP_PORT) || dbPort
+    this.username = username || &apos;&apos;
+    this.password = password || &apos;&apos;
+
+    PopApi.database = this
+  }
+
+  /**
+   * Connection and configuration of the database.
+   * @returns {Promise&lt;undefined, Error&gt;} - The promise to connect to the
+   * database.
+   */
+  connect(): Promise&lt;void&gt; {
+    const uri = new URL(`mongodb://${this.username}:${this.password}@${this.hosts.join(&apos;,&apos;)}:${this.dbPort}/${this.database}`)
+
+    mongoose.Promise = Promise
+    return mongoose.connect(uri.href, {
+      useMongoClient: true
+    }).catch(err =&gt; Promise.reject(new Error(err)))
+  }
+
+  /**
+   * Disconnect from the database.
+   * @returns {Promise&lt;undefined, Error&gt;} - The promise to disconnect from
+   * the database.
+   */
+  disconnect(): Promise&lt;void&gt; {
+    return mongoose.connection.close()
+  }
+
+  /**
+   * Export a JSON file collection.
+   * @param {!string} collection - The collection to export.
+   * @param {!string} outputFile - The path of the output file of the export.
+   * @returns {Promise&lt;string, undefined&gt;} - The promise to export a
+   * collection.
+   */
+  exportFile(
+    collection: string,
+    outputFile: string
+  ): Promise&lt;string | void&gt; {
+    return executeCommand(&apos;mongoexport&apos;, [
+      &apos;-d&apos;, this.database,
+      &apos;-c&apos;, `${collection}s`,
+      &apos;-o&apos;, outputFile
+    ])
+  }
+
+  /**
+   * Import a JSON file collection.
+   * @param {!string} collection - The collection to import.
+   * @param {!string} jsonFile - The JSON file to import.
+   * @returns {Promise&lt;string, undefined&gt;} - The promise to import a
+   * collection.
+   */
+  importFile(
+    collection: string,
+    jsonFile: string
+  ): Promise&lt;string | void&gt; {
+    const file = !isAbsolute(jsonFile)
+      ? jsonFile
+      : join(...[__dirname, &apos;..&apos;, &apos;..&apos;, jsonFile])
+
+    if (!existsSync(file)) {
+      const err = new Error(`no such file found for &apos;${file}&apos;`)
+      return Promise.reject(err)
+    }
+
+    return executeCommand(&apos;mongoimport&apos;, [
+      &apos;-d&apos;, this.database,
+      &apos;-c&apos;, `${collection}s`,
+      &apos;--file&apos;, jsonFile,
+      &apos;--upsert&apos;
+    ])
+  }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

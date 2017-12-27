@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container manual-root" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/usage.html"><a href="manual/usage.html" data-ice="link">Usage</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/middleware.html"><a href="manual/middleware.html" data-ice="link">Middleware</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/middleware.html"><a href="manual/middleware.html#cli" data-ice="link">Cli</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/middleware.html"><a href="manual/middleware.html#database" data-ice="link">Database</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/middleware.html"><a href="manual/middleware.html#httpserver" data-ice="link">HttpServer</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/middleware.html"><a href="manual/middleware.html#logger" data-ice="link">Logger</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/middleware.html"><a href="manual/middleware.html#routes" data-ice="link">Routes</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/middleware.html"><a href="manual/middleware.html#custom-middleware" data-ice="link">Custom Middleware</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/advanced.html"><a href="manual/advanced.html" data-ice="link">Advanced Usage</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/advanced.html"><a href="manual/advanced.html#mongoose-models" data-ice="link">Mongoose Models</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/advanced.html"><a href="manual/advanced.html#contentservice" data-ice="link">ContentService</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/advanced.html"><a href="manual/advanced.html#controllers" data-ice="link">Controllers</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/advanced.html"><a href="manual/advanced.html#configuration" data-ice="link">Configuration</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/extending-middleware.html"><a href="manual/extending-middleware.html" data-ice="link">Extending Middleware</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/extending-middleware.html"><a href="manual/extending-middleware.html#cli" data-ice="link">Cli</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/extending-middleware.html"><a href="manual/extending-middleware.html#database" data-ice="link">Database</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/extending-middleware.html"><a href="manual/extending-middleware.html#logger" data-ice="link">Logger</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/extending-middleware.html"><a href="manual/extending-middleware.html#routes" data-ice="link">Routes</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/extending-middleware.html"><a href="manual/extending-middleware.html#using-custom-middlewares" data-ice="link">Using Custom Middlewares</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#change-log" data-ice="link">Change Log</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-5-0---v0-5-1--0-5-1--a---2017-12-27-" data-ice="link">0.5.1 (2017-12-27)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bug-fixes" data-ice="link">Bug Fixes</a></li>
+<li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-4-1---v0-5-0--0-5-0--a---2017-12-26-" data-ice="link">0.5.0 (2017-12-26)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#features" data-ice="link">Features</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-4-0---v0-4-1--0-4-1--a---2017-12-19-" data-ice="link">0.4.1 (2017-12-19)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bug-fixes" data-ice="link">Bug Fixes</a></li>
+<li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-3-1---v0-4-0--0-4-0--a---2017-12-19-" data-ice="link">0.4.0 (2017-12-19)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bug-fixes" data-ice="link">Bug Fixes</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#features" data-ice="link">Features</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-3-0---v0-3-1--0-3-1--a---2017-12-10-" data-ice="link">0.3.1 (2017-12-10)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bug-fixes" data-ice="link">Bug Fixes</a></li>
+<li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-2-1---v0-3-0--0-3-0--a---2017-12-10-" data-ice="link">0.3.0 (2017-12-10)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bug-fixes" data-ice="link">Bug Fixes</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#features" data-ice="link">Features</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-2-0---v0-2-1--0-2-1--a---2017-12-09-" data-ice="link">0.2.1 (2017-12-09)</a></li>
+<li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#-a-href--https---github-com-popcorn-official-pop-api-compare-v0-1-0---v0-2-0--0-2-0--a---2017-12-05-" data-ice="link">0.2.0 (2017-12-05)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bug-fixes" data-ice="link">Bug Fixes</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#features" data-ice="link">Features</a></li>
+<li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#0-1-0--2017-11-28-" data-ice="link">0.1.0 (2017-11-28)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#features" data-ice="link">Features</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html" data-ice="link">Contributing</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#raising-issues" data-ice="link">Raising Issues</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#report-a-bug" data-ice="link">Report A Bug</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#feature-requests" data-ice="link">Feature Requests</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#pull-requests" data-ice="link">Pull Requests</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#commit-messages" data-ice="link">Commit Messages</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#styleguides" data-ice="link">Styleguides</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#javascript-styleguide" data-ice="link">JavaScript Styleguide</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#tests-styleguide" data-ice="link">Tests Styleguide</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#documentation-styleguide" data-ice="link">Documentation Styleguide</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#setting-up-for-development" data-ice="link">Setting up for development</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#npm-scripts" data-ice="link">npm scripts</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#git-hooks" data-ice="link">Git hooks</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html" data-ice="link">Contributor Covenant Code of Conduct</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#our-pledge" data-ice="link">Our Pledge</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#our-standards" data-ice="link">Our Standards</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#our-responsibilities" data-ice="link">Our Responsibilities</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#scope" data-ice="link">Scope</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#enforcement" data-ice="link">Enforcement</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#attribution" data-ice="link">Attribution</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="change-log">Change Log</h1><p>All notable changes to this project will be documented in this file. See <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> for commit guidelines.</p>
+<p><a name="0.5.1"></a></p>
+<h2 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-5-0---v0-5-1--0-5-1--a---2017-12-27-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.5.0...v0.5.1">0.5.1</a> (2017-12-27)</h2><h3 id="bug-fixes">Bug Fixes</h3><ul>
+<li>Fix using default params with dotenv file (<a href="https://github.com/popcorn-official/pop-api/issues/43">#43</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/746d0ed">746d0ed</a>)</li>
+</ul>
+<p><a name="0.5.0"></a></p>
+<h1 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-4-1---v0-5-0--0-5-0--a---2017-12-26-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.4.1...v0.5.0">0.5.0</a> (2017-12-26)</h1><h3 id="features">Features</h3><ul>
+<li>Throw type error for incorrect middleware options (<a href="https://github.com/popcorn-official/pop-api/issues/38">#38</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/50b8f65">50b8f65</a>)</li>
+<li><strong>debug:</strong> Add debug feature for extra output (<a href="https://github.com/popcorn-official/pop-api/issues/41">#41</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/a6feb83">a6feb83</a>)</li>
+</ul>
+<p><a name="0.4.1"></a></p>
+<h2 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-4-0---v0-4-1--0-4-1--a---2017-12-19-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.4.0...v0.4.1">0.4.1</a> (2017-12-19)</h2><h3 id="bug-fixes">Bug Fixes</h3><ul>
+<li><strong>padStart:</strong> Add polyfill for String.prototype.padStart (<a href="https://github.com/popcorn-official/pop-api/issues/34">#34</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/a22670b">a22670b</a>)</li>
+</ul>
+<p><a name="0.4.0"></a></p>
+<h1 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-3-1---v0-4-0--0-4-0--a---2017-12-19-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.3.1...v0.4.0">0.4.0</a> (2017-12-19)</h1><h3 id="bug-fixes">Bug Fixes</h3><ul>
+<li>Close server correctly (<a href="https://github.com/popcorn-official/pop-api/issues/31">#31</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/9822a49">9822a49</a>)</li>
+</ul>
+<h3 id="features">Features</h3><ul>
+<li>Add support for windows (<a href="https://github.com/popcorn-official/pop-api/issues/30">#30</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/bc8d146">bc8d146</a>)</li>
+<li><strong>init:</strong> Add support to use additional options for middlewares (<a href="https://github.com/popcorn-official/pop-api/issues/33">#33</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/e0f11ed">e0f11ed</a>)</li>
+</ul>
+<p><a name="0.3.1"></a></p>
+<h2 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-3-0---v0-3-1--0-3-1--a---2017-12-10-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.3.0...v0.3.1">0.3.1</a> (2017-12-10)</h2><h3 id="bug-fixes">Bug Fixes</h3><ul>
+<li>Fixed issue where database name is undefined when initiating the api (<a href="https://github.com/popcorn-official/pop-api/issues/28">#28</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/2a16bda">2a16bda</a>)</li>
+<li>Make msg a function to fix http logging (<a href="https://github.com/popcorn-official/pop-api/issues/29">#29</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/4d2fa4e">4d2fa4e</a>)</li>
+</ul>
+<p><a name="0.3.0"></a></p>
+<h1 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-2-1---v0-3-0--0-3-0--a---2017-12-10-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.2.1...v0.3.0">0.3.0</a> (2017-12-10)</h1><h3 id="bug-fixes">Bug Fixes</h3><ul>
+<li><strong>deps:</strong> Remove unused rollup-watch and babel-preset-minify deps (<a href="https://github.com/popcorn-official/pop-api/issues/26">#26</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/2916f79">2916f79</a>)</li>
+<li><strong>docs:</strong> Removed done todos [ci skip] (<a href="https://github.com/popcorn-official/pop-api/issues/27">#27</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/32d0a1a">32d0a1a</a>)</li>
+</ul>
+<h3 id="features">Features</h3><ul>
+<li>Allow custom middleware to be passed down to the init method (<a href="https://github.com/popcorn-official/pop-api/issues/21">#21</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/4ba1ac5">4ba1ac5</a>), closes <a href="https://github.com/popcorn-official/pop-api/issues/22">#22</a> <a href="https://github.com/popcorn-official/pop-api/issues/19">#19</a> <a href="https://github.com/popcorn-official/pop-api/issues/12">#12</a></li>
+<li>Build with Rollup to reduce package size (<a href="https://github.com/popcorn-official/pop-api/issues/19">#19</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/6d60954">6d60954</a>)</li>
+</ul>
+<p><a name="0.2.1"></a></p>
+<h2 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-2-0---v0-2-1--0-2-1--a---2017-12-09-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.2.0...v0.2.1">0.2.1</a> (2017-12-09)</h2><p><a name="0.2.0"></a></p>
+<h1 id="-a-href--https---github-com-popcorn-official-pop-api-compare-v0-1-0---v0-2-0--0-2-0--a---2017-12-05-"><a href="https://github.com/popcorn-official/pop-api/compare/v0.1.0...v0.2.0">0.2.0</a> (2017-12-05)</h1><h3 id="bug-fixes">Bug Fixes</h3><ul>
+<li>HttpServer listens to port with 0 workers (<a href="https://github.com/popcorn-official/pop-api/issues/10">#10</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/5a45e31">5a45e31</a>)</li>
+<li>Remove unused rimraf from package.json (<a href="https://github.com/popcorn-official/pop-api/issues/1">#1</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/e64c63d">e64c63d</a>)</li>
+</ul>
+<h3 id="features">Features</h3><ul>
+<li>Add helmet for security middleware (<a href="https://github.com/popcorn-official/pop-api/issues/11">#11</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/4b52572">4b52572</a>)</li>
+<li>Add support for Restify (<a href="https://github.com/popcorn-official/pop-api/issues/7">#7</a>) (<a href="https://github.com/popcorn-official/pop-api/commit/01b0531">01b0531</a>)</li>
+</ul>
+<p><a name="0.1.0"></a></p>
+<h1 id="0-1-0--2017-11-28-">0.1.0 (2017-11-28)</h1><h3 id="features">Features</h3><ul>
+<li><strong>initial-release:</strong> Initial release for npm registry (<a href="https://github.com/popcorn-official/pop-api/commit/c5269e7">c5269e7</a>)</li>
+</ul>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

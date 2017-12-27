@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/middleware/Logger.spec.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/middleware/Logger.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+/* eslint-disable no-unused-expressions */
+import del from &apos;del&apos;
+import mkdirp from &apos;mkdirp&apos;
+import sinon from &apos;sinon&apos;
+import winston from &apos;winston&apos;
+import { expect } from &apos;chai&apos;
+import { join } from &apos;path&apos;
+
+import {
+  Logger,
+  PopApi
+} from &apos;../../src&apos;
+import { name } from &apos;../../package&apos;
+
+/** @test {Logger} */
+describe(&apos;Logger&apos;, () =&gt; {
+  /**
+   * The logger instance to test.
+   * @type {Logger}
+   */
+  let logger: Logger
+
+  /**
+   * The directory where the logs are saved.
+   * @type {string}
+   */
+  let logDir: string
+
+  /**
+   * Hook for setting up the Logger tests.
+   * @type {Function}
+   */
+  before(() =&gt; {
+    logDir = join(...[
+      __dirname,
+      &apos;..&apos;,
+      &apos;..&apos;,
+      &apos;tmp&apos;
+    ])
+    mkdirp.sync(logDir)
+
+    logger = new Logger(PopApi, {
+      name,
+      logDir,
+      pretty: false,
+      quiet: true
+    })
+  })
+
+  /** @test {Logger#constructor} */
+  it(&apos;should create an ExpressWinston instance&apos;, () =&gt; {
+    const processStub = sinon.stub(process.env, &apos;NODE_ENV&apos;)
+    processStub.value(&apos;development&apos;)
+    const padStartStub = sinon.stub(String.prototype, &apos;padStart&apos;)
+    padStartStub.value(undefined)
+
+    const logger = new Logger(PopApi, {
+      name,
+      logDir,
+      pretty: true,
+      quiet: false
+    })
+    expect(logger).to.be.an(&apos;object&apos;)
+
+    try {
+      new Logger(PopApi, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an(&apos;Error&apos;)
+      expect(err.message).to.equal(
+        &apos;\&apos;name\&apos; and \&apos;logDir\&apos; are required options for the Logger middleware!&apos;
+      )
+    }
+
+    processStub.restore()
+    padStartStub.restore()
+  })
+
+  /** @test {Logger#constructor} */
+  it(&apos;should check the attributes of the Logger&apos;, () =&gt; {
+    expect(logger.levels).to.exist
+    expect(logger.levels).to.be.an(&apos;object&apos;)
+    expect(logger.name).to.exist
+    expect(logger.name).to.be.a(&apos;string&apos;)
+    expect(logger.logDir).to.exist
+    expect(logger.logDir).to.be.a(&apos;string&apos;)
+  })
+
+  /** @test {Logger#getLevelColor} */
+  it(&apos;should test if the correct logger colors are returned&apos;, () =&gt; {
+    const error = logger.getLevelColor(&apos;error&apos;)
+    expect(error).to.equal(&apos;\x1b[31m&apos;)
+    const warn = logger.getLevelColor(&apos;warn&apos;)
+    expect(warn).to.equal(&apos;\x1b[33m&apos;)
+    const info = logger.getLevelColor(&apos;info&apos;)
+    expect(info).to.equal(&apos;\x1b[36m&apos;)
+    const debug = logger.getLevelColor(&apos;debug&apos;)
+    expect(debug).to.equal(&apos;\x1b[34m&apos;)
+    const nothing = logger.getLevelColor(undefined)
+    expect(nothing).to.equal(&apos;\x1b[36m&apos;)
+  })
+
+  /** @test {Logger#prettyPrintConsole} */
+  it(&apos;should enrich the info object to pretty print the console&apos;, () =&gt; {
+    let info = {
+      level: &apos;info&apos;,
+      message: &apos;This is a test message&apos;
+    }
+    info = logger.prettyPrintConsole(info)
+
+    expect(info.level).to.be.a(&apos;string&apos;)
+    expect(info.message).to.be.a(&apos;string&apos;)
+    expect(info.splat).to.be.an(&apos;array&apos;)
+  })
+
+  /** @test {Logger#_getMessage} */
+  it(&apos;should get the message string from the info object&apos;, () =&gt; {
+    expect(logger._getMessage({
+      level: &apos;info&apos;,
+      message: &apos;This is a test message&apos;
+    })).to.be.a(&apos;string&apos;)
+  })
+
+  /** @test {Logger#consoleFormatter} */
+  it(&apos;should make the console formatter&apos;, () =&gt; {
+    expect(logger.consoleFormatter()).to.be.an(&apos;object&apos;)
+  })
+
+  /** @test {Logger#fileFormatter} */
+  it(&apos;should make the file formatter&apos;, () =&gt; {
+    expect(logger.fileFormatter()).to.be.an(&apos;object&apos;)
+  })
+
+  /** @test {Logger#getConsoleTransport} */
+  it(&apos;should get a configured winston console transport&apos;, () =&gt; {
+    const transport = logger.getConsoleTransport()
+    expect(transport).to.be.an(&apos;object&apos;)
+  })
+
+  /** @test {Logger#getFileTransport} */
+  it(&apos;should get a configured winston file transport&apos;, () =&gt; {
+    const transport = logger.getFileTransport(`${name}-app`)
+    expect(transport).to.be.an(&apos;object&apos;)
+    transport.close()
+  })
+
+  /** @test {Logger#createLoggerInstance} */
+  it(&apos;should create a configured winston instance&apos;, () =&gt; {
+    const logy = logger.createLoggerInstance(&apos;app&apos;)
+    expect(logy).to.be.an(&apos;object&apos;)
+  })
+
+  /** @test {Logger#createLoggerInstance} */
+  it(&apos;should create a configured winston instance&apos;, () =&gt; {
+    const stub = process.env.TEMP_DIR
+    process.env.TEMP_DIR = null
+
+    const logy = logger.createLoggerInstance(&apos;app&apos;)
+    expect(logy).to.be.an(&apos;object&apos;)
+
+    process.env.TEMP_DIR = stub
+  })
+
+  /** @test {Logger#getHttpLoggerMessage} */
+  it(&apos;should get the message to print for express-winston&apos;, () =&gt; {
+    const message = logger.getHttpLoggerMessage({
+      method: &apos;GET&apos;,
+      url: &apos;http://mock.us&apos;
+    }, {
+      statusCode: 418,
+      responseTime: 420
+    })
+    expect(message).to.be.a(&apos;string&apos;)
+  })
+
+  /** @test {Logger#createHttpLogger} */
+  it(&apos;should create a configured Http logger instance&apos;, () =&gt; {
+    const logy = logger.createHttpLogger()
+    expect(logy).to.be.a(&apos;function&apos;)
+  })
+
+  /** @test {Logger#createHttpLogger} */
+  it(&apos;should create a configured Http logger instance with developer output&apos;, () =&gt; {
+    const stub = sinon.stub(process.env, &apos;NODE_ENV&apos;)
+    stub.value(&apos;development&apos;)
+
+    const logy = logger.createHttpLogger()
+    expect(logy).to.be.a(&apos;function&apos;)
+
+    stub.restore()
+  })
+
+  /** @test {Logger#createLogger} */
+  it(&apos;should create the global logger object&apos;, () =&gt; {
+    let val = logger.createLogger(true, true)
+    expect(val).to.be.an(&apos;object&apos;)
+
+    val = logger.createLogger(false, false)
+    expect(val).to.be.an(&apos;object&apos;)
+
+    val = logger.createLogger(false, true)
+    expect(val).to.be.an(&apos;object&apos;)
+  })
+
+  /** @test {Logger#getLogger} */
+  it(&apos;should not create an instance of ExpressWinston or Winston&apos;, () =&gt; {
+    expect(logger.getLogger()).to.be.undefined
+    expect(logger.getLogger(&apos;FAULTY&apos;)).to.be.undefined
+  })
+
+  /**
+   * Hook for tearing down the Logger tests.
+   * @type {Function}
+   */
+  after(done =&gt; {
+    winston.loggers.close()
+    Logger.fileTransport = null
+
+    del([logDir])
+      .then(() =&gt; done())
+      .catch(done)
+  })
+})
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

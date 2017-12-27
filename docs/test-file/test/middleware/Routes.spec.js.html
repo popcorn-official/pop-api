@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/middleware/Routes.spec.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/middleware/Routes.spec.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+/* eslint-disable no-unused-expressions */
+import { expect } from &apos;chai&apos;
+import express, { type $Application } from &apos;express&apos;
+import sinon from &apos;sinon&apos;
+import supertest from &apos;supertest&apos;
+import winston from &apos;winston&apos;
+import { join } from &apos;path&apos;
+
+import {
+  ContentService,
+  Logger,
+  Routes,
+  PopApi
+} from &apos;../../src&apos;
+import {
+  ExampleController,
+  ExampleModel
+} from &apos;../../examples&apos;
+import { name } from &apos;../../package&apos;
+
+/** @test {Routes} */
+describe(&apos;Routes&apos;, () =&gt; {
+  /**
+   * The express instance to test with.
+   * @type {Express}
+   */
+  let app: $Application
+
+  /**
+   * The controllers to register.
+   * @type {Array&lt;Object&gt;}
+   */
+  let controllers: Array&lt;Object&gt;
+
+  /**
+   * The routes instance to test.
+   * @type {Server}
+   */
+  let routes: Routes
+
+  /**
+   * The supertest object to test with.
+   * @type {Object}
+   */
+  let request: Object
+
+  /**
+   * Hook for setting up the Routes tests.
+   * @type {Function}
+   */
+  before(() =&gt; {
+    app = express()
+    controllers = [{
+      Controller: ExampleController,
+      args: {
+        basePath: &apos;example&apos;,
+        service: new ContentService({
+          Model: ExampleModel,
+          projection: {
+            name: 1
+          },
+          query: {}
+        })
+      }
+    }]
+
+    PopApi.httpLogger = (req, res, next) =&gt; next()
+    routes = new Routes(PopApi, {
+      app,
+      controllers
+    })
+    request = supertest(app)
+  })
+
+  /** @test {Routes#constructor} */
+  it(&apos;should register the routes when creating a new Routes object&apos;, () =&gt; {
+    new Routes(PopApi, { app }) // eslint-disable-line no-new
+
+    try {
+      new Routes(PopApi, {}) // eslint-disable-line no-new
+      expect(true).to.be.false
+    } catch (err) {
+      expect(err).to.be.an(&apos;Error&apos;)
+      expect(err.message).to.equal(
+        &apos;\&apos;app\&apos; is a required option for the Routes middleware!&apos;
+      )
+    }
+  })
+
+  /** @test {Routes#registerControllers} */
+  it(&apos;should register a controller&apos;, () =&gt; {
+    const exp = express()
+    const registered = routes.registerControllers(exp, PopApi, controllers)
+
+    expect(registered).to.be.undefined
+  })
+
+  /** @test {Routes#convertErrors} */
+  it(&apos;should catch a 500 internal server error with a default error&apos;, done =&gt; {
+    request.get(&apos;/error&apos;)
+      .expect(500)
+      .then(() =&gt; done())
+      .catch(done)
+  })
+
+  /** @test {Routes#setNotFoundHandler} */
+  it(&apos;should catch a 404 not found error&apos;, done =&gt; {
+    request.get(&apos;/not-found&apos;)
+      .expect(404)
+      .then(() =&gt; done())
+      .catch(done)
+  })
+
+  /**
+   * Helper function for the &apos;setErrorHandler&apos; method.
+   * @param {!string} env - The value for the NODE_ENV stub.
+   * @returns {undefined}
+   */
+  function testErrorHandler(env: string): void {
+    /** @test {Routes#setErrorHandler} */
+    it(&apos;should catch a 500 internal server error with a custom error&apos;, done =&gt; {
+      const stub = sinon.stub(process, &apos;env&apos;)
+      stub.value({
+        NODE_ENV: env
+      })
+
+      request.get(&apos;/custom-error&apos;)
+        .expect(500)
+        .then(() =&gt; {
+          stub.restore()
+          done()
+        })
+        .catch(done)
+    })
+  }
+
+  // Execute the tests.
+  [&apos;development&apos;, &apos;test&apos;].map(testErrorHandler)
+
+  /** @test {Routes#removeServerHeader} */
+  it(&apos;should remove the security headers&apos;, done =&gt; {
+    request.get(&apos;/hello/world&apos;)
+      .expect(200)
+      .expect(res =&gt; {
+        expect(res.headers[&apos;server&apos;]).to.be.undefined
+      })
+      .then(() =&gt; done())
+      .catch(done)
+  })
+
+  /** @test {Routes#preRoutes} */
+  it(&apos;should add the security headers&apos;, done =&gt; {
+    request.get(&apos;/hello/world&apos;)
+      .expect(200)
+      .expect(&apos;X-Content-Type-Options&apos;, &apos;nosniff&apos;)
+      .expect(&apos;Content-Security-Policy&apos;, &apos;default-src \&apos;none\&apos;&apos;)
+      .expect(&apos;X-Frame-Options&apos;, &apos;SAMEORIGIN&apos;)
+      .expect(&apos;X-DNS-Prefetch-Control&apos;, &apos;off&apos;)
+      .expect(&apos;X-Download-Options&apos;, &apos;noopen&apos;)
+      .expect(&apos;X-XSS-Protection&apos;, &apos;1; mode=block&apos;)
+      .expect(res =&gt; {
+        expect(res.headers[&apos;strict-transport-security&apos;]).to.be.a(&apos;string&apos;)
+        expect(res.headers[&apos;x-powered-by&apos;]).to.be.undefined
+        expect(res.headers[&apos;x-aspnet-version&apos;]).to.be.undefined
+      })
+      .then(() =&gt; done())
+      .catch(done)
+  })
+
+  /** @test {Routes#preRoutes} */
+  it(&apos;should execute the pre routes hook&apos;, () =&gt; {
+    const res = routes.preRoutes(express())
+    expect(res).to.be.undefined
+  })
+
+  /** @test {Routes#postRoutes} */
+  it(&apos;should execute the post routes hook&apos;, () =&gt; {
+    const res = routes.postRoutes(express())
+    expect(res).to.be.undefined
+  })
+
+  /** @test {Routes#setupRoutes} */
+  it(&apos;should setup the Express instance&apos;, () =&gt; {
+    const exp = express()
+    new Logger(PopApi, { // eslint-disable-line no-new
+      name,
+      logDir: join(...[
+        __dirname,
+        &apos;..&apos;,
+        &apos;..&apos;,
+        &apos;tmp&apos;
+      ])
+    })
+
+    routes.setupRoutes(exp, PopApi)
+    expect(express).to.not.equal(express())
+
+    winston.loggers.close()
+    Logger.fileTransport = null
+  })
+
+  /** @test {Routes#setupRoutes} */
+  it(&apos;should setup the Express instance&apos;, () =&gt; {
+    const exp = express()
+    routes.setupRoutes(exp)
+    expect(express).to.not.equal(express())
+  })
+})
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

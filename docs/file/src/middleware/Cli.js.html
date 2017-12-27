@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/middleware/Cli.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/middleware/Cli.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+/* eslint-disable no-console */
+/**
+ * node.js command-line interfaces made easy
+ * @external {Command} https://github.com/tj/commander.js
+ */
+import Command from &apos;commander&apos;
+
+/**
+ * Class The class for the command line interface.
+ * @type {Cli}
+ */
+export default class Cli {
+
+  /**
+   * The command line parser to process the Cli inputs.
+   * @type {Command}
+   */
+  program: Object
+
+  /**
+   * The name of the Cli program.
+   * @type {string}
+   */
+  name: string
+
+  /**
+   * The version of the Cli program.
+   * @type {string}
+   */
+  version: string
+
+  /**
+   * Create a new Cli object.
+   * @param {!PopApi} PopApi - The PopApi instance to bind the cli to.
+   * @param {!Object} options - The options for the cli.
+   * @param {?Array&lt;string&gt;} options.argv - The arguments to be parsed by
+   * commander.
+   * @param {!string} options.name - The name of the Cli program.
+   * @param {!string} options.version - The version of the Cli program.
+   * @throw {TypeError} - &apos;name&apos; and &apos;version&apos; are required options for the Cli
+   * middleware!
+   */
+  constructor(PopApi: any, {argv, name, version}: Object): void {
+    const { name: debugName } = this.constructor
+    PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
+      argv,
+      name,
+      version
+    })
+
+    if (!name || !version) {
+      throw new TypeError(&apos;\&apos;name\&apos; and \&apos;version\&apos; are required options for the Cli middleware!&apos;)
+    }
+
+    /**
+     * The command line parser to process the Cli inputs.
+     * @type {Command}
+     */
+    this.program = Command
+    /**
+     * The name of the Cli program.
+     * @type {string}
+     */
+    this.name = name
+    /**
+     * The version of the Cli program.
+     * @type {string}
+     */
+    this.version = version
+
+    this.initOptions()
+    this.program.on(&apos;--help&apos;, this.printHelp.bind(this))
+
+    if (argv) {
+      this.run(PopApi, argv)
+    }
+  }
+
+  /**
+   * Initiate the options for the Cli.
+   * @returns {undefined}
+   */
+  initOptions(): void {
+    return this.program.version(`${this.name} v${this.version}`)
+      .option(
+        &apos;-m, --mode &lt;type&gt;&apos;,
+        &apos;Run the API in a particular mode.&apos;,
+        /^(pretty|quiet|ugly)$/i
+      )
+  }
+
+  /**
+   * Get the help message.
+   * @returns {Array&lt;string&gt;} - The help message to print.
+   */
+  getHelp(): Array&lt;string&gt; {
+    return [
+      &apos;&apos;,
+      &apos;  Examples:&apos;,
+      &apos;&apos;,
+      `    $ ${this.name} -m &lt;pretty|quiet|ugly&gt;`,
+      `    $ ${this.name} --mode &lt;pretty|quiet|ugly&gt;`
+    ]
+  }
+
+  /**
+   * Method for displaying the --help option
+   * @returns {undefined}
+   */
+  printHelp(): void {
+    console.info(`${this.getHelp().join(&apos;\n&apos;)}\n`)
+  }
+
+  /**
+   * Handle the --mode Cli option.
+   * @param {?string} [m] - The mode to run the API in.
+   * @returns {Object} - The options to pass to the Logger middleware.
+   */
+  mode(m?: string): Object {
+    const testing = process.env.NODE_ENV === &apos;test&apos;
+
+    switch (m) {
+      case &apos;quiet&apos;:
+        return {
+          pretty: false,
+          quiet: true
+        }
+      case &apos;ugly&apos;:
+        return {
+          pretty: false,
+          quiet: testing
+        }
+      case &apos;pretty&apos;:
+      default:
+        return {
+          pretty: !testing,
+          quiet: testing
+        }
+    }
+  }
+
+  /**
+   * Run the Cli program.
+   * @param {!PopApi} PopApi - The PopApi instance to bind the logger to.
+   * @param {?Array&lt;string&gt;} argv - The arguments to be parsed by commander.
+   * @returns {undefined}
+   */
+  run(PopApi: any, argv?: Array&lt;string&gt;): void {
+    if (argv) {
+      this.program.parse(argv)
+    }
+
+    if (this.program.mode) {
+      PopApi.loggerArgs = this.mode(this.program.mode)
+    } else {
+      console.error(&apos;\n  error: no valid command given, please check below:&apos;)
+      return this.program.help()
+    }
+  }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

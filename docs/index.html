@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="pop-api">pop-api</h1><p><a href="https://travis-ci.org/popcorn-official/pop-api"><img src="https://travis-ci.org/popcorn-official/pop-api.svg?branch=master" alt="Build Status"></a>
+<a href="https://ci.appveyor.com/project/ChrisAlderson/pop-api"><img src="https://img.shields.io/appveyor/ci/chrisalderson/pop-api/master.svg?label=windows" alt="Windows Build"></a>
+<a href="https://coveralls.io/github/popcorn-official/pop-api?branch=master"><img src="https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://david-dm.org/popcorn-official/pop-api"><img src="https://david-dm.org/popcorn-official/pop-api.svg" alt="Dependency Status"></a>
+<a href="https://david-dm.org/popcorn-official/pop-api?type=dev"><img src="https://david-dm.org/popcorn-official/pop-api/dev-status.svg" alt="devDependencies Status"></a></p>
+<h2 id="features">Features</h2><p>The pop-api project aims to provide the core modules for the
+<a href="https://github.com/popcorn-official/popcorn-api"><code>popcorn-api</code></a> project, but
+can also be used for other purposes by using middleware.</p>
+<ul>
+<li>Cli middleware for reading user input with <a href="https://github.com/tj/commander.js"><code>commander.js</code></a>.</li>
+<li>Database middleware for connection to MongoDB through <a href="https://github.com/Automattic/mongoose"><code>mongoose</code></a>.</li>
+<li>Logging of routes and other information using <a href="https://github.com/winstonjs/winston"><code>winston</code></a>.</li>
+<li>Uses <a href="https://github.com/expressjs/express"><code>express</code></a> under the hood with:<ul>
+<li>Body middleware with <a href="https://github.com/expressjs/body-parser"><code>body-parser</code></a></li>
+<li>Error handling</li>
+<li>Security middleware with <a href="https://github.com/helmetjs/helmet"><code>helmet</code></a></li>
+</ul>
+</li>
+<li>Interface for registering routes for <a href="https://github.com/expressjs/express"><code>express</code></a>.</li>
+<li>Data Access Layer (DAL) class for standard CRUD operations.</li>
+<li>Route controller to handle routes for your content.</li>
+</ul>
+<h2 id="installation">Installation</h2><pre><code><code class="source-code prettyprint"> $ npm install --save pop-api</code>
+</code></pre><h2 id="documentation">Documentation</h2><ul>
+<li><a href="https://popcorn-official.github.io/pop-api/manual/index.html">General documentation</a></li>
+<li><a href="https://popcorn-official.github.io/pop-api/identifiers.html">Api docs</a></li>
+<li><a href="https://popcorn-official.github.io/pop-api/manual/usage.html">Usage</a> </li>
+<li><a href="https://popcorn-official.github.io/pop-api/manual/middleware.html">Middleware</a> </li>
+<li><a href="https://popcorn-official.github.io/pop-api/manual/advanced.html">Advanced Usage</a> </li>
+<li><a href="https://popcorn-official.github.io/pop-api/manual/extending-middleware.html">Extending Middleware</a> </li>
+</ul>
+<h2 id="usage">Usage</h2><p>For your basic setup you have to create a controller which will handle the
+routes. Your controller needs to extend from the <code>IController</code> interface to
+implement the <code>registerRoutes</code> method which will be called during the setup.</p>
+<p>The route controller below will be created with a constructor which takes an
+object as the parameter. This example will register a <code>GET /hello</code> route and
+sends a JSON object as a response with a greeting to the name provided by the
+object from the constructor.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// ./MyRouteController.js
+import { IController } from &apos;pop-api&apos;
+
+// Extend your route controller from the &apos;IController&apos; interface.
+export default class MyRouteController extends IController {
+
+  // The constructor takes an object as the parameter.
+  constructor({name}) {
+    super()
+
+    this.name = name
+  }
+
+  // Implement the &apos;registerRoutes&apos; method from the &apos;IController interface.
+  registerRoutes(router, PopApi) {
+    router.get(&apos;/hello&apos;, this.getHello.bind(this))
+  }
+
+  // Router middleware to execute on the &apos;GET /hello&apos; route.
+  getHello(req, res, next) {
+    return res.json({
+      message: `Hello, ${this.name}`
+    })
+  }
+
+}</code>
+</code></pre>
+<p>To initialize the API we create an array of the route controllers and their
+constructor arguments we want to register. Then we just call the <code>init</code> method
+with the route controllers array, and the name and version your API (needed for
+the Cli). The API should run by default on port <code>5000</code>.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">// ./index.js
+import { PopApi } from &apos;pop-api&apos;
+import MyRouteController from &apos;./MyRouteController&apos;
+import { name, version } from &apos;./package.json&apos;
+
+;(async () =&gt; {
+  try {
+    // Define the controllers you want to use.
+    const controllers = [{
+      Controller: MyRouteController,  // The controller to register.
+      args: {                         // The arguments passed down to the
+        name: &apos;John&apos;                  // The additional arguments to pass to
+                                      // your route controller.
+      }
+    }]
+
+    // Initiate your API with the necessary parameters.
+    await PopApi.init({                
+      controllers,  // The controllers to register.
+      name,         // The name of your API.
+      version       // The version of your API.
+    })
+    // API is available on port 5000.
+    // GET http://localhost:5000/hello -&gt; { message: &apos;Hello, John&apos; }
+  } catch (err) {
+    console.log(err)
+  }
+})()</code>
+</code></pre>
+<h2 id="license">License</h2><p>MIT License</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/controllers/BaseContentController.js | pop-api</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="The base modules for popcorn-api"><meta property="og:type" content="website"><meta property="og:url" content="https://popcorntime.sh"><meta property="og:site_name" content="pop-api"><meta property="og:title" content="pop-api"><meta property="og:image" content="https://avatars2.githubusercontent.com/u/7267937"><meta property="og:description" content="The base modules for popcorn-api"><meta property="og:author" content="https://twitter.com/popcorntimetv"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="pop-api"><meta property="twitter:description" content="The base modules for popcorn-api"><meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/7267937"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./" style="display: flex; align-items: center;"><img src="./image/brand_logo.png" style="width:34px;"></a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/popcorn-official/pop-api"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/PopApi.js~PopApi.html">PopApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemp">createTemp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-executeCommand">executeCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/expressjs/express">Express</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#controllers">controllers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/BaseContentController.js~BaseContentController.html">BaseContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/controllers/ContentService.js~ContentService.html">ContentService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IContentController.js~IContentController.html">IContentController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/controllers/IController.js~IController.html">IController</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/Automattic/mongoose">MongooseModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_incomingmessage">IncomingMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_serverresponse">ServerResponse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#helpers">helpers</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/helpers/ApiError.js~ApiError.html">ApiError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-statusCodes">statusCodes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware">middleware</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Cli.js~Cli.html">Cli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/HttpServer.js~HttpServer.html">HttpServer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/middleware/Routes.js~Routes.html">Routes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/tj/commander.js">Command</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://nodejs.org/dist/latest/docs/api/http.html#http_class_http_server">http~Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/bithavoc/express-winston">ExpressWinston</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://github.com/winstonjs/winston">Winston</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#middleware-internal">middleware/internal</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-padStart">padStart</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/controllers/BaseContentController.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// Import the necessary modules.
+// @flow
+import type {
+  $Response,
+  $Request,
+  NextFunction
+} from &apos;express&apos;
+import type { MongooseModel } from &apos;mongoose&apos;
+
+import IContentController from &apos;./IContentController&apos;
+import type ContentService from &apos;./ContentService&apos;
+
+/**
+ * Base class for getting content from endpoints.
+ * @implements {IContentController}
+ * @type {BaseContentController}
+ */
+export default class BaseContentController extends IContentController {
+
+  /**
+   * The base path for the routes.
+   * @type {string}
+   */
+  basePath: string
+
+  /**
+   * The service of the content controller.
+   * @type {ContentService}
+   */
+  service: ContentService
+
+  /**
+   * Create a new base content controller.
+   * @param {!Object} options - The options for the base content controller.
+   * @param {!string} options.basePath - The base path for the routes.
+   * @param {!ContentService} options.service - The service for the content
+   * controller.
+   */
+  constructor({basePath, service}: Object): void {
+    super()
+
+    /**
+     * The base path for the routes.
+     * @type {string}
+     */
+    this.basePath = basePath
+    /**
+     * The service of the content controller.
+     * @type {ContentService}
+     */
+    this.service = service
+  }
+
+  /**
+   * Default method to register the routes.
+   * @override
+   * @param {!Object} router - The router to register the routes to.
+   * @param {!PopApi} PopApi - The PopApi instance.
+   * @returns {undefined}
+   */
+  registerRoutes(router: Object, PopApi: any): void {
+    const t = this.basePath
+
+    router.get(`/${t}s`, this.getContents.bind(this))
+    router.get(`/${t}s/:page`, this.getPage.bind(this))
+    router.get(`/${t}/:id`, this.getContent.bind(this))
+    router.post(`/${t}s`, this.createContent.bind(this))
+    router.put(`/${t}/:id`, this.updateContent.bind(this))
+    router.get(`/random/${t}`, this.getRandomContent.bind(this))
+    if (typeof router.delete === &apos;function&apos;) {
+      router.delete(`/${t}/:id`, this.deleteContent.bind(this))
+    } else {
+      router.del(`/${t}/:id`, this.deleteContent.bind(this))
+    }
+  }
+
+  /**
+   * Check if the content is empty or the length of the content array is zero.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Object|Array&lt;Object&gt;} content - The content to check.
+   * @returns {Object} - Returns a 204 response if the content is empty, or a
+   * 200 response with the content if it is not empty.
+   */
+  checkEmptyContent(res: $Response, content: any): Object {
+    res.setHeader(&apos;Content-Type&apos;, &apos;application/json&apos;)
+    if (!content || content.length === 0) {
+      res.status(204)
+      return res.send()
+    }
+
+    res.status(200)
+    return res.send(content)
+  }
+
+  /**
+   * Get all the available pages.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Array&lt;string&gt;, Error&gt;} - A list of pages which are
+   * available.
+   */
+  getContents(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;Array&lt;string&gt; | mixed&gt; {
+    return this.service.getContents(`/${this.basePath}`)
+      .then(content =&gt; this.checkEmptyContent(res, content))
+      .catch(err =&gt; next(err))
+  }
+
+  /**
+   * Default method to sort the items.
+   * @override
+   * @param {!string} sort - The property to sort on.
+   * @param {!number} order - The way to sort the property.
+   * @returns {Object} - The sort object.
+   */
+  sortContent(sort: string, order: number): Object {
+    return {
+      [sort]: order
+    }
+  }
+
+  /**
+   * Get content from one page.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Array&lt;Object&gt;, Error&gt;} - The content of one page.
+   */
+  getPage(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;Array&lt;MongooseModel&gt; | mixed&gt; {
+    const { page } = req.params
+    const { sort, order } = req.query
+
+    const o = parseInt(order, 10) ? parseInt(order, 10) : -1
+    const s = typeof sort === &apos;string&apos; ? this.sortContent(sort, o) : null
+
+    return this.service.getPage(s, Number(page))
+      .then(content =&gt; this.checkEmptyContent(res, content))
+      .catch(err =&gt; next(err))
+  }
+
+  /**
+   * Get a content item based on the id.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Object, Error&gt;} - The details of a single content item.
+   */
+  getContent(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;MongooseModel | mixed&gt; {
+    return this.service.getContent(req.params.id)
+      .then(content =&gt; this.checkEmptyContent(res, content))
+      .catch(err =&gt; next(err))
+  }
+
+  /**
+   * Create a new content item.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Object, Error&gt;} - The created content item.
+   */
+  createContent(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;MongooseModel | mixed&gt; {
+    res.setHeader(&apos;Content-Type&apos;, &apos;application/json&apos;)
+    return this.service.createContent(req.body)
+      .then(content =&gt; res.send(content))
+      .catch(err =&gt; next(err))
+  }
+
+  /**
+   * Update the info of one content item.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Object, Error&gt;} - The updated content item.
+   */
+  updateContent(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;MongooseModel | mixed&gt; {
+    res.setHeader(&apos;Content-Type&apos;, &apos;application/json&apos;)
+    return this.service.updateContent(req.params.id, req.body)
+      .then(content =&gt; res.send(content))
+      .catch(err =&gt; next(err))
+  }
+
+  /**
+   * Delete a content item.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Object, Error&gt;} - The deleted content item
+   */
+  deleteContent(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;MongooseModel | mixed&gt; {
+    res.setHeader(&apos;Content-Type&apos;, &apos;application/json&apos;)
+    return this.service.deleteContent(req.params.id)
+      .then(content =&gt; res.send(content))
+      .catch(err =&gt; next(err))
+  }
+
+  /**
+   * Get a random item.
+   * @override
+   * @param {!IncomingMessage} req - The incoming message request object.
+   * @param {!ServerResponse} res - The server response object.
+   * @param {!Function} next - The next function to move to the next
+   * middleware.
+   * @returns {Promise&lt;Object, Error&gt;} - A random item.
+   */
+  getRandomContent(
+    req: $Request,
+    res: $Response,
+    next: NextFunction
+  ): Promise&lt;MongooseModel | mixed&gt; {
+    return this.service.getRandomContent()
+      .then(content =&gt; this.checkEmptyContent(res, content))
+      .catch(err =&gt; next(err))
+  }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
