@@ -30,8 +30,12 @@ can also be used for other purposes by using middleware.
 
 ## Documentation
 
-For further documentation you can check the `./manual` or generate it locally
-with `npm run docs`.
+ - [General documentation](https://popcorn-official.github.io/pop-api/manual/index.html)
+ - [Api docs](https://popcorn-official.github.io/pop-api/identifiers.html)
+ - [Usage](https://popcorn-official.github.io/pop-api/manual/usage.html) 
+ - [Middleware](https://popcorn-official.github.io/pop-api/manual/middleware.html) 
+ - [Advanced Usage](https://popcorn-official.github.io/pop-api/manual/advanced.html) 
+ - [Extending Middleware](https://popcorn-official.github.io/pop-api/manual/extending-middleware.html) 
 
 ## Usage
 

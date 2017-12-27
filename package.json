@@ -64,9 +64,9 @@
     "flow": "flow",
     "flow-typed": "flow-typed install",
     "lint": "eslint {example,src,test}/** *.js$",
-    "release": "standard-version",
+    "release": "git add ./docs/* && standard-version -a",
     "precommit": "npm run lint && npm run flow",
-    "prerelease": "npm run build",
+    "prerelease": "npm run build && npm run docs",
     "prepush": "npm run test",
     "test": "cross-env NODE_ENV=test nyc -r=lcov -r=text mocha --exit --recursive"
   },
