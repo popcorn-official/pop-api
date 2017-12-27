@@ -68,37 +68,39 @@ export default class PopApi {
   /**
    * The setup for the base framework.
    * @param {!Object} options - The options for the framework.
-   * @param {!Express} [options.app=express()] - The web framework instance you
+   * @param {!Express} [options.app=PopApi.app] - The web framework instance you
    * want to use.
    * @param {!Array<Object>} options.controllers - The controllers to register.
    * @param {!string} options.name - The name for your API.
    * @param {!string} options.version - The version of your API.
    * @param {?string} options.logDir - The directory to store the log files in.
-   * @param {?Array<string>} [options.hosts=['localhost']] - The hosts of
+   * @param {?Array<string>} [options.hosts] - The hosts of
    * the database cluster.
-   * @param {?number} [options.dbPort=27017] - The port the database is on.
+   * @param {?number} [options.dbPort] - The port the database is on.
    * @param {?string} [options.username] - The username for the database
    * connection.
    * @param {?string} [options.password] - The password for the database
    * connection.
    * @param {?number} [options.serverPort] - The port the API will run on.
-   * @param {?number} [options.workers=2] - The number of workers for the API.
+   * @param {?number} [options.workers] - The number of workers for the API.
+   * @param {?Object} [options.opts] - Additionl options for custom
+   * middlewares.
    * @param {!Array<Function>} middlewares - The list of middlewares to use.
    * The order of the middlewares is important.
    * @returns {Promise<PopApi, Error>} - The initialized PopApi instance.
    */
   static async init({
-    app = express(),
+    app = PopApi.app,
     controllers,
     name,
     version,
     logDir = defaultLogDir,
-    hosts = ['localhost'],
-    dbPort = 27017,
+    hosts,
+    dbPort,
     username,
     password,
-    serverPort = process.env.PORT,
-    workers = 2,
+    serverPort,
+    workers,
     ...opts
   }: Object, middlewares: Array<Function> = [
     Cli,
