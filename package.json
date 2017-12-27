@@ -12,7 +12,7 @@
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "mkdirp": "^0.5.1",
-    "mongoose": "^4.13.7",
+    "mongoose": "^4.13.8",
     "p-map": "^1.2.0",
     "response-time": "^2.3.2",
     "rollup-plugin-json": "^2.3.0",
