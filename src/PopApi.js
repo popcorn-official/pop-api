@@ -129,7 +129,7 @@ export default class PopApi {
         serverPort,
         workers,
         argv: process.argv,
-        ...PopApi.loggerArgs || {},
+        ...PopApi.loggerArgs,
         ...opts
       })
     })
