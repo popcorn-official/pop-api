@@ -1,7 +1,7 @@
 # pop-api
 
 [![Build Status](https://travis-ci.org/popcorn-official/pop-api.svg?branch=master)](https://travis-ci.org/popcorn-official/pop-api)
-[![Windows Build](https://img.shields.io/appveyor/ci/chrisalderson/pop-api-g8ffp/master.svg?label=windows)](https://ci.appveyor.com/project/ChrisAlderson/pop-api-g8ffp)
+[![Windows Build](https://img.shields.io/appveyor/ci/chrisalderson/pop-api/master.svg?label=windows)](https://ci.appveyor.com/project/ChrisAlderson/pop-api)
 [![Coverage Status](https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=master)](https://coveralls.io/github/popcorn-official/pop-api?branch=master)
 [![Dependency Status](https://david-dm.org/popcorn-official/pop-api.svg)](https://david-dm.org/popcorn-official/pop-api)
 [![devDependencies Status](https://david-dm.org/popcorn-official/pop-api/dev-status.svg)](https://david-dm.org/popcorn-official/pop-api?type=dev)
