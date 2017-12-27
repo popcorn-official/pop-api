@@ -9,7 +9,7 @@ import {
   logger as httpLogger,
   requestWhitelist,
   responseWhitelist
-} from 'express-winston'
+} from '@chrisalderson/express-winston'
 import type { Middleware } from 'express'
 /**
  * a multi-transport async logging library for node.js
