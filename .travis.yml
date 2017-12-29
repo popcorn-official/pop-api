@@ -9,18 +9,8 @@ cache:
   - node_modules
   - flow-typed
 
-addons:
-  apt:
-    sources:
-    - mongodb-upstart
-    - mongodb-3.6-trusty
-    packages:
-    - mongodb-org-server
-    - mongodb-org-shell
-    - mongodb-org-tools
-
 services:
-- mongodb
+  - mongodb
 
 env:
   matrix:
