@@ -409,7 +409,7 @@ window.esdocSearchIndex = [
   ],
   [
     "database#exportfile src/middleware/database.js~database#exportfile,database#exportfile",
-    "test-file/test/middleware/Database.spec.js.html#lineNumber186",
+    "test-file/test/middleware/Database.spec.js.html#lineNumber188",
     "Database should export a file",
     "test"
   ],
@@ -427,13 +427,13 @@ window.esdocSearchIndex = [
   ],
   [
     "database#importfile src/middleware/database.js~database#importfile,database#importfile",
-    "test-file/test/middleware/Database.spec.js.html#lineNumber200",
+    "test-file/test/middleware/Database.spec.js.html#lineNumber202",
     "Database should import a file",
     "test"
   ],
   [
     "database#importfile src/middleware/database.js~database#importfile,database#importfile",
-    "test-file/test/middleware/Database.spec.js.html#lineNumber210",
+    "test-file/test/middleware/Database.spec.js.html#lineNumber212",
     "Database should not find the file to import",
     "test"
   ],

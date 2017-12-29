@@ -169,10 +169,7 @@ export default class Database {
   connect(): Promise&lt;void&gt; {
     const uri = new URL(`mongodb://${this.username}:${this.password}@${this.hosts.join(&apos;,&apos;)}:${this.dbPort}/${this.database}`)
 
-    mongoose.Promise = Promise
-    return mongoose.connect(uri.href, {
-      useMongoClient: true
-    }).catch(err =&gt; Promise.reject(new Error(err)))
+    return mongoose.connect(uri.href)
   }
 
   /**
@@ -181,7 +178,7 @@ export default class Database {
    * the database.
    */
   disconnect(): Promise&lt;void&gt; {
-    return mongoose.connection.close()
+    return mongoose.disconnect()
   }
 
   /**

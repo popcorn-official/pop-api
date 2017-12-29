@@ -236,7 +236,9 @@ describe(&apos;Database&apos;, () =&gt; {
     database.connect()
       .then(done)
       .catch(err =&gt; {
-        expect(err).to.be.an(&apos;Error&apos;)
+        expect(err.name).to.equal(&apos;MongoError&apos;)
+        mongoose.connection.onClose(true)
+
         done()
       })
   })
