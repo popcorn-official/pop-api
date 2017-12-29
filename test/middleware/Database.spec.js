@@ -178,7 +178,6 @@ describe('Database', () => {
       .then(done)
       .catch(err => {
         expect(err.name).to.equal('MongoError')
-        // @flow-ignore
         mongoose.connection.onClose(true)
 
         done()
