@@ -64,10 +64,7 @@ class ExampleModel extends Model {
 const exampleSchema = new Schema({
   _id: {
     type: String,
-    required: true,
-    index: {
-      unique: true
-    }
+    required: true
   },
   slug: {
     type: String,
