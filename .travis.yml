@@ -9,18 +9,8 @@ cache:
   - node_modules
   - flow-typed
 
-addons:
-  apt:
-    sources:
-    - mongodb-upstart
-    - mongodb-3.4-precise
-    packages:
-    - mongodb-org-server
-    - mongodb-org-shell
-    - mongodb-org-tools
-
 services:
-- mongodb
+  - mongodb
 
 env:
   matrix:
