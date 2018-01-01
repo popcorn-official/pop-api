@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.6.2"></a>
+## [0.6.2](https://github.com/popcorn-official/pop-api/compare/v0.6.1...v0.6.2) (2018-01-01)
+
+
+### Bug Fixes
+
+* Move $match as the first pipe line for getPage agregrate ([#49](https://github.com/popcorn-official/pop-api/issues/49)) ([2d0f1b9](https://github.com/popcorn-official/pop-api/commit/2d0f1b9))
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/popcorn-official/pop-api/compare/v0.6.0...v0.6.1) (2017-12-29)
 

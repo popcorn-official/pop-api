@@ -176,9 +176,9 @@ export default class ContentService {
     }]
 
     if (sort) {
-      aggregateQuery = [{
+      aggregateQuery = [...aggregateQuery, {
         $sort: sort
-      }, ...aggregateQuery]
+      }]
     }
 
     if (typeof p === &apos;string&apos; &amp;&amp; p.toLowerCase() === &apos;all&apos;) {
