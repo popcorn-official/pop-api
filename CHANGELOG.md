@@ -3,13 +3,12 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="0.6.3"></a>
-## [0.6.3](https://github.com/popcorn-official/pop-api/compare/v0.6.1...v0.6.3) (2018-01-05)
+## [0.6.3](https://github.com/popcorn-official/pop-api/compare/v0.6.2...v0.6.3) (2018-01-05)
 
 
 ### Bug Fixes
 
 * Add rollup-plugin-json to dev deps ([#51](https://github.com/popcorn-official/pop-api/issues/51)) ([013ede2](https://github.com/popcorn-official/pop-api/commit/013ede2))
-* Move $match as the first pipe line for getPage agregrate ([#49](https://github.com/popcorn-official/pop-api/issues/49)) ([2d0f1b9](https://github.com/popcorn-official/pop-api/commit/2d0f1b9))
 
 
 
