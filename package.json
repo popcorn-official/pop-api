@@ -12,10 +12,9 @@
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "mkdirp": "^0.5.1",
-    "mongoose": "^5.0.0-rc1",
+    "mongoose": "^5.0.0-rc2",
     "p-map": "^1.2.0",
     "response-time": "^2.3.2",
-    "rollup-plugin-json": "^2.3.0",
     "winston": "^3.0.0-rc1"
   },
   "devDependencies": {
@@ -47,6 +46,7 @@
     "nyc": "^11.4.1",
     "rollup": "^0.53.3",
     "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
     "sinon": "^4.1.3",
