@@ -1,6 +1,6 @@
 {
   "name": "pop-api",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "The base modules for popcorn-api",
   "dependencies": {
     "@chrisalderson/express-winston": "^3.0.0",
