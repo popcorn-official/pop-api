@@ -108,7 +108,7 @@ describe('Logger', () => {
       level: 'info',
       message: 'This is a test message'
     }
-    info = logger.prettyPrintConsole(info)
+    info = logger.prettyPrintConsole().transform(info)
 
     expect(info.level).to.be.a('string')
     expect(info.message).to.be.a('string')
@@ -117,10 +117,18 @@ describe('Logger', () => {
 
   /** @test {Logger#_getMessage} */
   it('should get the message string from the info object', () => {
-    expect(logger._getMessage({
+    expect(logger._getMessage().transform({
       level: 'info',
       message: 'This is a test message'
     })).to.be.a('string')
+  })
+
+  /** @test {Logger#_enrichFileFormat} */
+  it('should get the info from the info object', () => {
+    expect(logger._enrichFileFormat().transform({
+      level: 'info',
+      message: 'This is a test message'
+    })).to.be.an('object')
   })
 
   /** @test {Logger#consoleFormatter} */
