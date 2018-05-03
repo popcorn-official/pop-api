@@ -74,7 +74,9 @@ describe('HttpServer', () => {
       app: express()
     })
     httpServer.closeApi({
-      disconnect() {}
+      disconnect() {
+        return Promise.resolve()
+      }
     })
 
     stub.restore()
@@ -99,7 +101,9 @@ describe('HttpServer', () => {
       app: http.createServer(() => {})
     })
     httpServer.closeApi({
-      disconnect() {}
+      disconnect() {
+        return Promise.resolve()
+      }
     })
 
     stub.restore()
