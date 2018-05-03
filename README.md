@@ -1,10 +1,21 @@
 # pop-api
 
-[![Build Status](https://travis-ci.org/popcorn-official/pop-api.svg?branch=master)](https://travis-ci.org/popcorn-official/pop-api)
-[![Windows Build](https://img.shields.io/appveyor/ci/chrisalderson/pop-api/master.svg?label=windows)](https://ci.appveyor.com/project/ChrisAlderson/pop-api)
-[![Coverage Status](https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=master)](https://coveralls.io/github/popcorn-official/pop-api?branch=master)
-[![Dependency Status](https://david-dm.org/popcorn-official/pop-api.svg)](https://david-dm.org/popcorn-official/pop-api)
-[![devDependencies Status](https://david-dm.org/popcorn-official/pop-api/dev-status.svg)](https://david-dm.org/popcorn-official/pop-api?type=dev)
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![Dependency Status][david-image]][david-url]
+[![devDependency Status][david-dev-image]][david-dev-url]
+[![Conventional Commits][commits-image]][commits-url]
+
+[travis-image]: https://travis-ci.org/popcorn-official/pop-api.svg?branch=master
+[travis-url]: https://travis-ci.org/popcorn-official/pop-api
+[coveralls-image]: https://coveralls.io/repos/github/popcorn-official/pop-api/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/popcorn-official/pop-api?branch=master
+[david-image]: https://david-dm.org/popcorn-official/pop-api.svg
+[david-url]: https://david-dm.org/popcorn-official/pop-api
+[david-dev-image]: https://david-dm.org/popcorn-official/pop-api/dev-status.svg
+[david-dev-url]: https://david-dm.org/popcorn-official/pop-api?type=dev
+[commits-image]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg
+[commits-url]: https://conventionalcommits.org
 
 ## Features
 
@@ -32,10 +43,10 @@ can also be used for other purposes by using middleware.
 
  - [General documentation](https://popcorn-official.github.io/pop-api/manual/index.html)
  - [Api docs](https://popcorn-official.github.io/pop-api/identifiers.html)
- - [Usage](https://popcorn-official.github.io/pop-api/manual/usage.html) 
- - [Middleware](https://popcorn-official.github.io/pop-api/manual/middleware.html) 
- - [Advanced Usage](https://popcorn-official.github.io/pop-api/manual/advanced.html) 
- - [Extending Middleware](https://popcorn-official.github.io/pop-api/manual/extending-middleware.html) 
+ - [Usage](https://popcorn-official.github.io/pop-api/manual/usage.html)
+ - [Middleware](https://popcorn-official.github.io/pop-api/manual/middleware.html)
+ - [Advanced Usage](https://popcorn-official.github.io/pop-api/manual/advanced.html)
+ - [Extending Middleware](https://popcorn-official.github.io/pop-api/manual/extending-middleware.html)
 
 ## Usage
 
