@@ -224,10 +224,10 @@ describe('Logger', () => {
    */
   after(done => {
     winston.loggers.close()
-    Logger.fileTransport = null
-
-    del([logDir])
-      .then(() => done())
-      .catch(done)
+    setTimeout(() => {
+      del([logDir])
+        .then(() => done())
+        .catch(done)
+    }, 1000)
   })
 })
