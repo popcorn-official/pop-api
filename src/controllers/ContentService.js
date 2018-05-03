@@ -152,7 +152,7 @@ export default class ContentService {
    * @param {!Object} obj - The object to insert.
    * @returns {Promise<MongooseModel, Error>} - The created content.
    */
-  createContent(obj: Object): Promise<any> {
+  createContent(obj: Object | mixed): Promise<any> {
     return new this.Model(obj).save()
   }
 
@@ -181,7 +181,7 @@ export default class ContentService {
    * @param {!Object} obj - The object to update.
    * @returns {Promise<MongooseModel, Error>} - The updated content.
    */
-  updateContent(id: string, obj: Object): Promise<any> {
+  updateContent(id: string, obj: Object | mixed): Promise<any> {
     return this.Model.findOneAndUpdate({
       _id: id
     }, new this.Model(obj), {
