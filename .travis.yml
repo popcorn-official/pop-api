@@ -22,7 +22,7 @@ git:
 jobs:
   include:
   - stage: prepare cache
-    node_js: '9'
+    node_js: '10'
     before_script:
     - npm i -g flow-typed
     - flow-typed install
@@ -30,20 +30,17 @@ jobs:
     - npm run lint
     - npm run flow
   - stage: test
-    node_js: '7'
-    script: npm run test
-  - stage: test
     node_js: '8'
     script: npm run test
     after_success: npm run coveralls
   - stage: test
-    node_js: '9'
+    node_js: '10'
     script: npm run test
   - stage: build
-    node_js: '9'
+    node_js: '10'
     script: npm run build
   - stage: docs
-    node_js: '9'
+    node_js: '10'
     script: npm run docs
 
 notifications:
