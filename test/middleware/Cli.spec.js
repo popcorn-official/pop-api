@@ -116,11 +116,11 @@ describe('Cli', () => {
   }
 
   // Execute the test.
-  ['quiet', 'ugly', 'pretty'].map(testMode)
+  ['ugly', 'pretty'].map(testMode)
 
   /** @test {Cli#run} */
   it('should invoke no options and print the --help option', () => {
-    const stub = sinon.stub(cli.program, 'outputHelp')
+    const stub = sinon.stub(process.stdout, 'write')
 
     const val = cli.run({}, ['', '', '--help'])
     expect(val).to.be.undefined
@@ -131,7 +131,7 @@ describe('Cli', () => {
   /** @test {Cli#run} */
   it('should not parse the arguments since there are none', () => {
     cli.program.mode = null
-    const stub = sinon.stub(cli.program, 'outputHelp')
+    const stub = sinon.stub(process.stdout, 'write')
 
     const val = cli.run()
     expect(val).to.be.undefined

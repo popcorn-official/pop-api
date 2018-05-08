@@ -1,6 +1,5 @@
 // Import the necessary modules.
 // @flow
-/* eslint-disable no-console */
 /**
  * node.js command-line interfaces made easy
  * @external {Command} https://github.com/tj/commander.js
@@ -39,7 +38,7 @@ export default class Cli {
    * commander.
    * @param {!string} options.name - The name of the Cli program.
    * @param {!string} options.version - The version of the Cli program.
-   * @throw {TypeError} - 'name' and 'version' are required options for the Cli
+   * @throws {TypeError} - 'name' and 'version' are required options for the Cli
    * middleware!
    */
   constructor(PopApi: any, {argv, name, version}: Object): void {
@@ -87,7 +86,7 @@ export default class Cli {
       .option(
         '-m, --mode <type>',
         'Run the API in a particular mode.',
-        /^(pretty|quiet|ugly)$/i
+        /^(pretty|ugly)$/i
       )
   }
 
@@ -100,8 +99,8 @@ export default class Cli {
       '',
       '  Examples:',
       '',
-      `    $ ${this.name} -m <pretty|quiet|ugly>`,
-      `    $ ${this.name} --mode <pretty|quiet|ugly>`
+      `    $ ${this.name} -m <pretty|ugly>`,
+      `    $ ${this.name} --mode <pretty|ugly>`
     ]
   }
 
@@ -110,6 +109,7 @@ export default class Cli {
    * @returns {undefined}
    */
   printHelp(): void {
+    // eslint-disable-next-line no-console
     console.info(`${this.getHelp().join('\n')}\n`)
   }
 
@@ -122,11 +122,6 @@ export default class Cli {
     const testing = process.env.NODE_ENV === 'test'
 
     switch (m) {
-      case 'quiet':
-        return {
-          pretty: false,
-          quiet: true
-        }
       case 'ugly':
         return {
           pretty: false,
@@ -155,6 +150,7 @@ export default class Cli {
     if (this.program.mode) {
       PopApi.loggerArgs = this.mode(this.program.mode)
     } else {
+      // eslint-disable-next-line no-console
       console.error('\n  error: no valid command given, please check below:')
       return this.program.help()
     }

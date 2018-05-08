@@ -52,17 +52,15 @@ export default class Logger {
    * @param {!Object} options - The options for the logger.
    * @param {!string} options.name - The name of the log file.
    * @param {?boolean} [options.pretty] - Pretty mode for output with colors.
-   * @param {?boolean} [options.quiet] - No output.
    * @throws {TypeError} - 'name' and 'logDir' are required options for the
    * Logger middleware!
    */
-  constructor(PopApi: any, {name, logDir, pretty, quiet}: Object): void {
+  constructor(PopApi: any, {name, logDir, pretty}: Object): void {
     const { name: debugName } = this.constructor
     PopApi.debug(`Registering ${debugName} middleware with options: %o`, {
       name,
       logDir,
-      pretty,
-      quiet
+      pretty
     })
 
     if (!name || !logDir) {
@@ -90,10 +88,8 @@ export default class Logger {
      */
     this.logDir = logDir
 
-    global.logger = this.getLogger('logger', pretty, quiet)
-    if (process.env.NODE_ENV !== 'test') {
-      PopApi.httpLogger = this.getLogger('http', pretty, quiet)
-    }
+    global.logger = this.getLogger('logger', pretty)
+    PopApi.httpLogger = this.getLogger('http', pretty)
   }
 
   /**
@@ -234,6 +230,7 @@ export default class Logger {
     const id = `${this.name}-${suffix}`
 
     return loggers.add(id, {
+      silent: process.env.NODE_ENV === 'test',
       levels: this.levels,
       level: 'debug',
       exitOnError: false,
@@ -286,36 +283,12 @@ export default class Logger {
   }
 
   /**
-   * Method to create a global logger object based on the properties of the
-   * Logger class.
-   * @param {?boolean} [pretty] - Pretty mode for output with colors.
-   * @param {?boolean} [quiet] - No output.
-   * @returns {Object|Winston} - A configured logger.
-   */
-  createLogger(pretty?: boolean, quiet?: boolean): Object | Winston {
-    const logger = this.createLoggerInstance('app', pretty)
-
-    if (quiet) {
-      Object.keys(this.levels).map(level => {
-        logger[level] = () => {}
-      })
-    }
-
-    return logger
-  }
-
-  /**
    * Get a logger object based on the choice.
    * @param {?string} [type] - The choice for the logger object.
    * @param {?boolean} [pretty] - Pretty mode for output with colors.
-   * @param {?boolean} [quiet] - No output.
    * @returns {Middleware|Winston|undefined} - The logger object.
    */
-  getLogger(
-    type?: string,
-    pretty?: boolean,
-    quiet?: boolean
-  ): Middleware | Winston | void {
+  getLogger(type?: string, pretty?: boolean): Middleware | Winston | void {
     if (!type) {
       return undefined
     }
@@ -326,7 +299,7 @@ export default class Logger {
       case 'HTTP':
         return this.createHttpLogger(pretty)
       case 'LOGGER':
-        return this.createLogger(pretty, quiet)
+        return this.createLoggerInstance('app', pretty)
       default:
         return undefined
     }
