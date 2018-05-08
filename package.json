@@ -41,7 +41,7 @@
     "flow": "^0.2.3",
     "flow-bin": "^0.71.0",
     "flow-typed": "^2.4.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.2",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "rollup": "^0.58.2",
@@ -49,7 +49,7 @@
     "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-uglify": "^3.0.0",
-    "sinon": "^5.0.3",
+    "sinon": "^5.0.7",
     "standard-version": "^4.3.0",
     "supertest": "^3.0.0",
     "uglify-es": "^3.3.9"
@@ -65,9 +65,7 @@
     "flow-typed": "flow-typed install",
     "lint": "eslint {example,src,test}/** *.js$",
     "release": "git add ./docs/* && standard-version -a",
-    "precommit": "npm run lint && npm run flow",
     "prerelease": "npm run build && npm run docs",
-    "prepush": "npm run test",
     "pretest": "npm run lint",
     "start": "cross-env NODE_ENV=development node -r babel-register ./examples/exampleSetup.js",
     "test": "cross-env NODE_ENV=test nyc -r=lcov -r=text mocha --exit --recursive"
@@ -88,5 +86,11 @@
   },
   "files": [
     "build/**/*"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run flow",
+      "pre-push": "npm run test"
+    }
+  }
 }
