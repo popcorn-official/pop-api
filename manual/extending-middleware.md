@@ -105,7 +105,7 @@ export default class MySqlDatabase extends Database {
   /**
    * @override
    */
-  constructor(PopApi: any, {
+  constructor(PopApi, {
     database,
     hosts = ['localhost'],
     dbPort = 3306,

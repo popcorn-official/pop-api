@@ -27,11 +27,8 @@ PopApi.use(Cli, cliOpts)
 
 // Parsed the input given and binds options for the `Logger` middleware.
 // See the documentation for the `Logger` middleware for more options.
-const { pretty, quiet } = PopApi.loggerArgs
-PopApi.use(Logger, {
-  pretty,
-  quiet
-})
+const { pretty } = PopApi.loggerArgs
+PopApi.use(Logger, { pretty })
 ```
 
 ## Database
@@ -129,8 +126,7 @@ import { name } from './package.json'
 const loggerOpts = {
   name,                                 // The name of the log file.
   logDir: join(...[__dirname, 'tmp']),  // The directory to store the logs in.
-  pretty: true,                         // (Optional) Pretty output mode.
-  quiet: false                          // (Optional) Quiet mode for no output.
+  pretty: true                          // (Optional) Pretty output mode.
 }
 PopApi.use(Logger, loggerOpts)
 

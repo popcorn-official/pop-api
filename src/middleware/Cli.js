@@ -124,14 +124,12 @@ export default class Cli {
     switch (m) {
       case 'ugly':
         return {
-          pretty: false,
-          quiet: testing
+          pretty: false
         }
       case 'pretty':
       default:
         return {
-          pretty: !testing,
-          quiet: testing
+          pretty: !testing
         }
     }
   }
